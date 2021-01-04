@@ -1,8 +1,8 @@
 ---
-yum::managed_repos:
+observium::managed_repos:
     - 'epel'
     - 'opennms-common'
-yum::repos:
+observium::repos:
   opennms-common:
     ensure: 'present'
     enabled: true
