@@ -1,1 +1,13 @@
 ---
+yum::managed_repos:
+    - 'epel'
+    - 'opennms-common'
+yum::repos:
+  opennms-common:
+    ensure: 'present'
+    enabled: true
+    descr: 'RPMs Common to All OpenNMS Architectures (stable)'
+    baseurl: 'http://yum.opennms.org/stable/common'
+    gpgcheck: true
+    gpgkey: 'file:///etc/yum.repos.d/opennms-repo-stable-rhel7.gpg'
+    target: '/etc/yum.repos.d/opennms-repo-stable-rhel7.repo'
