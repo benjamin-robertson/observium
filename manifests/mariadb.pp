@@ -7,4 +7,13 @@ class observium::mariadb inherits observium {
     service_name   => 'mariadb',
     root_password  => $dbpassword,
   }
+
+  mysql::db { 'observium':
+    user     => 'observium',
+    password => $dbpassword,
+    host     => 'localhost',
+    charset  => 'utf8',
+    collate  => 'utf8_general_ci',
+    grant    => 'ALL',
+  }
 }
