@@ -1,10 +1,10 @@
 ---
 observium::managed_repos:
-    - 'epel'
-    - 'opennms-common'
-    - 'opennms-rhel7'
-    - 'remi-php72.repo'
-    - 'remi-safe.repo'
+  - 'epel'
+  - 'opennms-common'
+  - 'opennms-rhel7'
+  - 'remi-php72.repo'
+  - 'remi-safe.repo'
 observium::repos:
   epel:
     ensure: 'present'
@@ -47,3 +47,24 @@ observium::repos:
     gpgcheck: true
     gpgkey: "file:///etc/pki/rpm-gpg/RPM-GPG-KEY-remi-%{facts.os.release.major}"
     target: '/etc/yum.repos.d/remi-safe.repo'
+observium::required_packages:
+  - 'wget'
+  - 'httpd'
+  - 'php'
+  - 'php-opcache'
+  - 'php-mysql'
+  - 'php-gd'
+  - 'php-posix'
+  - 'php-pear'
+  - 'cronie'
+  - 'net-snmp'
+  - 'net-snmp-utils'
+  - 'fping'
+  - 'MySQL-python'
+  - 'rrdtool'
+  - 'subversion'
+  - 'jwhois'
+  - 'ipmitool'
+  - 'graphviz'
+  - 'ImageMagick'
+  - 'php-sodium'
