@@ -7,12 +7,14 @@
 class observium {
   $repos = lookup('observium::managed_repos', Array)
   $repodata = lookup('observium::repos', Hash)
-  notify {"repos are ${repos}":}
-  notify {"repodata are ${repodata}":}
+  $gpgkeys = lookup('observium::gpgkeys', Hash)
+  #notify {"repos are ${repos}":}
+  #notify {"repodata are ${repodata}":}
 
   Class { 'yum':
     managed_repos => $repos,
     repos         => $repodata,
+    gpgkeys       => $gpgkeys,
   }
 
 }
