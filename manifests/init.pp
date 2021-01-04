@@ -5,5 +5,8 @@
 # @example
 #   include observium
 class observium {
-  include yum
+  $repos = lookup('yum::managed_repos', Array)
+  $repodata = lookup('yum::repos', Hash)
+  notify {"repos are ${repos}":}
+  notify {"repodata are ${repodata}":}
 }
