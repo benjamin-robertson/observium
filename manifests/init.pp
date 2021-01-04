@@ -4,7 +4,9 @@
 #
 # @example
 #   include observium
-class observium {
+class observium (
+  String $dbpassword,
+) {
 
 # Check what OS we are on
   if $facts['os']['family'] == 'RedHat' {
