@@ -5,5 +5,5 @@
 # @example
 #   include observium
 class observium {
-  #test
+  include yum
 }
