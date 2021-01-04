@@ -21,14 +21,14 @@ observium::repos:
     gpgcheck: true
     gpgkey: 'file:///etc/yum.repos.d/opennms-repo-stable-rhel7.gpg'
     target: '/etc/yum.repos.d/opennms-repo-stable-rhel7.repo'
-  opennms-rhel7:
+  opennms-rhel%{facts.os.release.major}:
     ensure: 'present'
     enabled: true
-    descr: 'RedHat Enterprise Linux 7.x and CentOS 7.x (stable)'
-    baseurl: 'http://yum.opennms.org/stable/rhel7'
+    descr: 'RedHat Enterprise Linux %{facts.os.release.major}.x and CentOS %{facts.os.release.major}.x (stable)'
+    baseurl: 'http://yum.opennms.org/stable/rhel%{facts.os.release.major}'
     gpgcheck: true
-    gpgkey: 'file:///etc/yum.repos.d/opennms-repo-stable-rhel7.gpg'
-    target: '/etc/yum.repos.d/opennms-repo-stable-rhel7.repo'
+    gpgkey: 'file:///etc/yum.repos.d/opennms-repo-stable-rhel%{facts.os.release.major}.gpg'
+    target: '/etc/yum.repos.d/opennms-repo-stable-rhel%{facts.os.release.major}.repo'
 observium::gpgkeys:
   /etc/yum.repos.d/opennms-repo-stable-rhel7.gpg: 
     content: |
