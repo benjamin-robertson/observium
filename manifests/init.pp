@@ -9,4 +9,10 @@ class observium {
   $repodata = lookup('observium::repos', Hash)
   notify {"repos are ${repos}":}
   notify {"repodata are ${repodata}":}
+
+  Class { 'yum':
+    managed_repos => $repos,
+    repos         => $repodata,
+  }
+
 }
