@@ -3,6 +3,8 @@ observium::managed_repos:
     - 'epel'
     - 'opennms-common'
     - 'opennms-rhel7'
+    - 'remi-php72.repo'
+    - 'remi-safe.repo'
 observium::repos:
   epel:
     ensure: 'present'
