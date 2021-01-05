@@ -7,9 +7,9 @@
 
 // Database config ---  This MUST be configured
 $config['db_extension'] = 'mysqli';
-$config['db_host']      = <%= $db_host %>;
-$config['db_user']      = <%= $db_user %>;
-$config['db_pass']      = <%= $db_password %>;
+$config['db_host']      = '<%= $db_host %>';
+$config['db_user']      = '<%= $db_user %>';
+$config['db_pass']      = '<%= $db_password %>';
 $config['db_name']      = 'observium';
 
 // Base directory
