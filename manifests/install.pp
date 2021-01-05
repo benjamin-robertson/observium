@@ -1,6 +1,6 @@
 # Class: observium::Create folder sturcture
 #
-class observium::install {
+class observium::install inherits observium {
   # Create folder sturctureo 
   file {
     default:
