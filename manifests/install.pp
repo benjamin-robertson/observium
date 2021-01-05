@@ -38,7 +38,7 @@ class observium::install inherits observium {
     require => File['/opt/observium'],
   }
 
-  file { '/etc/cron.d/observium': 
+  file { '/etc/cron.d/observium':
     ensure  => file,
     mode    => '0644',
     content => file('observium/cron.txt'),
