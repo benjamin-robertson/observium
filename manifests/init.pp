@@ -7,6 +7,8 @@
 class observium (
   String $dbpassword,
   String $rootdbpassword,
+  String $downloadurl,
+  String $archive_name,
 ) {
 
 # Check what OS we are on

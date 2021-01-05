@@ -1,3 +1,5 @@
 ---
 observium::dbpassword: "changeme"
 observium::rootdbpassword: "hello123"
+observium::downloadurl: "http://www.observium.org"
+observium::archive_name: "observium-community-latest.tar.gz"
