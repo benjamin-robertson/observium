@@ -7,5 +7,4 @@ class observium::database_init inherits observium {
   exec { '/opt/observium/discovery.php -u':
     unless => "/bin/mysql -u observium --password=${db_password} observium -e 'select * from users'"
   }
-  notify { "/bin/mysql -u observium --password=${db_password} observium -e 'select * from users'": }
 }
