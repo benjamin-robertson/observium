@@ -23,6 +23,9 @@ class observium (
 # Setup mariadb
 include observium::mariadb
 
+# create folder structure 
 
+
+# order class dependencies. 
 Class['observium::yum'] -> Class['observium::mariadb']
 }

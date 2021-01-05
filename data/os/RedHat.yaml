@@ -68,3 +68,4 @@ observium::required_packages:
   - 'graphviz'
   - 'ImageMagick'
   - 'php-sodium'
+  - 'libvirt'
