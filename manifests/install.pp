@@ -30,4 +30,17 @@ class observium::install inherits observium {
     cleanup      => false,
     require      => File['/opt/observium'],
   }
+
+  file { '/opt/observium/logs':
+    ensure  => directory,
+    owner   => 'apache',
+    group   => 'apache',
+    require => File['/opt/observium'],
+  }
+
+  file { '/etc/cron.d/observium': 
+    ensure  => file,
+    mode    => '0644',
+    content => file('observium/cron.txt'),
+  }
 }
