@@ -9,7 +9,7 @@ class observium::yum {
   $repodata = lookup('observium::repos', Hash)
   $gpgkeys = lookup('observium::gpgkeys', Hash)
 
-  Class { 'yum':
+  class { 'yum':
     managed_repos => $repos,
     repos         => $repodata,
     gpgkeys       => $gpgkeys,
