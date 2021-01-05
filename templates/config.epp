@@ -40,4 +40,8 @@ $config['auth_mechanism'] = "mysql";    // default, other options: ldap, http-au
 //$config['email']['from']           = "Observium <observium@your-domain>";
 //$config['email']['default_only']   = TRUE;
 
+<% if $observium_additional_conf != undef { -%>
+//Printing some stuff
+<% } -%>
+
 // End config.php

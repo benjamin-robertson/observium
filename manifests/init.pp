@@ -18,6 +18,7 @@ class observium (
   String $snmpv3_authalgo,
   String $snmpv3_cryptopass,
   String $snmpv3_cryptoalgo,
+  Optional[Array] $observium_additional_conf,
 ) {
 
 # Check what OS we are on and install packages
