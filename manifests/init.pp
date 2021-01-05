@@ -13,26 +13,24 @@ class observium (
   String $db_user,
 ) {
 
-# Check what OS we are on
+# Check what OS we are on and install packages
   if $facts['os']['family'] == 'RedHat' {
     include observium::yum
   }
 
 # install required packages
-  $required_packages = lookup('observium::required_packages', Array)
-  package { $required_packages:
-    ensure => 'latest',
-  }
+  include observium::packages
+
 
 # Setup mariadb
-include observium::mariadb
+  include observium::mariadb
 
 # Install observium binarys 
-include observium::install
+  include observium::install
 
 # Configure observium
-include observium::config
+  include observium::config
 
 # order class dependencies. 
-Class['observium::yum'] -> Class['observium::mariadb']
+Class['observium::yum'] -> Class['observium::packages'] -> Class['observium::mariadb'] -> Class['observium::install'] -> Class['observium::config']
 }
