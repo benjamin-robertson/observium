@@ -31,6 +31,7 @@ $config['db_name']      = 'observium';
 
 // Base directory
 #$config['install_dir'] = "/opt/observium";
+$config['fping'] = "/sbin/fping";
 
 // Default community list to use when adding/discovering
 $config['snmp']['community'] = array("<%= $community %>");
