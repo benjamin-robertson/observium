@@ -38,9 +38,13 @@ class observium::install inherits observium {
     require => File['/opt/observium'],
   }
 
+  # include cron to manage cron service
+  include cron
+  # include cron file for observium
   file { '/etc/cron.d/observium':
     ensure  => file,
     mode    => '0644',
     content => file('observium/cron.txt'),
+    notify  => Service['crond'],
   }
 }
