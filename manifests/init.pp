@@ -41,7 +41,8 @@ class observium (
   include observium::config
 
 # Database config
+  include observium::database_init
 
 # order class dependencies. 
-Class['observium::yum'] -> Class['observium::packages'] -> Class['observium::mariadb'] -> Class['observium::install'] -> Class['observium::config']
+Class['observium::yum'] -> Class['observium::packages'] -> Class['observium::mariadb'] -> Class['observium::install'] -> Class['observium::config'] -> Class['observium::database_init']
 }
