@@ -12,6 +12,12 @@ class observium (
   String $db_host,
   String $db_user,
   String $community,
+  String $snmpv3_authlevel,
+  String $snmpv3_authname,
+  String $snmpv3_authpass,
+  String $snmpv3_authalgo,
+  String $snmpv3_cryptopass,
+  String $snmpv3_cryptoalgo,
 ) {
 
 # Check what OS we are on and install packages
