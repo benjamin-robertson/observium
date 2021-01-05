@@ -16,7 +16,7 @@ $config['db_name']      = 'observium';
 #$config['install_dir'] = "/opt/observium";
 
 // Default community list to use when adding/discovering
-$config['snmp']['community'] = array("public");
+$config['snmp']['community'] = array("<%= $community %>");
 
 // Authentication Model
 $config['auth_mechanism'] = "mysql";    // default, other options: ldap, http-auth, please see documentation for config help

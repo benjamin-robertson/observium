@@ -6,7 +6,7 @@ class observium::config inherits observium {
   # Setup config.php
   file { '/opt/observium/config.php':
     ensure  => file,
-    content => epp('observium/config.epp', { 'db_host' => $db_host, 'db_user' => $db_user, 'db_password' => $db_password }),
+    content => epp('observium/config.epp', { 'db_host' => $db_host, 'db_user' => $db_user, 'db_password' => $db_password, 'community' => $community }),
     owner   => 'root',
     group   => 'root',
     mode    => '0644',

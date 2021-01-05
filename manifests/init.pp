@@ -11,6 +11,7 @@ class observium (
   String $archive_name,
   String $db_host,
   String $db_user,
+  String $community,
 ) {
 
 # Check what OS we are on and install packages
