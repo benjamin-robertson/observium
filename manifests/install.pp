@@ -14,9 +14,10 @@ class observium::install {
   }
 
   file { '/opt/observium/rrd':
-    ensure => directory,
-    owner  => 'apache',
-    group  => 'apache',
+    ensure  => directory,
+    owner   => 'apache',
+    group   => 'apache',
+    require => File['/opt/observium'],
   }
 
   # Download installation tar ball
