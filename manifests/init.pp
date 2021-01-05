@@ -21,7 +21,6 @@ class observium (
 # install required packages
   include observium::packages
 
-
 # Setup mariadb
   include observium::mariadb
 

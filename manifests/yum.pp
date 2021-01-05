@@ -15,9 +15,4 @@ class observium::yum {
     gpgkeys       => $gpgkeys,
   }
 
-  $required_packages = lookup('observium::required_packages', Array)
-  package { $required_packages:
-    ensure  => 'latest',
-    require => 
-  }
 }
