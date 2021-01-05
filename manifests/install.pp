@@ -30,7 +30,7 @@ class observium::install inherits observium {
   archive { $archive_name:
     path         => "/opt/${archive_name}",
     source       => "${downloadurl}/${archive_name}",
-    extact       => true,
+    extract      => true,
     extract_path => '/opt/observium',
     creates      => '/opt/observium/VERSION',
     cleanup      => false,
