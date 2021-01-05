@@ -5,7 +5,7 @@ class observium::mariadb inherits observium {
     package_name   => 'mariadb-server',
     package_ensure => 'present',
     service_name   => 'mariadb',
-    root_password  => $dbpassword,
+    root_password  => $rootdbpassword,
   }
 
   mysql::db { 'observium':

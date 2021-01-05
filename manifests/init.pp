@@ -6,6 +6,7 @@
 #   include observium
 class observium (
   String $dbpassword,
+  String $rootdbpassword,
 ) {
 
 # Check what OS we are on
