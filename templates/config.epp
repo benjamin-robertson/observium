@@ -1,3 +1,17 @@
+<% |  String $db_host,
+      String $db_user,
+      String $db_password,
+      String $community,
+      String $snmpv3_authlevel,
+      String $snmpv3_authname,
+      String $snmpv3_authpass,
+      String $snmpv3_authalgo,
+      String $snmpv3_cryptopass,
+      String $snmpv3_cryptoalgo,
+      String $email_default,
+      String $email_from,
+      String $observium_additional_conf,
+| -%>
 <?php
 ##
 ## This file is managed by Puppet!! ##
@@ -36,8 +50,8 @@ $config['auth_mechanism'] = "mysql";    // default, other options: ldap, http-au
 //$config['web_show_disabled'] = FALSE;    // Show or not disabled devices on major pages.
 
 // Set up a default alerter (email to a single address)
-//$config['email']['default']        = "user@your-domain";
-//$config['email']['from']           = "Observium <observium@your-domain>";
+//$config['email']['default']        = "<%= $email_default %>";
+//$config['email']['from']           = "<%= $email_from %>";
 //$config['email']['default_only']   = TRUE;
 
 <% if $observium_additional_conf != undef { 

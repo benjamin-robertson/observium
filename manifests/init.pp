@@ -18,6 +18,8 @@ class observium (
   String $snmpv3_authalgo,
   String $snmpv3_cryptopass,
   String $snmpv3_cryptoalgo,
+  String $email_default,
+  String $email_from,
   Optional[Array] $observium_additional_conf = undef,
 ) {
 
