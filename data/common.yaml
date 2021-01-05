@@ -18,3 +18,4 @@ observium::observium_additional_conf:
   - '//extra lines'
   - '//as many as you'
   - '//would like'
+observium::admin_password: "changeme"

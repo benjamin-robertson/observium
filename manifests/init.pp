@@ -20,6 +20,7 @@ class observium (
   String $snmpv3_cryptoalgo,
   String $email_default,
   String $email_from,
+  String $admin_password,
   Optional[Array] $observium_additional_conf = undef,
 ) {
 
