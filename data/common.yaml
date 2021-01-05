@@ -12,7 +12,3 @@ observium::snmpv3_authpass: "setme"
 observium::snmpv3_authalgo: "SHA"
 observium::snmpv3_cryptopass: "setme"
 observium::snmpv3_cryptoalgo: "AES"
-observium::observium_additional_conf:
-  - 'extra lines'
-  - 'as many as you'
-  - 'would like'
