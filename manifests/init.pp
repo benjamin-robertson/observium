@@ -5,10 +5,12 @@
 # @example
 #   include observium
 class observium (
-  String $dbpassword,
-  String $rootdbpassword,
-  String $downloadurl,
+  String $db_password,
+  String $rootdb_password,
+  String $download_url,
   String $archive_name,
+  String $db_host,
+  String $db_user,
 ) {
 
 # Check what OS we are on
@@ -25,8 +27,11 @@ class observium (
 # Setup mariadb
 include observium::mariadb
 
-# create folder structure 
+# Install observium binarys 
 include observium::install
+
+# Configure observium
+include observium::config
 
 # order class dependencies. 
 Class['observium::yum'] -> Class['observium::mariadb']

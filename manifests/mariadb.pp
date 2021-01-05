@@ -5,12 +5,12 @@ class observium::mariadb inherits observium {
     package_name   => 'mariadb-server',
     package_ensure => 'present',
     service_name   => 'mariadb',
-    root_password  => $rootdbpassword,
+    root_password  => $rootdb_password,
   }
 
   mysql::db { 'observium':
-    user     => 'observium',
-    password => $dbpassword,
+    user     => $db_user,
+    password => $db_password,
     host     => 'localhost',
     charset  => 'utf8',
     collate  => 'utf8_general_ci',

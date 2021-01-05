@@ -20,16 +20,10 @@ class observium::install inherits observium {
     require => File['/opt/observium'],
   }
 
-  # Download installation tar ball
-  #file { '/opt/observium-community-latest.tar.gz':
-  #  ensure => file,
-  #  source => 'http://www.observium.org/observium-community-latest.tar.gz',
-  #}
-
   # Extract the tarball
   archive { $archive_name:
     path         => "/opt/${archive_name}",
-    source       => "${downloadurl}/${archive_name}",
+    source       => "${download_url}/${archive_name}",
     extract      => true,
     extract_path => '/opt',
     creates      => '/opt/observium/VERSION',
