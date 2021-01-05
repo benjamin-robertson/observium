@@ -10,7 +10,7 @@
       String $snmpv3_cryptoalgo,
       String $email_default,
       String $email_from,
-      String $observium_additional_conf,
+      Array $observium_additional_conf,
 | -%>
 <?php
 ##
