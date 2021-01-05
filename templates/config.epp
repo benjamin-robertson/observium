@@ -42,7 +42,7 @@ $config['auth_mechanism'] = "mysql";    // default, other options: ldap, http-au
 
 <% if $observium_additional_conf != undef { 
   $observium_additional_conf.each | String $lineconfig| { -%>
-    <%= $lineconfig %>
+<%= $lineconfig %>
 <% }
 } -%>
 
