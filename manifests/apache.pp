@@ -4,11 +4,12 @@
 #
 class observium::apache inherits observium {
   assert_private()
-  # Declare base apache class
+# Declare base apache class
   class { 'apache':
     default_vhost => false,
   }
 
+# Specify virtual host
   apache::vhost { $apache_hostname:
     port            => $apache_port,
     docroot         => '/opt/observium/html/',
@@ -23,5 +24,8 @@ class observium::apache inherits observium {
       },
     ],
   }
+
+# Include php module
+  class { 'apache::mod::php': }
 
 }
