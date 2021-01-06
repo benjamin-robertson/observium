@@ -31,7 +31,7 @@ class observium::yum {
         descr    => $repoinfo['descr'],
         gpgkey   => $repoinfo['gpgkey'],
         target   => $repoinfo['target'],
-        #baseurl  => $repointo['baseurl'],
+        baseurl  => $repointo['baseurl'],
       }
     } else {
       notify { "mirrorlist matched ${reponame}":}
@@ -43,7 +43,7 @@ class observium::yum {
         descr      => $repoinfo['descr'],
         gpgkey     => $repoinfo['gpgkey'],
         target     => $repoinfo['target'],
-        #mirrorlist => $repoinfo['mirrorlist'],
+        mirrorlist => $repoinfo['mirrorlist'],
       }
     }
   }
