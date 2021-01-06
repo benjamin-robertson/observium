@@ -22,6 +22,7 @@ class observium::yum {
   # Create repos
   $repodata.each | String $reponame, Hash $repoinfo | {
     if has_key($repoinfo, 'baseurl')  {
+      notify { 'base url matched':}
       yumrepo { $reponame:
         ensure   => $repoinfo['ensure'],
         enabled  => $repoinfo['enabled'],
@@ -30,9 +31,10 @@ class observium::yum {
         descr    => $repoinfo['descr'],
         gpgkey   => $repoinfo['gpgkey'],
         target   => $repoinfo['target'],
-        baseurl  => $repointo['baseurl'],
+        #baseurl  => $repointo['baseurl'],
       }
     } else {
+      notify { 'mirrorlist matched':}
       yumrepo { $reponame:
         ensure     => $repoinfo['ensure'],
         enabled    => $repoinfo['enabled'],
@@ -41,7 +43,7 @@ class observium::yum {
         descr      => $repoinfo['descr'],
         gpgkey     => $repoinfo['gpgkey'],
         target     => $repoinfo['target'],
-        mirrorlist => $repoinfo['mirrorlist'],
+        #mirrorlist => $repoinfo['mirrorlist'],
       }
     }
   }
