@@ -48,7 +48,7 @@ class observium::apache inherits observium {
   </IfModule>
 </IfModule>
 
-    | EOT,
+    | EOT
   }
 
 }
