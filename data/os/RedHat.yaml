@@ -49,7 +49,6 @@ observium::repos:
     target: '/etc/yum.repos.d/remi-safe.repo'
 observium::required_packages:
   - 'wget'
-  - 'httpd'
   - 'php'
   - 'php-opcache'
   - 'php-mysql'
