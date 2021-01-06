@@ -10,11 +10,11 @@ class observium::apache inherits observium {
   }
 
   apache::vhost { $apache_hostname:
-    port => $apache_port,
-    docroot => '/opt/observium/html/',
-    servername => $apache_hostname,
+    port            => $apache_port,
+    docroot         => '/opt/observium/html/',
+    servername      => $apache_hostname,
     access_log_file => '/opt/observium/logs/access_log combined',
-    error_log_file => '/opt/observium/logs/error_log',
+    error_log_file  => '/opt/observium/logs/error_log',
   }
 
 }
