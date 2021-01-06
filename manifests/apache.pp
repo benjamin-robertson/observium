@@ -19,7 +19,7 @@ class observium::apache inherits observium {
       { 'path'           => '/opt/observium/html/',
         'options'        => 'FollowSymLinks MultiViews',
         'allow_override' => 'All',
-        'auth_require'   => 'noodle',
+        'auth_require'   => 'all granted',
       },
     ],
   }
