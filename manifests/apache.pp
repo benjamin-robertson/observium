@@ -5,28 +5,6 @@
 class observium::apache inherits observium {
   assert_private()
 
-  $php5_content = @(EOT)
-#
-# PHP is an HTML-embedded scripting language which attempts to make it
-# easy for developers to write dynamically generated webpages.
-#
-
-# Cannot load both php5 and php7 modules
-<IfModule !mod_php5.c>
-  <IfModule prefork.c>
-    LoadModule php7_module modules/libphp7.so
-  </IfModule>
-</IfModule>
-
-
-<IfModule !mod_php5.c>
-  <IfModule !prefork.c>
-    LoadModule php7_module modules/libphp7-zts.so
-  </IfModule>
-</IfModule>
-
-| EOT
-
 # Declare base apache class
   class { 'apache':
     default_vhost => false,
@@ -51,7 +29,6 @@ class observium::apache inherits observium {
 # Include php module
   class { 'apache::mod::php':
     php_version => '7',
-    #content     => $php5_content,
   }
 
 }
