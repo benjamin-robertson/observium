@@ -51,7 +51,7 @@ class observium::apache inherits observium {
 # Include php module
   class { 'apache::mod::php':
     php_version => '7',
-    content     => $php5_content,
+    #content     => $php5_content,
   }
 
 }
