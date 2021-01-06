@@ -44,6 +44,9 @@ class observium (
 # Database config
   include observium::database_init
 
+# Disable selinux
+  include observium::selinux
+
 # order class dependencies. 
 Class['observium::yum'] -> Class['observium::packages'] -> Class['observium::mariadb'] -> Class['observium::install'] -> Class['observium::config'] -> Class['observium::database_init']
 }
