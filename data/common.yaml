@@ -19,3 +19,4 @@ observium::observium_additional_conf:
   - '//as many as you'
   - '//would like'
 observium::admin_password: "changeme"
+observium::apache_port: "80"

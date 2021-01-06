@@ -21,6 +21,9 @@ class observium (
   String $email_default,
   String $email_from,
   String $admin_password,
+  String $apache_bind_ip = $facts['ipaddress'],
+  String $apache_hostname = $facts['hostname'],
+  String $apache_port,
   Optional[Array] $observium_additional_conf = undef,
 ) {
 
@@ -46,6 +49,9 @@ class observium (
 
 # Disable selinux
   include observium::selinux
+
+# Configure apache
+  include observium::apache
 
 # order class dependencies. 
 Class['observium::yum'] -> Class['observium::packages'] -> Class['observium::mariadb'] -> Class['observium::install'] -> Class['observium::config'] -> Class['observium::database_init']
