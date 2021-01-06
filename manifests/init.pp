@@ -12,12 +12,12 @@ class observium (
   String $db_host,
   String $db_user,
   String $community,
-  String $snmpv3_authlevel,
+  Enum['noAuthNoPriv','authNoPriv','authPriv'] $snmpv3_authlevel,
   String $snmpv3_authname,
   String $snmpv3_authpass,
-  String $snmpv3_authalgo,
+  Enum['SHA','MD5'] $snmpv3_authalgo,
   String $snmpv3_cryptopass,
-  String $snmpv3_cryptoalgo,
+  Enum['AES','DES'] $snmpv3_cryptoalgo,
   String $email_default,
   String $email_from,
   String $admin_password,
@@ -52,6 +52,9 @@ class observium (
 
 # Configure apache
   include observium::apache
+
+# Configure localsnmp
+  include observium::snmp
 
 # order class dependencies. 
 Class['observium::yum'] -> Class['observium::packages'] -> Class['observium::mariadb'] -> Class['observium::install'] -> Class['observium::config'] -> Class['observium::database_init']

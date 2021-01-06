@@ -30,5 +30,4 @@ class observium::apache inherits observium {
   class { 'apache::mod::php':
     php_version => '7',
   }
-
 }
