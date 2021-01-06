@@ -21,10 +21,6 @@ class observium::yum {
 
   # Create repos
   $repodata.each | String $reponame, Hash $repoinfo | {
-    case repo {
-      'value': { } 
-      default: { }
-    }
     yumrepo { $reponame:
       ensure     => $repoinfo['ensure'],
       enabled    => $repoinfo['enabled'],
