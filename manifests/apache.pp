@@ -27,6 +27,7 @@ class observium::apache inherits observium {
 
 # Include php module
   class { 'apache::mod::php':
+    path    => 'modules/libphp7.so',
     content => @(EOT)
 #
 # PHP is an HTML-embedded scripting language which attempts to make it
@@ -47,7 +48,7 @@ class observium::apache inherits observium {
   </IfModule>
 </IfModule>
 
-    | EOT
+    | EOT,
   }
 
 }
