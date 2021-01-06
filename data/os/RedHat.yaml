@@ -55,7 +55,6 @@ observium::required_packages:
   - 'php-gd'
   - 'php-posix'
   - 'php-pear'
-  - 'net-snmp'
   - 'net-snmp-utils'
   - 'fping'
   - 'MySQL-python'
