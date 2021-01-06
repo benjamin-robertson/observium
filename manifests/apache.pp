@@ -13,8 +13,15 @@ class observium::apache inherits observium {
     port            => $apache_port,
     docroot         => '/opt/observium/html/',
     servername      => $apache_hostname,
-    access_log_file => '/opt/observium/logs/access_log combined',
+    access_log_file => '/opt/observium/logs/access_log',
     error_log_file  => '/opt/observium/logs/error_log',
+    directories     => [
+      { 'path' => '/opt/observium/html/',
+        AllowOverride => 'All',
+        Options       => 'FollowSymLinks MultiViews',
+        Require       => 'all granted',
+      },
+    ],
   }
 
 }
