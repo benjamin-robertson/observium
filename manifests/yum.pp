@@ -21,16 +21,28 @@ class observium::yum {
 
   # Create repos
   $repodata.each | String $reponame, Hash $repoinfo | {
-    yumrepo { $reponame:
-      ensure     => $repoinfo['ensure'],
-      enabled    => $repoinfo['enabled'],
-      gpgcheck   => $repoinfo['gpgcheck'],
-      name       => $reponame,
-      descr      => $repoinfo['descr'],
-      gpgkey     => $repoinfo['gpgkey'],
-      target     => $repoinfo['target'],
-      mirrorlist => $repoinfo['mirrorlist'],
-      baseurl    => $repointo['baseurl'],
+    if $repoinfo['baseurl'] {
+      yumrepo { $reponame:
+        ensure     => $repoinfo['ensure'],
+        enabled    => $repoinfo['enabled'],
+        gpgcheck   => $repoinfo['gpgcheck'],
+        name       => $reponame,
+        descr      => $repoinfo['descr'],
+        gpgkey     => $repoinfo['gpgkey'],
+        target     => $repoinfo['target'],
+        baseurl    => $repointo['baseurl'],
+    }
+    } else {
+      yumrepo { $reponame:
+        ensure     => $repoinfo['ensure'],
+        enabled    => $repoinfo['enabled'],
+        gpgcheck   => $repoinfo['gpgcheck'],
+        name       => $reponame,
+        descr      => $repoinfo['descr'],
+        gpgkey     => $repoinfo['gpgkey'],
+        target     => $repoinfo['target'],
+        mirrorlist => $repoinfo['mirrorlist'],
+      }
     }
   }
 
