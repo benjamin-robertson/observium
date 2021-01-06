@@ -27,7 +27,7 @@ class observium::apache inherits observium {
 
 # Include php module
   class { 'apache::mod::php':
-    path        => 'modules/libphp7.so',
+    #path        => 'modules/libphp7.so',
     php_version => '7',
     content     => @(EOT)
 #
