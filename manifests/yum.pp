@@ -10,7 +10,12 @@ class observium::yum {
   $gpgkeys = lookup('observium::gpgkeys', Hash)
 
   $gpgkeys.each |String $gpglocation, Hash $gpghash | {
-    notify { "Location ${gpglocation} da hash ${gpghash}":}
+    file { $gpglocation:
+      ensure  => file,
+      mode    => '0644',
+      content => $gpghash['content']
+    }
+    notify { "Location ${gpglocation} da hash ${gpghash['content']}":}
   }
 
   class { 'yum':
