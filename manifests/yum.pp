@@ -21,7 +21,7 @@ class observium::yum {
 
   # Create repos
   $repodata.each | String $reponame, Hash $repoinfo | {
-    if $repoinfo['baseurl'] {
+    if defined($repoinfo['baseurl'])  {
       yumrepo { $reponame:
         ensure   => $repoinfo['ensure'],
         enabled  => $repoinfo['enabled'],
