@@ -13,7 +13,13 @@ class observium::database_init inherits observium {
   }
 
   # add local host to database
-  exec { "/opt/observium/add_device.php 127.0.0.1 ap v3 ${snmpv3_authname} ${snmpv3_authpass} ${snmpv3_cryptopass} ${snmpv3_authalgo} ${snmpv3_cryptoalgo}":
+  case $snmpv3_authlevel {
+    'noAuthNoPriv': { $v3auth = 'nanp' }
+    'authNoPriv':   { $v3auth = 'anp' }
+    'authPriv':     { $v3auth = 'ap' }
+    default:        { $v3auth = 'any' }
+  }
+  exec { "/opt/observium/add_device.php 127.0.0.1 ${v3auth} v3 ${snmpv3_authname} ${snmpv3_authpass} ${snmpv3_cryptopass} ${snmpv3_authalgo} ${snmpv3_cryptoalgo}":
     unless => "/bin/mysql -u observium --password=changeme observium -e 'select hostname from devices WHERE hostname LIKE \"127.0.0.1\"' | grep 127.0.0.1",
   }
 }
