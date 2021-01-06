@@ -9,13 +9,28 @@ class observium::yum {
   $repodata = lookup('observium::repos', Hash)
   $gpgkeys = lookup('observium::gpgkeys', Hash)
 
+  # place GPG keys on disk
   $gpgkeys.each |String $gpglocation, Hash $gpghash | {
     file { $gpglocation:
       ensure  => file,
       mode    => '0644',
       content => $gpghash['content']
     }
-    notify { "Location ${gpglocation} da hash ${gpghash['content']}":}
+    #notify { "Location ${gpglocation} da hash ${gpghash['content']}":}
+  }
+
+  # Create repos
+  $repodata.each | String $reponame, Hash $repoinfo | {
+    yumrepo { $reponame:
+      ensure     => $repoinfo['ensure'],
+      enabled    => $repoinfo['enabled'],
+      gpgcheck   => $repoinfo['gpgcheck'],
+      name       => $reponame,
+      descr      => $repoinfo['descr'],
+      gpgkey     => $repoinfo['gpgkey'],
+      target     => $repoinfo['target'],
+      mirrorlist => $repoinfo['mirrorlist'],
+    }
   }
 
   #class { 'yum':

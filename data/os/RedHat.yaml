@@ -8,43 +8,43 @@ observium::managed_repos:
 observium::repos:
   epel:
     ensure: 'present'
-    enabled: true
+    enabled: 1
     descr: "Extra Packages for Enterprise Linux %{facts.os.release.major} - $basearch"
     mirrorlist: "https://mirrors.fedoraproject.org/metalink?repo=epel-%{facts.os.release.major}&arch=$basearch"
-    gpgcheck: true
+    gpgcheck: 1
     failovermethod: 'priority'
     gpgkey: "file:///etc/pki/rpm-gpg/RPM-GPG-KEY-EPEL-%{facts.os.release.major}"
     target: '/etc/yum.repos.d/epel.repo'
   opennms-common:
     ensure: 'present'
-    enabled: true
+    enabled: 1
     descr: 'RPMs Common to All OpenNMS Architectures (stable)'
     baseurl: 'http://yum.opennms.org/stable/common'
-    gpgcheck: true
+    gpgcheck: 1
     gpgkey: 'file:///etc/yum.repos.d/opennms-repo-stable-rhel7.gpg'
     target: '/etc/yum.repos.d/opennms-repo-stable-rhel7.repo'
   opennms-rhel%{facts.os.release.major}:
     ensure: 'present'
-    enabled: true
+    enabled: 1
     descr: 'RedHat Enterprise Linux %{facts.os.release.major}.x and CentOS %{facts.os.release.major}.x (stable)'
     baseurl: 'http://yum.opennms.org/stable/rhel%{facts.os.release.major}'
-    gpgcheck: true
+    gpgcheck: 1
     gpgkey: 'file:///etc/yum.repos.d/opennms-repo-stable-rhel%{facts.os.release.major}.gpg'
     target: '/etc/yum.repos.d/opennms-repo-stable-rhel%{facts.os.release.major}.repo'
   remi-php72.repo:
     ensure: 'present'
-    enabled: true
+    enabled: 1
     descr: "Remi's PHP 7.2 RPM repository for Enterprise Linux %{facts.os.release.major} - $basearch"
     mirrorlist: "http://cdn.remirepo.net/enterprise/%{facts.os.release.major}/php72/mirror"
-    gpgcheck: true
+    gpgcheck: 1
     gpgkey: "file:///etc/pki/rpm-gpg/RPM-GPG-KEY-remi-%{facts.os.release.major}"
     target: '/etc/yum.repos.d/remi-php72.repo'
   remi-safe.repo:
     ensure: 'present'
-    enabled: true
+    enabled: 1
     descr: "Remi's PHP 7.2 RPM repository for Enterprise Linux %{facts.os.release.major} - $basearch"
     mirrorlist: "http://cdn.remirepo.net/enterprise/%{facts.os.release.major}/safe/mirror"
-    gpgcheck: true
+    gpgcheck: 1
     gpgkey: "file:///etc/pki/rpm-gpg/RPM-GPG-KEY-remi-%{facts.os.release.major}"
     target: '/etc/yum.repos.d/remi-safe.repo'
 observium::required_packages:
