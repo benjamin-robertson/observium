@@ -27,8 +27,9 @@ class observium::apache inherits observium {
 
 # Include php module
   class { 'apache::mod::php':
-    path    => 'modules/libphp7.so',
-    content => @(EOT)
+    path        => 'modules/libphp7.so',
+    php_version => '7',
+    content     => @(EOT)
 #
 # PHP is an HTML-embedded scripting language which attempts to make it
 # easy for developers to write dynamically generated webpages.
