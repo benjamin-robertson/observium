@@ -18,7 +18,7 @@ class observium::apache inherits observium {
     directories      => [
       { 'path'  => '/opt/observium/html/',
         'Config' => {
-          'AllowOverride' => 'All',
+          override => 'All',
         }
       },
     ],
