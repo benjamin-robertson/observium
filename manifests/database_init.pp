@@ -8,5 +8,7 @@ class observium::database_init inherits observium {
     unless => "/bin/mysql -u observium --password=${db_password} observium -e 'select * from users'"
   }
 
-  exec { "/opt/observium/adduser.php admin ${admin_password} 10": }
+  exec { "/opt/observium/adduser.php admin ${admin_password} 10": 
+    unless => "/bin/mysql -u observium --password=${db_password} observium -e 'select * from users WHERE username LIKE \"admin\"' | grep admin"
+  }
 }

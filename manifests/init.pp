@@ -35,7 +35,7 @@ class observium (
 # Setup mariadb
   include observium::mariadb
 
-# Install observium binarys 
+# Install observium binary 
   include observium::install
 
 # Configure observium
