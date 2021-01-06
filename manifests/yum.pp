@@ -9,10 +9,14 @@ class observium::yum {
   $repodata = lookup('observium::repos', Hash)
   $gpgkeys = lookup('observium::gpgkeys', Hash)
 
+  $gpgkeys.each |String $gpglocation, Hash $gpghash | {
+    notify { "Location ${gpglocation} da hash ${gpghash}":}
+  }
+
   class { 'yum':
     managed_repos => $repos,
     repos         => $repodata,
-    gpgkeys       => $gpgkeys,
+    #gpgkeys       => $gpgkeys,
   }
 
 }
