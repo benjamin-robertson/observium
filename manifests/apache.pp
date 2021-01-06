@@ -15,13 +15,14 @@ class observium::apache inherits observium {
     servername      => $apache_hostname,
     access_log_file => '/opt/observium/logs/access_log',
     error_log_file  => '/opt/observium/logs/error_log',
-    directories     => [
-      { 'path' => '/opt/observium/html/',
-        AllowOverride => 'All',
-        Options       => 'FollowSymLinks MultiViews',
-        Require       => 'all granted',
+    directories      => [
+      { 'path'  => '/opt/observium/html/',
+        'suphp' => {
+          user  => 'myappuser',
+          group => 'myappgroup',
       },
-    ],
+    },
+  ],
   }
 
 }
