@@ -18,10 +18,10 @@ class observium::yum {
     notify { "Location ${gpglocation} da hash ${gpghash['content']}":}
   }
 
-  class { 'yum':
-    managed_repos => $repos,
-    repos         => $repodata,
+  #class { 'yum':
+  #  managed_repos => $repos,
+  #  repos         => $repodata,
     #gpgkeys       => $gpgkeys,
-  }
+  #}
 
 }
