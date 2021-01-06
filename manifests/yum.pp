@@ -22,7 +22,7 @@ class observium::yum {
   # Create repos
   $repodata.each | String $reponame, Hash $repoinfo | {
     if has_key($repoinfo, 'baseurl')  {
-      notify { 'base url matched':}
+      notify { "base url matched ${reponame}":}
       yumrepo { $reponame:
         ensure   => $repoinfo['ensure'],
         enabled  => $repoinfo['enabled'],
@@ -34,7 +34,7 @@ class observium::yum {
         #baseurl  => $repointo['baseurl'],
       }
     } else {
-      notify { 'mirrorlist matched':}
+      notify { "mirrorlist matched ${reponame}":}
       yumrepo { $reponame:
         ensure     => $repoinfo['ensure'],
         enabled    => $repoinfo['enabled'],
