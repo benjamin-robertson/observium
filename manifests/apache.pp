@@ -16,11 +16,8 @@ class observium::apache inherits observium {
     access_log_file => '/opt/observium/logs/access_log',
     error_log_file  => '/opt/observium/logs/error_log',
     directories      => [
-      { 'path'  => '/opt/observium/html1/',
-        'suphp' => {
-          user  => 'myappuser',
-          group => 'myappgroup',
-      },
+      { 'path'  => '/opt/observium/html/',
+        'AllowOverride' => 'All',
     },
   ],
   }
