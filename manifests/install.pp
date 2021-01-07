@@ -1,6 +1,6 @@
 # Class: observium::Create folder sturcture
 #
-class observium::install inherits observium {
+class observium::install {
   assert_private()
   # Create folder sturctureo 
   file {
@@ -22,9 +22,9 @@ class observium::install inherits observium {
   }
 
   # Extract the tarball
-  archive { $archive_name:
-    path         => "/opt/${archive_name}",
-    source       => "${download_url}/${archive_name}",
+  archive { $observium::archive_name:
+    path         => "/opt/${observium::archive_name}",
+    source       => "${observium::download_url}/${observium::archive_name}",
     extract      => true,
     extract_path => '/opt',
     creates      => '/opt/observium/VERSION',
