@@ -41,7 +41,7 @@ class observium (
       default: { fail('Unsupported operating system, bailing out!!') }
     }
   }
-
+test
 # install required packages
   include observium::packages
 
