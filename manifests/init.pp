@@ -72,6 +72,11 @@ class observium (
     include observium::snmp
   }
 
+# Configure firewall
+  if $manage_fw {
+    include observium::firewall
+  }
+
 # order class dependencies. 
 Class['observium::selinux'] -> Class['observium::yum'] -> Class['observium::packages'] -> Class['observium::mariadb'] -> Class['observium::install'] -> Class['observium::config'] -> Class['observium::snmp'] -> Class['observium::database_init']
 }
