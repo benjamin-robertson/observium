@@ -20,3 +20,8 @@ observium::observium_additional_conf:
   - '//would like'
 observium::admin_password: "changeme"
 observium::apache_port: "80"
+observium::manage_repo: true
+observium::manage_selinux: true
+observium::manage_fw: true
+observium::manage_snmp: true
+observium::manage_mysql: true

@@ -24,12 +24,20 @@ class observium (
   String $apache_bind_ip = $facts['ipaddress'],
   String $apache_hostname = $facts['hostname'],
   String $apache_port,
+  Boolean $manage_repo,
+  Boolean $manage_selinux,
+  Boolean $manage_fw,
+  Boolean $manage_snmp,
+  Boolean $manage_mysql,
   Optional[Array] $observium_additional_conf = undef,
 ) {
 
 # Check what OS we are on and install packages
-  if $facts['os']['family'] == 'RedHat' {
-    include observium::yum
+  if $manage_repo {
+    case $facts['os']['family'] {
+      'RedHat': { include observium::yum }
+      default: { fail('Unsupported operating system, bailing out!!') }
+    }
   }
 
 # install required packages
