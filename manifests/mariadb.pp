@@ -1,6 +1,6 @@
 # Class: observium
 #
-class observium::mariadb inherits observium {
+class observium::mariadb {
   assert_private()
   Class { '::mysql::server':
     package_name   => 'mariadb-server',
