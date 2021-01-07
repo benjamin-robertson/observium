@@ -8,6 +8,6 @@ class observium::firewall {
     ensure   => present,
     zone     => 'public',
     port     => $observium::apache_port,
-    portocol => 'tcp',
+    protocol => 'tcp',
   }
 }
