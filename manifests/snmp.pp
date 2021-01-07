@@ -3,6 +3,7 @@
 # Sets up SNMP locally to permit monitoring of local host out of the box.
 #
 class observium::snmp inherits observium {
+  assert_private()
   # Setup SNMP class with snmpv3 user
   class { 'snmp':
     snmpd_config => ["rouser ${snmpv3_authname} ${snmpv3_authlevel}"],

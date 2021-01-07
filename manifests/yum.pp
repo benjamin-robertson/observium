@@ -5,6 +5,7 @@
 # @example
 #   include observium::yum
 class observium::yum {
+  assert_private()
   $repos = lookup('observium::managed_repos', Array)
   $repodata = lookup('observium::repos', Hash)
   $gpgkeys = lookup('observium::gpgkeys', Hash)
@@ -16,7 +17,6 @@ class observium::yum {
       mode    => '0644',
       content => $gpghash['content']
     }
-    #notify { "Location ${gpglocation} da hash ${gpghash['content']}":}
   }
 
   # Create repos
@@ -45,11 +45,4 @@ class observium::yum {
       }
     }
   }
-
-  #class { 'yum':
-  #  managed_repos => $repos,
-  #  repos         => $repodata,
-    #gpgkeys       => $gpgkeys,
-  #}
-
 }

@@ -1,6 +1,7 @@
 # Class: observium::Create folder sturcture
 #
 class observium::install inherits observium {
+  assert_private()
   # Create folder sturctureo 
   file {
     default:

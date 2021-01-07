@@ -3,6 +3,7 @@
 # Installs required packges for observium
 #
 class observium::packages {
+  assert_private()
   # Install required packages
   $required_packages = lookup('observium::required_packages', Array)
   package { $required_packages:

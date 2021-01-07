@@ -3,6 +3,7 @@
 # Init the database after install.
 #
 class observium::database_init inherits observium {
+  assert_private()
   # init the database if the user table is not present
   exec { '/opt/observium/discovery.php -u':
     unless => "/bin/mysql -u observium --password=${db_password} observium -e 'select * from users'"
