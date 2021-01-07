@@ -25,3 +25,5 @@ observium::manage_selinux: true
 observium::manage_fw: true
 observium::manage_snmp: true
 observium::manage_mysql: true
+observium::manage_apache: true
+observium::manage_apachephp: true

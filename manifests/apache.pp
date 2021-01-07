@@ -6,8 +6,10 @@ class observium::apache {
   assert_private()
 
 # Declare base apache class
-  class { 'apache':
-    default_vhost => false,
+  if $observium::manage_apache {
+    class { 'apache':
+      default_vhost => false,
+    }
   }
 
 # Specify virtual host
@@ -27,7 +29,9 @@ class observium::apache {
   }
 
 # Include php module
-  class { 'apache::mod::php':
-    php_version => '7',
+  if $observium::manage_apachephp {
+    class { 'apache::mod::php':
+      php_version => '7',
+    }
   }
 }

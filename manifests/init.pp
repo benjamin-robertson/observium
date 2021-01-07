@@ -29,6 +29,8 @@ class observium (
   Boolean $manage_fw,
   Boolean $manage_snmp,
   Boolean $manage_mysql,
+  Boolean $manage_apache,
+  Boolean $manage_apachephp,
   Optional[Array] $observium_additional_conf = undef,
 ) {
 
@@ -44,7 +46,9 @@ class observium (
   include observium::packages
 
 # Setup mariadb
-  include observium::mariadb
+  if $manage_mysql {
+    include observium::mariadb
+  }
 
 # Install observium binary 
   include observium::install
@@ -56,13 +60,17 @@ class observium (
   include observium::database_init
 
 # Disable selinux
-  include observium::selinux
+  if $manage_selinux {
+    include observium::selinux
+  }
 
 # Configure apache
   include observium::apache
 
 # Configure localsnmp
-  include observium::snmp
+  if $manage_snmp {
+    include observium::snmp
+  }
 
 # order class dependencies. 
 Class['observium::selinux'] -> Class['observium::yum'] -> Class['observium::packages'] -> Class['observium::mariadb'] -> Class['observium::install'] -> Class['observium::config'] -> Class['observium::snmp'] -> Class['observium::database_init']
