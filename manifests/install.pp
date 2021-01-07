@@ -48,10 +48,18 @@ class observium::install {
   #  content => file('observium/cron.txt'),
   #  notify  => Service['crond'],
   #}
+
+  # Add cron entries to run observium
   cron { 'discovery all devices':
     command => '/opt/observium/discovery.php -h all >> /dev/null 2>&1',
     user    => 'root',
     hour    => '*/6',
     minute  => '33',
+  }
+
+  cron { 'discovery newly added devices':
+    command => '/opt/observium/discovery.php -h new >> /dev/null 2>&1',
+    user    => 'root',
+    minute  => '*/5',
   }
 }
