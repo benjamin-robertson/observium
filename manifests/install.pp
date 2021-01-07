@@ -62,4 +62,24 @@ class observium::install {
     user    => 'root',
     minute  => '*/5',
   }
+
+  cron { 'multithreaded pooler wrapper':
+    command => '/opt/observium/poller-wrapper.py >> /dev/null 2>&1',
+    user    => 'root',
+    minute  => '*/5',
+  }
+
+  cron { 'daily housekeeping for syslog, eventlog and alert log':
+    command => '/opt/observium/housekeeping.php -ysel',
+    user    => 'root',
+    hour    => '5',
+    minute  => '13',
+  }
+
+  cron { 'housekeeping script daily for rrds, ports, orphaned entries in the database and performance data':
+    command => '/opt/observium/housekeeping.php -yrptb',
+    user    => 'root',
+    hour    => '4',
+    minute  => '47',
+  }
 }
