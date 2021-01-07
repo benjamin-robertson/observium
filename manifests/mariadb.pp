@@ -6,12 +6,12 @@ class observium::mariadb {
     package_name   => 'mariadb-server',
     package_ensure => 'present',
     service_name   => 'mariadb',
-    root_password  => $rootdb_password,
+    root_password  => $observium::rootdb_password,
   }
 
   mysql::db { 'observium':
-    user     => $db_user,
-    password => $db_password,
+    user     => $observium::db_user,
+    password => $observium::db_password,
     host     => 'localhost',
     charset  => 'utf8',
     collate  => 'utf8_general_ci',
