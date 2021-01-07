@@ -39,16 +39,6 @@ class observium::install {
     require => File['/opt/observium'],
   }
 
-  # include cron to manage cron service
-  #include cron
-  # include cron file for observium
-  #file { '/etc/cron.d/observium':
-  #  ensure  => file,
-  #  mode    => '0644',
-  #  content => file('observium/cron.txt'),
-  #  notify  => Service['crond'],
-  #}
-
   # Add cron entries to run observium
   cron { 'discovery all devices':
     command => '/opt/observium/discovery.php -h all >> /dev/null 2>&1',
