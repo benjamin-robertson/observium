@@ -35,6 +35,8 @@ class observium (
   Boolean $manage_apache,
   Boolean $manage_apachephp,
   Boolean $manage_ssl,
+  Hash $repos,
+  Hash $gpgkeys,
   Optional[Array] $observium_additional_conf = undef,
 
 ) {

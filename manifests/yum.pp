@@ -6,12 +6,12 @@
 #   include observium::yum
 class observium::yum {
   assert_private()
-  $repos = lookup('observium::managed_repos', Array)
-  $repodata = lookup('observium::repos', Hash)
-  $gpgkeys = lookup('observium::gpgkeys', Hash)
+  #$repos = lookup('observium::managed_repos', Array)
+  #$repodata = lookup('observium::repos', Hash)
+  #$gpgkeys = lookup('observium::gpgkeys', Hash)
 
   # place GPG keys on disk
-  $gpgkeys.each |String $gpglocation, Hash $gpghash | {
+  $observium::gpgkeys.each |String $gpglocation, Hash $gpghash | {
     file { $gpglocation:
       ensure  => file,
       mode    => '0644',
@@ -20,7 +20,7 @@ class observium::yum {
   }
 
   # Create repos
-  $repodata.each | String $reponame, Hash $repoinfo | {
+  $observium::repos.each | String $reponame, Hash $repoinfo | {
     yumrepo { $reponame:
       * => $repoinfo,
     }
