@@ -13,7 +13,7 @@ class observium::apache {
   }
 
 # Specify virtual host - check if we are doing ssl or not
-if $manage_ssl {
+if $observium::manage_ssl {
   # We are doing SSL
   apache::vhost { $observium::apache_hostname:
     port            => $observium::apache_sslport,
