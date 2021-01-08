@@ -18,7 +18,7 @@ class observium::config {
   # Create ssl key
   file { '/opt/observium/openssl.conf':
     ensure  => file,
-    content => epp('observium/openssl.epp', { 'email_from' => $observium::email_from, 'apache_hostname' => $facts['ec2_metadata']['public-hostname']}),
+    content => epp('observium/openssl.epp', { 'email_from' => $observium::email_from, 'apache_hostname' => $observium::apache_hostname}),
     owner   => 'root',
     group   => 'root',
     mode    => '0644',
