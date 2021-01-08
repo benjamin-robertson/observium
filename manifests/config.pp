@@ -27,6 +27,7 @@ class observium::config {
   exec { '/bin/openssl req -x509 -newkey rsa:4096 -keyout /etc/ssl/observium_key.pem -out /etc/ssl/observium_cert.pem -days 2000 -nodes -config /opt/observium/openssl.conf':
     subscribe   => File['/opt/observium/openssl.conf'],
     refreshonly => true,
+    subscribe   => Service['httpd'],
   }
 
   file { '/etc/ssl/observium_key.pem':
