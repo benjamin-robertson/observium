@@ -22,8 +22,8 @@ if $observium::manage_ssl {
     access_log_file => '/opt/observium/logs/access_log',
     error_log_file  => '/opt/observium/logs/error_log',
     ssl             => true,
-    ssl_cert        => '/etc/ssl/observium_cert.pem',
-    ssl_key         => '/etc/ssl/observium_key.pem',
+    ssl_cert        => $observium::custom_ssl_cert,
+    ssl_key         => $observium::custom_ssl_key,
     directories     => [
       { 'path'           => '/opt/observium/html/',
         'options'        => 'FollowSymLinks MultiViews',
