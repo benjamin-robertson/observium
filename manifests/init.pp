@@ -24,6 +24,7 @@ class observium (
   String $apache_bind_ip = $facts['ipaddress'],
   String $apache_hostname = $facts['hostname'],
   String $apache_port,
+  String $apache_sslport,
   Boolean $manage_repo,
   Boolean $manage_selinux,
   Boolean $manage_fw,
@@ -31,7 +32,10 @@ class observium (
   Boolean $manage_mysql,
   Boolean $manage_apache,
   Boolean $manage_apachephp,
+  Boolean $manage_ssl,
   Optional[Array] $observium_additional_conf = undef,
+  Optional[String] $custom_ssl_cert = undef,
+  Optional[String] $custom_ssl_key = undef,
 ) {
 
 # Check what OS we are on and install packages
