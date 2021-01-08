@@ -16,7 +16,7 @@ class observium::config {
   }
 
   # Create ssl key
-  file { '/etc/observium/openssl.conf':
+  file { '/opt/observium/openssl.conf':
     ensure  => file,
     content => epp('observium/openssl.epp', { 'email_from' => $observium::email_from, 'apache_hostname' => $observium::apache_hostname}),
     owner   => 'root',
@@ -25,6 +25,6 @@ class observium::config {
   }
 
   exec { '/bin/openssl req -x509 -newkey rsa:4096 -keyout /etc/ssl/observium_key.pem -out /etc/ssl/observium_cert.pem -days 2000 -nodes -config /etc/observium/openssl.conf':
-    subscribe => File['/etc/observium/openssl.conf'],
+    subscribe => File['/opt/observium/openssl.conf'],
   }
 }
