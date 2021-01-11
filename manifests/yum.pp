@@ -31,11 +31,6 @@ class observium::yum {
   if $facts['os']['release']['major'] == '8' {
     exec { '/bin/dnf module reset php | /bin/dnf module -y install php:remi-7.2':
       unless => '/bin/dnf module list php | grep "remi-7.2 \\[e\\]"',
-      before => Exec['/sbin/alternatives --set python /usr/bin/python3'],
-    }
-    # Set python3 as /bin/python as observium expects this
-    exec { '/sbin/alternatives --set python /usr/bin/python3':
-      creates => '/bin/python',
     }
   }
 }

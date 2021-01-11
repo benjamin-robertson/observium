@@ -9,5 +9,14 @@ class observium::packages {
   package { $required_packages:
     ensure  => 'installed',
     require => Class['observium::yum'],
+    before  => Exec['/sbin/alternatives --set python /usr/bin/python3'],
   }
+
+  # Set python3 as /bin/python as observium expects this
+  if $facts['os']['release']['major'] == '8' {
+    exec { '/sbin/alternatives --set python /usr/bin/python3':
+      creates => '/bin/python',
+    }
+  }
+
 }
