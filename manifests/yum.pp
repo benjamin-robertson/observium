@@ -23,7 +23,7 @@ class observium::yum {
   $observium::repos.each | String $reponame, Hash $repoinfo | {
     yumrepo { $reponame:
       *      => $repoinfo,
-      before => Exec['/bin/dnf module reset php | /bin/dnf module install php:remi-7.2'],
+      before => Exec['/bin/dnf module reset php | /bin/dnf module -y install php:remi-7.2'],
     }
   }
 
