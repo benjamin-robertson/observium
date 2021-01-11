@@ -16,7 +16,7 @@ hierarchy:
   - name: "osfamily"
     paths:
       - "os/%{facts.os.name}.yaml"
-      - "os/%{facts.os.family}.yaml"
-      - "os/%{facts.os.family}gpg.yaml"
+      - "os/%{facts.os.family}-%{facts.os.release.major}.yaml"
+      - "os/%{facts.os.family}-%{facts.os.release.major}gpg.yaml"
   - name: 'common'
     path: 'common.yaml'

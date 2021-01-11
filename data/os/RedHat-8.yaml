@@ -1,0 +1,62 @@
+---
+observium::repos:
+  epel:
+    ensure: 'present'
+    enabled: 1
+    descr: "Extra Packages for Enterprise Linux %{facts.os.release.major} - $basearch"
+    mirrorlist: "https://mirrors.fedoraproject.org/metalink?repo=epel-%{facts.os.release.major}&arch=$basearch"
+    gpgcheck: 1
+    failovermethod: 'priority'
+    gpgkey: "file:///etc/pki/rpm-gpg/RPM-GPG-KEY-EPEL-%{facts.os.release.major}"
+    target: '/etc/yum.repos.d/epel.repo'
+  opennms-common:
+    ensure: 'present'
+    enabled: 1
+    descr: 'RPMs Common to All OpenNMS Architectures (stable)'
+    baseurl: 'http://yum.opennms.org/stable/common'
+    gpgcheck: 1
+    gpgkey: 'file:///etc/yum.repos.d/opennms-repo-stable-rhel%{facts.os.release.major}.gpg'
+    target: '/etc/yum.repos.d/opennms-repo-stable-rhel%{facts.os.release.major}.repo'
+  opennms-rhel%{facts.os.release.major}:
+    ensure: 'present'
+    enabled: 1
+    descr: 'RedHat Enterprise Linux %{facts.os.release.major}.x and CentOS %{facts.os.release.major}.x (stable)'
+    baseurl: 'http://yum.opennms.org/stable/rhel%{facts.os.release.major}'
+    gpgcheck: 1
+    gpgkey: 'file:///etc/yum.repos.d/opennms-repo-stable-rhel%{facts.os.release.major}.gpg'
+    target: '/etc/yum.repos.d/opennms-repo-stable-rhel%{facts.os.release.major}.repo'
+  remi-modular.repo:
+    ensure: 'present'
+    enabled: 1
+    descr: "Remi's Modular repository for Enterprise Linux 8 - $basearch"
+    mirrorlist: "http://cdn.remirepo.net/enterprise/8/modular/$basearch/mirror"
+    gpgcheck: 1
+    gpgkey: "file:///etc/pki/rpm-gpg/RPM-GPG-KEY-remi.el8"
+    target: '/etc/yum.repos.d/remi-modular.repo'
+  remi-safe.repo:
+    ensure: 'present'
+    enabled: 1
+    descr: "Safe Remi's RPM repository for Enterprise Linux 8 - $basearch"
+    mirrorlist: "http://cdn.remirepo.net/enterprise/8/safe/$basearch/mirror"
+    gpgcheck: 1
+    gpgkey: "file:///etc/pki/rpm-gpg/RPM-GPG-KEY-remi.el8"
+    target: '/etc/yum.repos.d/remi-safe.repo'
+observium::required_packages:
+  - 'wget'
+  - 'php'
+  - 'php-opcache'
+  - 'php-mysql'
+  - 'php-gd'
+  - 'php-posix'
+  - 'php-pear'
+  - 'net-snmp-utils'
+  - 'fping'
+  - 'python3-PyMySQL'
+  - 'rrdtool'
+  - 'subversion'
+  - 'whois'
+  - 'ipmitool'
+  - 'graphviz'
+  - 'ImageMagick'
+  - 'php72-php-sodium'
+  - 'libvirt'
