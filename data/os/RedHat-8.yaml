@@ -45,7 +45,7 @@ observium::required_packages:
   - 'wget'
   - 'php'
   - 'php-opcache'
-  - 'php-mysql'
+  - 'php-mysqlnd'
   - 'php-gd'
   - 'php-posix'
   - 'php-pear'
