@@ -62,3 +62,4 @@ observium::required_packages:
   - 'libvirt'
   - 'php-json'
   - 'python3'
+observium::fping_location: "/sbin/fping"
