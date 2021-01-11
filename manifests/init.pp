@@ -90,6 +90,15 @@ class observium (
     }
   }
 
-# order class dependencies. 
-Class['observium::selinux'] -> Class['observium::yum'] -> Class['observium::packages'] -> Class['observium::mariadb'] -> Class['observium::install'] -> Class['observium::config'] -> Class['observium::snmp'] -> Class['observium::database_init']
+# order class dependencies for each OS
+case $facts['os']['family'] {
+  'RedHat': {
+    Class['observium::selinux'] -> Class['observium::yum'] -> Class['observium::packages'] -> Class['observium::mariadb'] -> Class['observium::install'] -> Class['observium::config'] -> Class['observium::snmp'] -> Class['observium::database_init']
+  }
+  'Debian': {
+    Class['observium::packages'] -> Class['observium::mariadb'] -> Class['observium::install'] -> Class['observium::config'] -> Class['observium::snmp'] -> Class['observium::database_init']
+  }
+  default: { fail('Unsupported operating system, bailing out!!') }
+}
+
 }
