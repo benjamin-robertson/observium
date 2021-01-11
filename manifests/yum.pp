@@ -29,7 +29,7 @@ class observium::yum {
   # Set remi-7.2 module as default php provider RHEL 8 only
   if $facts['os']['release']['major'] == '8' {
     exec { '/bin/dnf module reset php | /bin/dnf module install php:remi-7.2':
-      unless => 'dnf module list php | grep "remi-7.2 \\[e\\]"',
+      unless => '/bin/dnf module list php | grep "remi-7.2 \\[e\\]"',
     }
   }
 }
