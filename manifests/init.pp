@@ -18,6 +18,7 @@ class observium (
   Enum['SHA','MD5'] $snmpv3_authalgo,
   String[8] $snmpv3_cryptopass,
   Enum['AES','DES'] $snmpv3_cryptoalgo,
+  String $fping_locaion,
   String $email_default,
   String $email_from,
   String $admin_password,
@@ -45,6 +46,7 @@ class observium (
   if $manage_repo {
     case $facts['os']['family'] {
       'RedHat': { include observium::yum }
+      'Debian': {}
       default: { fail('Unsupported operating system, bailing out!!') }
     }
   }
@@ -67,8 +69,10 @@ class observium (
   include observium::database_init
 
 # Disable selinux
-  if $manage_selinux {
-    include observium::selinux
+  if $facts['os']['family'] == 'RedHat' {
+    if $manage_selinux {
+      include observium::selinux
+    }
   }
 
 # Configure apache
@@ -80,8 +84,10 @@ class observium (
   }
 
 # Configure firewall
-  if $manage_fw {
-    include observium::firewall
+  if $facts['os']['family'] == 'RedHat' {
+    if $manage_fw {
+      include observium::firewall
+    }
   }
 
 # order class dependencies. 
