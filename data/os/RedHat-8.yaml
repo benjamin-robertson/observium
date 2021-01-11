@@ -63,3 +63,4 @@ observium::required_packages:
   - 'php-json'
   - 'python3'
 observium::fping_location: "/sbin/fping"
+observium::apache_user: "apache"
