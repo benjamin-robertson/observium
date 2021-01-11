@@ -2,7 +2,10 @@
 #
 class observium::install {
   assert_private()
-  # Create folder sturctureo 
+  # Lookup apache user for the OS we are running
+  $apache_user = lookup(observium::apache_user, String)
+
+  # Create folder structure
   file {
     default:
       owner => 'root',
@@ -16,8 +19,8 @@ class observium::install {
 
   file { '/opt/observium/rrd':
     ensure  => directory,
-    owner   => 'apache',
-    group   => 'apache',
+    owner   => $apache_user,
+    group   => $apache_user,
     require => File['/opt/observium'],
   }
 
@@ -34,8 +37,8 @@ class observium::install {
 
   file { '/opt/observium/logs':
     ensure  => directory,
-    owner   => 'apache',
-    group   => 'apache',
+    owner   => $apache_user,
+    group   => $apache_user,
     require => File['/opt/observium'],
   }
 
