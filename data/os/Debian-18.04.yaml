@@ -18,7 +18,6 @@ observium::required_packages:
   - 'ipmitool'
   - 'graphviz'
   - 'imagemagick'
-  - 'apache2'
   - 'libvirt-bin'
   - 'snmp'
 observium::fping_location: "/usr/bin/fping"
