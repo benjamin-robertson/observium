@@ -66,4 +66,4 @@ observium::required_packages:
   - 'ImageMagick'
   - 'php-sodium'
   - 'libvirt'
-observium::: "/sbin/fping"
+observium::fping_location: "/sbin/fping"
