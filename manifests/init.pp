@@ -18,7 +18,7 @@ class observium (
   Enum['SHA','MD5'] $snmpv3_authalgo,
   String[8] $snmpv3_cryptopass,
   Enum['AES','DES'] $snmpv3_cryptoalgo,
-  String $fping_locaion,
+  String $fping_location,
   String $email_default,
   String $email_from,
   String $admin_password,
