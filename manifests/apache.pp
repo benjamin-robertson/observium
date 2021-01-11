@@ -11,10 +11,9 @@ class observium::apache {
       default_vhost => false,
     }
     if $facts['os']['family'] == 'Debian' {
-      include apache::mod::itk
-      #class { 'apache::mod::itk':
-      #  maxclients => '512',
-      #}
+      class { 'apache::mod::prefork':
+        maxclients => '256',
+      }
     }
   }
 
