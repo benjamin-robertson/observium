@@ -9,7 +9,6 @@ observium::required_packages:
   - 'php7.2-json'
   - 'php-pear'
   - 'fping'
-  - 'mysql-client'
   - 'python-mysqldb'
   - 'whois'
   - 'rrdtool'
