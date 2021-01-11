@@ -10,6 +10,11 @@ class observium::apache {
     class { 'apache':
       default_vhost => false,
     }
+    if $facts['os']['family'] == 'Debian' {
+      class { 'apache::mod::prefork':
+        maxclients => '512',
+      }
+    }
   }
 
 # Specify virtual host - check if we are doing ssl or not
