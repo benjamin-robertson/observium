@@ -9,11 +9,12 @@ class observium::apache {
   if $observium::manage_apache {
     class { 'apache':
       default_vhost => false,
-      mpm_module    => 'prefork',
+      #mpm_module    => 'prefork',
     }
     if $facts['os']['family'] == 'Debian' {
       class { 'apache::mod::prefork':
         maxclients => '256',
+        before     => Class['apache'],
       }
     }
   }
