@@ -20,4 +20,4 @@ observium::required_packages:
   - 'libvirt-bin'
   - 'snmp'
 observium::fping_location: "/usr/bin/fping"
-observium::apache_user: "apache"
+observium::apache_user: "www-data"
