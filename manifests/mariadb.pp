@@ -2,11 +2,24 @@
 #
 class observium::mariadb {
   assert_private()
-  Class { '::mysql::server':
-    package_name   => 'mariadb-server',
-    package_ensure => 'present',
-    service_name   => 'mariadb',
-    root_password  => $observium::rootdb_password,
+  case $facts['os']['family'] {
+    'RedHat': {
+      Class { '::mysql::server':
+        package_name   => 'mariadb-server',
+        package_ensure => 'present',
+        service_name   => 'mariadb',
+        root_password  => $observium::rootdb_password,
+      }
+    }
+    'Debian': {
+      Class { '::mysql::server':
+        package_name   => 'mariadb-server',
+        package_ensure => 'present',
+        service_name   => 'mysqld',
+        root_password  => $observium::rootdb_password,
+      }
+    }
+    default: { fail('Unsupported operating system, bailing out!!') }
   }
 
   mysql::db { 'observium':
