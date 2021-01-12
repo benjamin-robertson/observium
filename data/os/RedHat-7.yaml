@@ -67,3 +67,7 @@ observium::required_packages:
   - 'php-sodium'
   - 'libvirt'
 observium::fping_location: "/sbin/fping"
+observium::apache_user: "apache"
+observium::apache_service: "httpd"
+observium::openssl_location: "/bin/openssl"
+observium::mysql_location: "/bin/mysql"
