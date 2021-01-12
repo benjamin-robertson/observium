@@ -11,6 +11,9 @@ class observium::apache {
       default_vhost => false,
       mpm_module    => 'prefork',
     }
+    if $facts['os']['family'] == 'Debian' {
+      include apache::mod::rewrite
+    }
   }
 
 # Specify virtual host - check if we are doing ssl or not
@@ -55,9 +58,9 @@ else {
 
 # Include php module
   if $observium::manage_apachephp {
-    include apache::mod::php
-    #class { 'apache::mod::php':
-    #  php_version => '7',
-    #}
+    #include apache::mod::php
+    class { 'apache::mod::php':
+      php_version => '7',
+    }
   }
 }
