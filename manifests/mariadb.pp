@@ -13,9 +13,9 @@ class observium::mariadb {
     }
     'Debian': {
       Class { '::mysql::server':
-        package_name   => 'mariadb-server',
-        package_ensure => 'present',
-        service_name   => 'mysqld',
+        #package_name   => 'mariadb-server',
+        #package_ensure => 'present',
+        #service_name   => 'mysqld',
         root_password  => $observium::rootdb_password,
       }
     }
