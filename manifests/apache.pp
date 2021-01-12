@@ -58,9 +58,16 @@ else {
 
 # Include php module
   if $observium::manage_apachephp {
-    #include apache::mod::php
-    class { 'apache::mod::php':
-      php_version => '7',
+    case $facts['os']['family'] {
+      'Redhat': {
+        class { 'apache::mod::php':
+          php_version => '7',
+        }
+      }
+      'Debian': {
+        include apache::mod::php
+      }
+      default: { }
     }
   }
 }
