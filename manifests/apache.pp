@@ -55,8 +55,9 @@ else {
 
 # Include php module
   if $observium::manage_apachephp {
-    class { 'apache::mod::php':
-      php_version => '7',
-    }
+    include apache::mod::php
+    #class { 'apache::mod::php':
+    #  php_version => '7',
+    #}
   }
 }
