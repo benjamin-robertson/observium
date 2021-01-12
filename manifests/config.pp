@@ -5,6 +5,11 @@
 class observium::config {
   # Setup config.php
   assert_private()
+  # Lookup binary location for openssl
+  $openssl_location = lookup(observium::openssl_location, String)
+  # Lookup apache service name
+  $apache_service = lookup(observium::apache_service, String)
+
   file { '/opt/observium/config.php':
     ensure  => file,
     content => epp('observium/config.epp', { 'db_host' => $observium::db_host, 'db_user' => $observium::db_user, 'db_password' => $observium::db_password, 'community' => $observium::community, 'snmpv3_authlevel' => $observium::snmpv3_authlevel,
@@ -22,12 +27,12 @@ class observium::config {
     owner   => 'root',
     group   => 'root',
     mode    => '0644',
-    notify  => Exec['/bin/openssl req -x509 -newkey rsa:4096 -keyout /etc/ssl/observium_key.pem -out /etc/ssl/observium_cert.pem -days 2000 -nodes -config /opt/observium/openssl.conf'],
+    notify  => Exec["${openssl_location} req -x509 -newkey rsa:4096 -keyout /etc/ssl/observium_key.pem -out /etc/ssl/observium_cert.pem -days 2000 -nodes -config /opt/observium/openssl.conf"],
   }
 
-  exec { '/bin/openssl req -x509 -newkey rsa:4096 -keyout /etc/ssl/observium_key.pem -out /etc/ssl/observium_cert.pem -days 2000 -nodes -config /opt/observium/openssl.conf':
+  exec { "${openssl_location} req -x509 -newkey rsa:4096 -keyout /etc/ssl/observium_key.pem -out /etc/ssl/observium_cert.pem -days 2000 -nodes -config /opt/observium/openssl.conf":
     refreshonly => true,
-    notify      => Service['httpd']
+    notify      => Service[$apache_service]
   }
 
   # Lookup apache user for the OS we are running

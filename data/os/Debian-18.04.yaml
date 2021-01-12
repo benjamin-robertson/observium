@@ -21,3 +21,5 @@ observium::required_packages:
   - 'snmp'
 observium::fping_location: "/usr/bin/fping"
 observium::apache_user: "www-data"
+observium::apache_service: "apache2"
+observium::openssl_location: "/usr/bin/openssl"

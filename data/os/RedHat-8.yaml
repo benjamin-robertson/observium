@@ -64,3 +64,5 @@ observium::required_packages:
   - 'python3'
 observium::fping_location: "/sbin/fping"
 observium::apache_user: "apache"
+observium::apache_service: "httpd"
+observium::openssl_location: "/bin/openssl"
