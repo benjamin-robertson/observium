@@ -24,7 +24,7 @@ class observium::database_init {
     default:        { $v3auth = 'any' }
   }
   exec { "/opt/observium/add_device.php 127.0.0.1 ${v3auth} v3 ${observium::snmpv3_authname} ${observium::snmpv3_authpass} ${observium::snmpv3_cryptopass} ${observium::snmpv3_authalgo} ${observium::snmpv3_cryptoalgo}":
-    unless => "${mysql_location} -u observium --password=changeme observium -e 'select hostname from devices WHERE hostname LIKE \"127.0.0.1\"' | grep 127.0.0.1",
+    unless => "${mysql_location} -u observium --password=${observium::db_password} observium -e 'select hostname from devices WHERE hostname LIKE \"127.0.0.1\"' | grep 127.0.0.1",
   }
 
   # Perform discovery for nodes which have been added. 
