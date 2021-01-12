@@ -42,12 +42,12 @@ class observium::config {
     mode    => '0400',
     owner   => $apache_user,
     group   => $apache_user,
-    require => Exec['/bin/openssl req -x509 -newkey rsa:4096 -keyout /etc/ssl/observium_key.pem -out /etc/ssl/observium_cert.pem -days 2000 -nodes -config /opt/observium/openssl.conf'],
+    require => Exec["${openssl_location} req -x509 -newkey rsa:4096 -keyout /etc/ssl/observium_key.pem -out /etc/ssl/observium_cert.pem -days 2000 -nodes -config /opt/observium/openssl.conf"],
   }
   file { '/etc/ssl/observium_cert.pem':
     mode    => '0644',
     owner   => $apache_user,
     group   => $apache_user,
-    require => Exec['/bin/openssl req -x509 -newkey rsa:4096 -keyout /etc/ssl/observium_key.pem -out /etc/ssl/observium_cert.pem -days 2000 -nodes -config /opt/observium/openssl.conf'],
+    require => Exec["${openssl_location} req -x509 -newkey rsa:4096 -keyout /etc/ssl/observium_key.pem -out /etc/ssl/observium_cert.pem -days 2000 -nodes -config /opt/observium/openssl.conf"],
   }
 }
