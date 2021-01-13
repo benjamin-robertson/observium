@@ -5,11 +5,18 @@
 class observium::snmp {
   assert_private()
   # check if we are managing snmp
-  notify{ "We are ${observium::manage_snmp} snmp":}
   if observium::manage_snmp {
+    # lookup values for ubuntu 20.04 user, no native support in snmp module, otherwise return undef
+    $ubuntu2004user = lookup(observium::debiansnmp_user, String, undef)
+    notify{ "snmp user value is ${ubuntu2004user}":}
+
     # Setup SNMP class with snmpv3 user
     class { 'snmp':
       snmpd_config => ["rouser ${observium::snmpv3_authname} ${observium::snmpv3_authlevel}"],
+      service_config_dir_group => $ubuntu2004user,
+      service_config_dir_owner => $ubuntu2004user,
+      varnetsnmp_owner         => $ubuntu2004user,
+      varnetsnmp_group         => $ubuntu2004user,
     }
 
     # Set the users credentials
