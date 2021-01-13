@@ -27,4 +27,19 @@ class observium::firewalld {
       }
     }
   }
+  case $facts['os']['family']  {
+    'Debian': {
+      firewall { '100 allow http and https access':
+        dport  => [80, 443],
+        proto  => 'tcp',
+        action => 'accept',
+      }
+      firewall { '50 allow ssh access':
+        dport  => [22],
+        proto  => 'tcp',
+        action => 'accept',
+      }
+    }
+    default: { }
+  }
 }
