@@ -76,8 +76,10 @@ class observium (
   include observium::snmp
 
   # Configure firewall
-  if $facts['os']['family'] == 'RedHat' {
-    include observium::firewalld
+  case $facts['os']['family'] {
+    'RedHat': { include observium::firewalld }
+    'Debian': { include observium::firewallufw }
+    default: { }
   }
 
   # order class dependencies for each OS
