@@ -73,7 +73,7 @@ class observium (
   include observium::apache
 
   # Configure localsnmp
-  #include observium::snmp
+  include observium::snmp
 
   # Configure firewall
   if $facts['os']['family'] == 'RedHat' {
