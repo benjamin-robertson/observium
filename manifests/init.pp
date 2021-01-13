@@ -8,7 +8,7 @@ class observium (
   String $db_password,
   String $rootdb_password,
   String $download_url,
-  String $archive_name,
+  String $installer_name,
   String $db_host,
   String $db_user,
   String $community,

@@ -25,9 +25,9 @@ class observium::install {
   }
 
   # Extract the tarball
-  archive { $observium::archive_name:
-    path         => "/opt/${observium::archive_name}",
-    source       => "${observium::download_url}/${observium::archive_name}",
+  archive { $observium::installer_name:
+    path         => "/opt/${observium::installer_name}",
+    source       => "${observium::download_url}${observium::installer_name}",
     extract      => true,
     extract_path => '/opt',
     creates      => '/opt/observium/VERSION',
