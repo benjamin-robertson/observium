@@ -29,6 +29,7 @@ class observium::firewalld {
   }
   case $facts['os']['family']  {
     'Debian': {
+      notify{ 'ran so much':}
       firewall { '100 allow http and https access':
         dport  => [80, 443],
         proto  => 'tcp',
