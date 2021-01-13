@@ -65,7 +65,9 @@ class observium (
   include observium::database_init
 
   # Disable selinux
-  include observium::selinux
+  if $facts['os']['family'] == 'RedHat' {
+    include observium::selinux
+  }
 
   # Configure apache
   include observium::apache
