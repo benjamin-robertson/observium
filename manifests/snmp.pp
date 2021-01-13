@@ -5,6 +5,7 @@
 class observium::snmp {
   assert_private()
   # check if we are managing snmp
+  notify{ "We are ${observium::manage_snmp} snmp":}
   if observium::manage_snmp {
     # Setup SNMP class with snmpv3 user
     class { 'snmp':
