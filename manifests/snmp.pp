@@ -7,7 +7,7 @@ class observium::snmp {
   # check if we are managing snmp
   if observium::manage_snmp {
     # lookup values for ubuntu 20.04 user, no native support in snmp module, otherwise return undef
-    $ubuntu2004user = lookup(observium::debiansnmp_user, String, undef)
+    $ubuntu2004user = lookup(observium::debiansnmp_user, String, 'first', undef)
     notify{ "snmp user value is ${ubuntu2004user}":}
 
     # Setup SNMP class with snmpv3 user
