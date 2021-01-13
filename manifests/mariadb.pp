@@ -2,32 +2,35 @@
 #
 class observium::mariadb {
   assert_private()
-  case $facts['os']['family'] {
-    'RedHat': {
-      Class { '::mysql::server':
-        package_name   => 'mariadb-server',
-        package_ensure => 'present',
-        service_name   => 'mariadb',
-        root_password  => $observium::rootdb_password,
+  # Check we are managing mysql
+  if observium::manage_mysql {
+    case $facts['os']['family'] {
+      'RedHat': {
+        Class { '::mysql::server':
+          package_name   => 'mariadb-server',
+          package_ensure => 'present',
+          service_name   => 'mariadb',
+          root_password  => $observium::rootdb_password,
+        }
       }
-    }
-    'Debian': {
-      Class { '::mysql::server':
-        #package_name   => 'mariadb-server',
-        #package_ensure => 'present',
-        #service_name   => 'mysqld',
-        root_password  => $observium::rootdb_password,
+      'Debian': {
+        Class { '::mysql::server':
+          #package_name   => 'mariadb-server',
+          #package_ensure => 'present',
+          #service_name   => 'mysqld',
+          root_password  => $observium::rootdb_password,
+        }
       }
+      default: { fail('Unsupported operating system, bailing out!!') }
     }
-    default: { fail('Unsupported operating system, bailing out!!') }
-  }
 
-  mysql::db { 'observium':
-    user     => $observium::db_user,
-    password => $observium::db_password,
-    host     => 'localhost',
-    charset  => 'utf8',
-    collate  => 'utf8_general_ci',
-    grant    => 'ALL',
+    mysql::db { 'observium':
+      user     => $observium::db_user,
+      password => $observium::db_password,
+      host     => 'localhost',
+      charset  => 'utf8',
+      collate  => 'utf8_general_ci',
+      grant    => 'ALL',
+    }
   }
 }

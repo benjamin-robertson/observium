@@ -43,21 +43,17 @@ class observium (
 ) {
 
   # Check what OS we are on and install packages
-  if $manage_repo {
-    case $facts['os']['family'] {
-      'RedHat': { include observium::yum }
-      'Debian': {}
-      default: { fail('Unsupported operating system, bailing out!!') }
-    }
+  case $facts['os']['family'] {
+    'RedHat': { include observium::yum }
+    'Debian': {}
+    default: { fail('Unsupported operating system, bailing out!!') }
   }
 
   # install required packages
   include observium::packages
 
-  # Setup mariadb
-  if $manage_mysql {
-    include observium::mariadb
-  }
+  # Setup mariadb\mysql
+  include observium::mariadb
 
   # Install observium binary 
   include observium::install
@@ -69,25 +65,17 @@ class observium (
   include observium::database_init
 
   # Disable selinux
-  if $facts['os']['family'] == 'RedHat' {
-    if $manage_selinux {
-      include observium::selinux
-    }
-  }
+  include observium::selinux
 
   # Configure apache
   include observium::apache
 
   # Configure localsnmp
-  if $manage_snmp {
-    include observium::snmp
-  }
+  include observium::snmp
 
   # Configure firewall
   if $facts['os']['family'] == 'RedHat' {
-    if $manage_fw {
-      include observium::firewall
-    }
+    include observium::firewalld
   }
 
   # order class dependencies for each OS
@@ -96,7 +84,7 @@ class observium (
       Class['observium::selinux'] -> Class['observium::yum'] -> Class['observium::packages'] -> Class['observium::mariadb'] -> Class['observium::install'] -> Class['observium::config'] -> Class['observium::snmp'] -> Class['observium::database_init']
     }
     'Debian': {
-      Class['observium::packages'] -> Class['observium::mariadb'] -> Class['observium::install'] -> Class['observium::config'] -> Class['observium::snmp'] -> Class['observium::database_init']
+      Class['observium::selinux'] -> Class['observium::packages'] -> Class['observium::mariadb'] -> Class['observium::install'] -> Class['observium::config'] -> Class['observium::snmp'] -> Class['observium::database_init']
     }
     default: { fail('Unsupported operating system, bailing out!!') }
   }

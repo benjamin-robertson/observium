@@ -4,9 +4,12 @@
 #
 class observium::selinux {
   assert_private()
-  # disable selinux
-  class { 'selinux':
-    mode => 'permissive',
-    type => 'targeted',
+  # Check if we are managing selinux
+  if observium::manage_selinux {
+    # disable selinux
+    class { 'selinux':
+      mode => 'permissive',
+      type => 'targeted',
+    }
   }
 }

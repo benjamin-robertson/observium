@@ -24,3 +24,4 @@ observium::apache_user: "www-data"
 observium::apache_service: "apache2"
 observium::openssl_location: "/usr/bin/openssl"
 observium::mysql_location: "/usr/bin/mysql"
+observium::manage_selinux: false
