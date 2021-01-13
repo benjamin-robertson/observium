@@ -25,7 +25,7 @@ class observium::apache {
       servername      => $observium::apache_hostname,
       access_log_file => '/opt/observium/logs/access_log',
       error_log_file  => '/opt/observium/logs/error_log',
-      ssl             => true,
+      ssl             => false,
       ssl_cert        => $observium::custom_ssl_cert,
       ssl_key         => $observium::custom_ssl_key,
       directories     => [
