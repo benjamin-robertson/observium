@@ -31,4 +31,3 @@ observium::manage_mysql: true
 observium::manage_apache: true
 observium::manage_apachephp: true
 observium::manage_ssl: true
-observium::debiansnmp_user: null
