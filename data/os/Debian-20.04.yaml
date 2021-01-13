@@ -1,15 +1,14 @@
 ---
 observium::required_packages:
   - 'wget'
-  - 'libapache2-mod-php7.2'
-  - 'php7.2-cli'
-  - 'php7.2-mysql'
-  - 'php7.2-mysqli'
-  - 'php7.2-gd'
-  - 'php7.2-json'
+  - 'libapache2-mod-php7.4'
+  - 'php7.4-cli'
+  - 'php7.4-mysql'
+  - 'php7.4-gd'
+  - 'php7.4-json'
   - 'php-pear'
   - 'fping'
-  - 'python-mysqldb'
+  - 'python3-mysqldb'
   - 'whois'
   - 'rrdtool'
   - 'subversion'
@@ -17,7 +16,7 @@ observium::required_packages:
   - 'ipmitool'
   - 'graphviz'
   - 'imagemagick'
-  - 'libvirt-bin'
+  - 'libvirt-clients'
   - 'snmp'
 observium::fping_location: "/usr/bin/fping"
 observium::apache_user: "www-data"
