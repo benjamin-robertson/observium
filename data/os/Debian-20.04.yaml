@@ -1,0 +1,26 @@
+---
+observium::required_packages:
+  - 'wget'
+  - 'libapache2-mod-php7.2'
+  - 'php7.2-cli'
+  - 'php7.2-mysql'
+  - 'php7.2-mysqli'
+  - 'php7.2-gd'
+  - 'php7.2-json'
+  - 'php-pear'
+  - 'fping'
+  - 'python-mysqldb'
+  - 'whois'
+  - 'rrdtool'
+  - 'subversion'
+  - 'mtr-tiny'
+  - 'ipmitool'
+  - 'graphviz'
+  - 'imagemagick'
+  - 'libvirt-bin'
+  - 'snmp'
+observium::fping_location: "/usr/bin/fping"
+observium::apache_user: "www-data"
+observium::apache_service: "apache2"
+observium::openssl_location: "/usr/bin/openssl"
+observium::mysql_location: "/usr/bin/mysql"
