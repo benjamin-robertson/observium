@@ -30,6 +30,6 @@ observium::manage_snmp: true
 observium::manage_mysql: true
 observium::manage_apache: true
 observium::manage_apachephp: true
-observium::manage_ssl: true
+observium::manage_ssl: false
 observium::debiansnmp_user: null
 observium::apache_php_version: null
