@@ -5,15 +5,27 @@
 class observium::firewallufw {
   assert_private()
 
-  notify{ 'ran so much':}
-  firewall { '100 allow http and https access':
-    dport  => [80, 443],
-    proto  => 'tcp',
-    action => 'accept',
-  }
-  firewall { '50 allow ssh access':
-    dport  => [22],
-    proto  => 'tcp',
-    action => 'accept',
+  if observium::manage_fw {
+    # Add rules for apache
+    if $observium::manage_ssl {
+      firewall { "100 allow https access on ${observium::apache_sslport}":
+        dport  => $observium::apache_sslport,
+        proto  => 'tcp',
+        action => 'accept',
+      }
+    }
+    else {
+      firewall { "100 allow http access on ${observium::apache_port}":
+        dport  => $observium::apache_port,
+        proto  => 'tcp',
+        action => 'accept',
+      }
+    }
+    # Ensure ssh is open
+    firewall { '50 allow ssh access':
+      dport  => [22],
+      proto  => 'tcp',
+      action => 'accept',
+    }
   }
 }
