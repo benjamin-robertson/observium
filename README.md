@@ -67,7 +67,7 @@ include observium
 
 Please see reference for details instructions on observium class paramaters. 
 
-# Basic usage
+### Basic usage
 
 
 
