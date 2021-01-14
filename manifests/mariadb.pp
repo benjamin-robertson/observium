@@ -1,4 +1,8 @@
-# Class: observium
+# Class: observium::mariadb
+#
+# Install mysql or mariadb - OS dependant
+#
+# @api private
 #
 class observium::mariadb {
   assert_private()

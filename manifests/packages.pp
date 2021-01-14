@@ -1,6 +1,8 @@
-# Class: observium::pInstall required packages
+# Class: observium::packages
 #
 # Installs required packges for observium
+#
+# @api private
 #
 class observium::packages {
   assert_private()

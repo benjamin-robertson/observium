@@ -1,6 +1,8 @@
 # Class: obversium
 #
-# Init the database after install.
+# Init the observium database after install.
+#
+# @api private
 #
 class observium::database_init {
   assert_private()

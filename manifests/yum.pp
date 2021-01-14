@@ -1,9 +1,9 @@
-# @summary A short summary of the purpose of this class
+# @summary
 #
-# Looksup required yum repos from hiera and sends them to the yum puppet module to be created. 
+# Creates requried yumrepo for RHEL and installs GPG keys.
 #
-# @example
-#   include observium::yum
+# @api private
+#
 class observium::yum {
   assert_private()
   # Check if we are managing repo

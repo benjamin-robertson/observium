@@ -1,6 +1,8 @@
-# Class: observium::
+# Class: observium::selinux
 #
 # Class disables selinux as per observium install guide.
+#
+# @api private
 #
 class observium::selinux {
   assert_private()

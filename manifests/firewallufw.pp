@@ -2,6 +2,8 @@
 #
 # Manage UFW on ubuntu
 #
+# @api private
+#
 class observium::firewallufw {
   assert_private()
 

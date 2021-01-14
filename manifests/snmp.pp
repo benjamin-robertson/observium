@@ -2,6 +2,8 @@
 #
 # Sets up SNMP locally to permit monitoring of local host out of the box.
 #
+# @api private
+#
 class observium::snmp {
   assert_private()
   # check if we are managing snmp

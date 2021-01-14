@@ -1,4 +1,8 @@
-# Class: observium::Create folder sturcture
+# Class: observium::install
+#
+# Creates folder structure for Observium, and install from tar
+#
+# @api private
 #
 class observium::install {
   assert_private()

@@ -1,6 +1,8 @@
 # Class: observium::firewall
 #
-# Manages firewall and opens port for observium
+# Manages firewall and opens ports for observium
+#
+# @api private
 #
 class observium::firewalld {
   assert_private()
