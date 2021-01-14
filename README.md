@@ -20,11 +20,21 @@ A Puppet module to install Observium in a basic configuration on Ubuntu or RedHa
 
 ## Setup
 
-### What observium affects **OPTIONAL**
+### What observium affects
 
-If it's obvious what your module touches, you can skip this section. For
-example, folks can probably figure out that your mysql_instance module affects
-their MySQL instances.
+Observium installs and configures the following by default, 
+
+- Apache
+- Mysql or MariaDB
+- Enable EPEL, remi-php and OpenNMS yum repo on RHEL. 
+- Modifies\enables firewalld on RHEL
+- Installs required packages for Observium
+- Installs Observium software on the system
+- Configures Obersvium software on the system
+- Sets selinux into permissive mode on RHEL
+- Configures SNMP v3 on the observium host
+
+
 
 If there's more that they should know about, though, this is the place to
 mention:
@@ -34,7 +44,7 @@ mention:
 * Dependencies that your module automatically installs.
 * Warnings or other important notices.
 
-### Setup Requirements **OPTIONAL**
+### Setup Requirements
 
 If your module requires anything extra before setting up (pluginsync enabled,
 another module, etc.), mention it here.
