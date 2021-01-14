@@ -69,6 +69,27 @@ Please see reference for details instructions on observium class paramaters.
 
 ### Basic usage
 
+1. Setup Observium with custom certificates
+```
+class { 'observium': 
+    manage_ssl      => true,
+    custom_ssl_cert => '/opt/observium/ssl/cert.pem',
+    custom_ssl_key  => '/opt/observium/ssl/key.pem',
+}
+```
+2. Setup Observium without managaging Firewall or Apache (Note: you will need to configure apache manually or with another Puppet module)
+```
+class { 'observium':
+    manage_fw     => false,
+    manage_apache => false,
+}
+```
+3. Setup Observium on RHEL specify repo and install location of Observium
+
+class { 'observium':
+    manage_fw     => false,
+    manage_apache => false,
+}
 
 
 ## Limitations
