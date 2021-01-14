@@ -28,7 +28,7 @@
 
 ### `observium`
 
-Observium base class which accepts parameters to customise the observium install. Only ever call this call.
+Observium base class which accepts parameters to customise the observium install.
 
 #### Examples
 
