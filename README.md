@@ -76,17 +76,27 @@ tasks that involve different types, classes, and functions working in tandem.
 Observium doesn't appear to give an option to download anything other than the latest release of community edition Observium. 
 I originally intended to provide an option of which version of Observium to install. 
 
-Only tested with the following setups.
+Tested with the following setups.
 
-- Puppet 
-    - test
+- PE 2019.8.4
+    - Puppet 6.19.1
+- RHEL
+    - 7
+    - 8
+- Ubuntu
+    - 18.04 LTS
+    - 20.04 LTS
 
-Upgrading Observium. 
+## Upgrading Observium 
+Please see [Upgrading][2] on steps from Observium to upgrade. If you are managaing Observium with Puppet, 
+please disable Puppet agent on your server before performing the upgrade steps. This module looks for the 
+presence of '/opt/observium/VERSION' before extracting the observium tar ball. You can reenable Puppet 
+once the upgrade is complete. 
+
 
 ## Development
 
-In the Development section, tell other users the ground rules for contributing
-to your project and how they should submit their work.
+If you find any issues with this module, please log them in the issues register of the GitHub project. [Issues][3]
 
 ## Release Notes/Contributors/Etc. **Optional**
 
@@ -95,5 +105,6 @@ consider using changelog). You can also add any additional sections you feel are
 necessary or important to include here. Please use the `##` header.
 
 [1]: https://www.observium.org/
-[2]: https://puppet.com/docs/puppet/latest/puppet_strings.html
+[2]: https://docs.observium.org/updating/#community-edition
+[3]: https://github.com/benjamin-robertson/observium/issues
 
