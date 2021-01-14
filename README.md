@@ -44,7 +44,10 @@ for upgrading, you might want to include an additional "Upgrading" section here.
 
 ### Beginning with observium
 
-In its most basic for you can install observium by
+In its most basic form you can install observium by
+```
+include observium
+```
 
 ## Usage
 
