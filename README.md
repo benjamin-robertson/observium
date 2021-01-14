@@ -73,7 +73,8 @@ tasks that involve different types, classes, and functions working in tandem.
 
 ## Limitations
 
-Observium don't appear to give an option to download anythig other than the latest release
+Observium doesn't appear to give an option to download anything other than the latest release of community edition Observium. 
+I originally intended to provide an option of which version of Observium to install. 
 
 Only tested with the following setups.
 
