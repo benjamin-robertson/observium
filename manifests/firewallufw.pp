@@ -9,27 +9,21 @@ class observium::firewallufw {
     # Add rules for apache
     class { 'ufw': }
     if $observium::manage_ssl {
-      ufw::allow { "Allow https access ${observium::apache_sslport}"
-
-      }
-      firewall { "100 allow https access on ${observium::apache_sslport}":
-        dport  => $observium::apache_sslport,
-        proto  => 'tcp',
-        action => 'accept',
+      ufw::allow { "Allow https access ${observium::apache_sslport}":
+        port => $observium::apache_sslport,
+        from => '0.0.0.0/0',
       }
     }
     else {
-      firewall { "100 allow http access on ${observium::apache_port}":
-        dport  => $observium::apache_port,
-        proto  => 'tcp',
-        action => 'accept',
+      ufw::allow { "Allow https access ${observium::apache_port}":
+        port => $observium::apache_port,
+        from => '0.0.0.0/0',
       }
     }
     # Ensure ssh is open
-    firewall { '50 allow ssh access':
-      dport  => [22],
-      proto  => 'tcp',
-      action => 'accept',
+    ufw::allow { 'Allow ssh access 22':
+      port => '22',
+      from => '0.0.0.0/0',
     }
   }
 }
