@@ -65,11 +65,11 @@ include observium
 
 ## Usage
 
-Include usage examples for common use cases in the **Usage** section. Show your
-users how to use your module to solve problems, and be sure to include code
-examples. Include three to five examples of the most important or common tasks a
-user can accomplish with your module. Show users how to accomplish more complex
-tasks that involve different types, classes, and functions working in tandem.
+Please see reference for details instructions on observium class paramaters. 
+
+# Basic usage
+
+
 
 ## Limitations
 
@@ -97,12 +97,6 @@ once the upgrade is complete.
 ## Development
 
 If you find any issues with this module, please log them in the issues register of the GitHub project. [Issues][3]
-
-## Release Notes/Contributors/Etc. **Optional**
-
-If you aren't using changelog, put your release notes here (though you should
-consider using changelog). You can also add any additional sections you feel are
-necessary or important to include here. Please use the `##` header.
 
 [1]: https://www.observium.org/
 [2]: https://docs.observium.org/updating/#community-edition
