@@ -7,7 +7,11 @@ class observium::firewallufw {
 
   if observium::manage_fw {
     # Add rules for apache
+    class { 'ufw': }
     if $observium::manage_ssl {
+      ufw::allow { "Allow https access ${observium::apache_sslport}"
+
+      }
       firewall { "100 allow https access on ${observium::apache_sslport}":
         dport  => $observium::apache_sslport,
         proto  => 'tcp',
