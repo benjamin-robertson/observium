@@ -4,10 +4,49 @@
 #
 # @example
 #   include observium
+#
+# @param db_password
+#     Mysql password for observium user - default changeme
+# 
+# @param rootdb_password
+#     Mysql root password - default hello123
+# 
+# @param download_url
+#     Url to the installer, IE http://observium.com/, can be a file path
+# 
+#
+#
+# 
+#
+#
+# 
+#
+#
+# 
+#
+#
+# 
+#
+#
+# 
+#
+#
+# 
+#
+#
+# 
+#
+#
+# 
+#
+#
+# 
+#
+#
 class observium (
-  String $db_password, # Mysql password for observium user
-  String $rootdb_password, # Mysql root password
-  String $download_url, # Url to the installer, IE http://observium.com/, can be a file path
+  String $db_password,
+  String $rootdb_password,
+  String $download_url,
   String $installer_name, # Installer name, IE observium-installer.tar
   String $db_host, # Database host to use
   String $db_user, # Database user to use
