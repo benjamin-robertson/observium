@@ -1,83 +1,150 @@
 # @summary A short summary of the purpose of this class
 #
-# Observium base class which accepts parameters to customise the observium install 
+# Observium base class which accepts parameters to customise the observium install. Only ever call this call. 
 #
 # @example
 #   include observium
 #
 # @param db_password
-#     Mysql password for observium user - default changeme
+#     Mysql password for observium user - default 'changeme'
 # 
 # @param rootdb_password
-#     Mysql root password - default hello123
+#     Mysql root password - default 'hello123'
 # 
 # @param download_url
-#     Url to the installer, IE http://observium.com/, can be a file path
+#     Url to the installer, IE http://observium.com/, can be a file path - default 'http://www.observium.org/'
 # 
-#
-#
+# @param installer_name
+#     Installer name, IE observium-installer.tar - default 'observium-community-latest.tar.gz'
 # 
+# @param db_host
+#     Database host to use - default 'localhost'
 #
+# @param db_user
+#     Database user to use - default 'observium'
 #
+# @param community
+#     Default SNMP community to configure - default 'puppet'
 # 
+# @param snmpv3_authlevel
+#     Default SNMP authlevel to use - default 'authPriv'
+#     Valid options - ['noAuthNoPriv','authNoPriv','authPriv']
 #
-#
+# @param snmpv3_authname
+#     SNMP Authname SNMPv3 user - default 'observium'
 # 
-#
-#
+# @param snmpv3_authpass
+#     Auth password - min 8 character
 # 
-#
-#
+# @param snmpv3_authalgo
+#     Auth algorithm - defualt 'SHA'
+#     Valid options - ['SHA','MD5']
 # 
+# @param snmpv3_cryptopass
+#     Crypto pass - min 8 character
 #
-#
+# @param snmpv3_cryptoalgo
+#     Crypto algorithm - default 'AES'
+#     Valid options - ['AES','DES']
 # 
+# @param fping_location
+#     Change if fping is in a non default locaiton - default, RHEL '/sbin/fping' Ubuntu '/usr/bin/fping'
 #
+# @param email_default
+#     Not setup yet, use additional config option to setup email default
 #
-# 
+# @param email_from
+#     Not setup yet, use additional config option to setup email from
 #
+# @param admin_password
+#     Admin password for the default admin observium user - default 'changeme'
 #
-# 
+# @param apache_bind_ip
+#     Bind IP address - default $facts['ipaddress']
 #
+# @param apache_hostname
+#     Apache hostname for observium site - default $facts['hostname']
 #
-# 
+# @param apache_port
+#     Apache non SSL port - note if SSL is enabled this will have no effect - default '80'
 #
+# @param apache_sslport
+#     Apache SSL port - note if SSL isn't enable this will have no effect - defautl '443'
+#
+# @param custom_ssl_cert
+#     Path to SSL certificate, note this module will automatically create a cert in this location '/etc/ssl/observium_cert.pem' - default '/etc/ssl/observium_cert.pem'
+#
+# @param custom_ssl_key
+#     Path to SSL certificate key, note this module will automatically create a key in this location '/etc/ssl/observium_key.pem' - default '/etc/ssl/observium_key.pem'
+#
+# @param manage_repo
+#     Manage repo, RHEL only, - default true
+#
+# @param manage_selinux
+#     Manage selinux, RHEL only. This will set selinux to permissive mode as observium havn't published a selinux profile - default true
+#
+# @param manage_fw
+#     Manage firewalld on RHEL. UFW on ubuntu. - default RHEL true, Ubuntu false
+#
+# @param manage_snmp
+#     Configure snmpd on the observium and add to observium - default true
+#
+# @param manage_mysql
+#     Install and configure mysql, - default true
+#
+# @param manage_apache
+#     Install and configure Apache, - defalt true
+#
+# @param manage_apachephp
+#     Configure Apachemod php, - default true
+#
+# @param manage_ssl
+#     Setup the web site as SSL. If no cert provided, a self signed one will be used. - default false
+#
+# @param repos
+#     Customise repoistory locations for RedHat
+#
+# @param gpgkeys
+#     Customise GPG keys for RedHat
+#
+# @param observium_additional_conf
+#     Array of additional configurations options to add to /opt/observium/config.php
 #
 class observium (
   String $db_password,
   String $rootdb_password,
   String $download_url,
-  String $installer_name, # Installer name, IE observium-installer.tar
-  String $db_host, # Database host to use
-  String $db_user, # Database user to use
-  String $community, # Default SNMP community to configure
-  Enum['noAuthNoPriv','authNoPriv','authPriv'] $snmpv3_authlevel, # Deafult SNMP authlevel to use
-  String $snmpv3_authname, # SNMP Authname SNMPv3 user
-  String[8] $snmpv3_authpass, # Auth password
-  Enum['SHA','MD5'] $snmpv3_authalgo, # Auth algorithm SHA, MD5
-  String[8] $snmpv3_cryptopass, # Crypto pass
-  Enum['AES','DES'] $snmpv3_cryptoalgo, # Crypto algo AES, DES
-  String $fping_location, # Fping location
+  String $installer_name,
+  String $db_host,
+  String $db_user,
+  String $community,
+  Enum['noAuthNoPriv','authNoPriv','authPriv'] $snmpv3_authlevel,
+  String $snmpv3_authname,
+  String[8] $snmpv3_authpass,
+  Enum['SHA','MD5'] $snmpv3_authalgo,
+  String[8] $snmpv3_cryptopass,
+  Enum['AES','DES'] $snmpv3_cryptoalgo,
+  String $fping_location,
   String $email_default,
   String $email_from,
-  String $admin_password, # Admin password GUI
-  String $apache_bind_ip = $facts['ipaddress'], # Bind IP address
-  String $apache_hostname = $facts['hostname'], # Apache hostname
-  String $apache_port, # Apache non SSL port
-  String $apache_sslport, # Apache SSL port
-  String $custom_ssl_cert, # SSL cert location
-  String $custom_ssl_key, # SSL cert key
-  Boolean $manage_repo, # Manage repo, RHEL only
-  Boolean $manage_selinux, # Manage selinux, RHEL only
-  Boolean $manage_fw, # Manage FW, enabled RHEL by default only. 
-  Boolean $manage_snmp, # Manage SNMP, configure SNMP locally with SNMPv3 creds, enable by default
-  Boolean $manage_mysql, # Manage mysql, enable by default, configure mysql backend.
-  Boolean $manage_apache, # Configure and setup and Apache, otherwise setup virtial host only
-  Boolean $manage_apachephp, # Configure and setup Apachemod php. 
-  Boolean $manage_ssl, # Setup the web site as SSL. If no cert provided, a self signed one will be used. 
-  Optional[Hash] $repos = undef, # Customise reposiotry for RedHat
-  Optional[Hash] $gpgkeys = undef, # Customise GPG keys for red hat.
-  Optional[Array] $observium_additional_conf = undef, # Array of additional configurations options to add to /opt/observium/config.php
+  String $admin_password,
+  String $apache_bind_ip = $facts['ipaddress'],
+  String $apache_hostname = $facts['hostname'],
+  String $apache_port,
+  String $apache_sslport,
+  String $custom_ssl_cert,
+  String $custom_ssl_key,
+  Boolean $manage_repo,
+  Boolean $manage_selinux,
+  Boolean $manage_fw,
+  Boolean $manage_snmp,
+  Boolean $manage_mysql,
+  Boolean $manage_apache,
+  Boolean $manage_apachephp,
+  Boolean $manage_ssl,
+  Optional[Hash] $repos = undef,
+  Optional[Hash] $gpgkeys = undef,
+  Optional[Array] $observium_additional_conf = undef,
 
 ) {
 

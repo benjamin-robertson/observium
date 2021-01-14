@@ -2,6 +2,8 @@
 #
 # Configure apache server with virtual host for observium
 #
+# @api private
+#
 class observium::apache {
   assert_private()
 

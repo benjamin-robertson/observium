@@ -2,6 +2,8 @@
 #
 # Configure observium configuration files
 #
+# @api private
+#
 class observium::config {
   # Setup config.php
   assert_private()
