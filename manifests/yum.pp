@@ -19,7 +19,7 @@ class observium::yum {
 
     # check what Redhat we are running on
     case $facts['os']['release']['major'] {
-      '7': { 
+      '7': {
       $observium::repos.each | String $reponame, Hash $repoinfo | {
         yumrepo { $reponame:
           *  => $repoinfo,
