@@ -5,8 +5,8 @@
 # @example
 #   include observium
 class observium (
-  String $db_password,
-  String $rootdb_password,
+  String $db_password, # Mysql password for observium user
+  String $rootdb_password, # Mysql root password
   String $download_url,
   String $installer_name,
   String $db_host,
