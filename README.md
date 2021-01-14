@@ -1,10 +1,7 @@
 # observium
 
-Welcome to your new module. A short overview of the generated parts can be found
-in the [PDK documentation][1].
+A Puppet module which installs and configures Observium monitoring software. For infomation about observium please see [Observium][1]
 
-The README template below provides a starting point with details about what
-information to include in your README.
 
 ## Table of Contents
 
@@ -112,6 +109,6 @@ If you aren't using changelog, put your release notes here (though you should
 consider using changelog). You can also add any additional sections you feel are
 necessary or important to include here. Please use the `##` header.
 
-[1]: https://puppet.com/docs/pdk/latest/pdk_generating_modules.html
+[1]: https://www.observium.org/
 [2]: https://puppet.com/docs/puppet/latest/puppet_strings.html
-[3]: https://puppet.com/docs/puppet/latest/puppet_strings_style.html
+
