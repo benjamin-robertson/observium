@@ -33,24 +33,28 @@ Observium installs and configures the following by default,
 - Configures Obersvium software on the system
 - Sets selinux into permissive mode on RHEL
 - Configures SNMP v3 on the observium host
+- Creates a certificate and key pay under /etc/ssl/observium_key.pem and observium_cert.pem
 
-
-
-If there's more that they should know about, though, this is the place to
-mention:
-
-* Files, packages, services, or operations that the module will alter, impact,
-  or execute.
-* Dependencies that your module automatically installs.
-* Warnings or other important notices.
+If you are managing yumrepos, firewall, selinux, snmp, mysql, apache you can disable this module managing them by setting manage_{service} to false. See reference.
 
 ### Setup Requirements
 
-If your module requires anything extra before setting up (pluginsync enabled,
-another module, etc.), mention it here.
+Please ensure you meet the dependency requirements and have the following in your Puppetfile.
 
-If your most recent release breaks compatibility or requires particular steps
-for upgrading, you might want to include an additional "Upgrading" section here.
+- puppetlabs-stdlib
+- puppet-archive
+- puppetlabs-yumrepo_core - only required for RHEL
+- puppetlabs-mysql
+- puppetlabs-cron_core
+- puppet-selinux - only required for RHEL
+- puppetlabs-apache
+- puppet-snmp
+- puppet-firewalld - only required for RHEL and if managing firewall
+- puppetlabs-resource_api
+- domkrm-ufw - only required for Ubuntu and if managing firewall
+- puppetlabs-translate
+- camptocamp-systemd
+
 
 ### Beginning with observium
 
