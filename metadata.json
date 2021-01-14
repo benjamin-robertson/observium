@@ -2,17 +2,61 @@
   "name": "benjaminrobertson-observium",
   "version": "0.1.0",
   "author": "benjaminrobertson",
-  "summary": "Configured observium on Redhat 7 and 8",
+  "summary": "Configures and installs Observium Redhat and Ubuntu",
   "license": "Apache-2.0",
   "source": "https://github.com/benjamin-robertson/observium",
   "dependencies": [
     {
       "name": "puppetlabs/stdlib",
-      "version_requirement": ">= 4.18.0 < 7.0.0"
+      "version_requirement": ">= 5.2.0 < 7.0.0"
     },
     {
       "name": "puppet/archive",
       "version_requirement": ">4.0.0"
+    },
+    {
+      "name": "puppetlabs/yumrepo_core",
+      "version_requirement": ">=1.0.0"
+    },
+    {
+      "name": "puppetlabs/mysql",
+      "version_requirement": ">=10.0.0"
+    },
+    {
+      "name": "puppetlabs/cron_core",
+      "version_requirement": ">=1.0.0"
+    },
+    {
+      "name": "puppet/selinux",
+      "version_requirement": ">=3.0.0"
+    },
+    {
+      "name": "puppetlabs/apache",
+      "version_requirement": ">=5.0.0"
+    },
+    {
+      "name": "puppet/snmp",
+      "version_requirement": ">=5.0.0"
+    },
+    {
+      "name": "puppet/firewalld",
+      "version_requirement": ">=4.1.1"
+    },
+    {
+      "name": "puppetlabs/resource_api",
+      "version_requirement": ">=1.0.0"
+    },
+    {
+      "name": "domkrm/ufw",
+      "version_requirement": ">=1.1.1"
+    },
+    {
+      "name": "puppetlabs/translate",
+      "version_requirement": ">=1.0.0"
+    },
+    {
+      "name": "camptocamp/systemd",
+      "version_requirement": ">=2.5.1"
     }
   ],
   "operatingsystem_support": [

@@ -16,11 +16,7 @@ A Puppet module which installs and configures Observium monitoring software. For
 
 ## Description
 
-Briefly tell users why they might want to use your module. Explain what your
-module does and what kind of problems users can solve with it.
-
-This should be a fairly short description helps the user decide if your module
-is what they want.
+A Puppet module to install Observium in a basic configuration on Ubuntu or RedHat. 
 
 ## Setup
 
@@ -48,9 +44,7 @@ for upgrading, you might want to include an additional "Upgrading" section here.
 
 ### Beginning with observium
 
-The very basic steps needed for a user to get the module up and running. This
-can include setup steps, if necessary, or it can be an example of the most basic
-use of the module.
+In its most basic for you can install observium by
 
 ## Usage
 
