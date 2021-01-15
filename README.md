@@ -93,7 +93,7 @@ $my_repo = { 'epel' => {
     'descr'    => 'Extra packages for enterprise linux',
     'baseurl'  => 'http://myrepo.local/epel7',
     'gpgcheck' => '1',
-    'gpgkey'   => 'file:///etc/pki/rpm-gpg/RPM-GPG-KEY-EPEL-%{facts.os.release.major}',
+    'gpgkey'   => 'file:///etc/pki/rpm-gpg/RPM-GPG-KEY-EPEL-7',
     'target'   => '/etc/yum.repos.d/epel.repo',
     },
 }
