@@ -95,7 +95,7 @@ $my_repo = { 'epel' => {
     'gpgcheck' => '1',
     'gpgkey'   => 'file:///etc/pki/rpm-gpg/RPM-GPG-KEY-EPEL-%{facts.os.release.major}',
     'target'   => '/etc/yum.repos.d/epel.repo',
-    }  
+    },
 }
 
 class { 'observium':
