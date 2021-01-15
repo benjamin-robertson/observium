@@ -22,7 +22,7 @@ A Puppet module to install Observium in a basic configuration on Ubuntu or RedHa
 
 ### What observium affects
 
-Observium installs and configures the following by default, 
+Observium module installs and configures the following by default, 
 
 - Apache
 - Mysql or MariaDB
@@ -35,7 +35,8 @@ Observium installs and configures the following by default,
 - Configures SNMP v3 on the observium host
 - Creates a certificate and key pay under /etc/ssl/observium_key.pem and observium_cert.pem
 
-If you are managing yumrepos, firewall, selinux, snmp, mysql, apache you can disable this module managing them by setting manage_{service} to false. See reference.
+If you are managing yumrepos, firewall, selinux, snmp, mysql, apache within your control-repo you can disable 
+configuring this by setting manage_{service} to false. See reference.
 
 ### Setup Requirements
 
@@ -77,15 +78,15 @@ class { 'observium':
     custom_ssl_key  => '/opt/observium/ssl/key.pem',
 }
 ```
-2. Setup Observium without managaging Firewall or Apache (Note: you will need to configure apache manually or with another Puppet module)
+2. Setup Observium without managing Firewall or Apache (Note: you will need to configure apache manually or with another Puppet module)
 ```
 class { 'observium':
     manage_fw     => false,
     manage_apache => false,
 }
 ```
-3. Setup Observium on RHEL local specify repo and install location of Observium, can also be performed with Hiera.
-If your EPEL was hosted at myrepo.local
+3. Setup Observium on RHEL, specifying local repo and install location of Observium, can also be performed with Hiera.
+If your EPEL was hosted at myrepo.local and you saved the observium installer under /tmp
 ```
 $my_repo = { 'epel' => {
     'ensure'   => 'present',
@@ -107,8 +108,8 @@ class { 'observium':
 
 ## Limitations
 
-Observium doesn't appear to give an option to download anything other than the latest release of community edition Observium. 
-I originally intended to provide an option of which version of Observium to install. 
+Observium doesn't provide an option to download anything other than the latest release of community edition Observium. 
+I originally intended to provide an option of which version of Observium to install. This module will just install the latest Observium release.
 
 Tested with the following setups.
 
@@ -123,7 +124,7 @@ Tested with the following setups.
 
 ### RHEL specific limitations
 
-RHEL 7 requires the following yum repos for installation - these will be automatically added if you host has internet connection
+RHEL 7 requires the following yum repos for installation - these will be automatically added if you host has internet connection.
 
 - [EPEL][4]
 - [OpenNMS common][5]
@@ -131,7 +132,7 @@ RHEL 7 requires the following yum repos for installation - these will be automat
 - [remi-php72][7]
 - [remi-safe][8]
 
-RHEL 8 require the follwing yum repo for installation - these will be automatically added if you host has internet connection
+RHEL 8 require the follwing yum repos for installation - these will be automatically added if you host has internet connection.
 
 - [EPEL][4]
 - [OpenNMS common][5]
@@ -144,11 +145,19 @@ RHEL 8 require the follwing yum repo for installation - these will be automatica
 
 
 ## Upgrading Observium 
-Please see [Upgrading][2] on steps from Observium to upgrade. If you are managaing Observium with Puppet, 
+Please see [Upgrading][2] steps from Observium to upgrade. If you are managaing Observium with Puppet, 
 please disable Puppet agent on your server before performing the upgrade steps. This module looks for the 
 presence of '/opt/observium/VERSION' before extracting the observium tar ball. You can reenable Puppet 
 once the upgrade is complete. 
 
+To disable Puppet manually on a host.
+```
+puppet agent --disable
+```
+To reenable
+```
+puppet agent --enable
+```
 
 ## Development
 
