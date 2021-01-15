@@ -85,12 +85,13 @@ class { 'observium':
 }
 ```
 3. Setup Observium on RHEL specify repo and install location of Observium
+```
+$my_repo = {}
 
 class { 'observium':
-    manage_fw     => false,
-    manage_apache => false,
+    repos => {}
 }
-
+```
 
 ## Limitations
 
@@ -108,6 +109,28 @@ Tested with the following setups.
     - 18.04 LTS
     - 20.04 LTS
 
+### RHEL specific limitations
+
+RHEL 7 requires the following yum repos for installation
+
+- [EPEL][4]
+- [OpenNMS common][5]
+- [OpenNMS RHEL7][6]
+- [remi-php72][7]
+- [remi-safe][8]
+
+RHEL 8 require the follwing yum repo for installation
+
+- [EPEL][4]
+- [OpenNMS common][5]
+- [OpenNMS RHEL8][9]
+- [remi-modular][10] - note you will need to enable php7.2 after adding this repo 
+```
+/bin/dnf module -y install php:remi-7.2
+```
+- [remi-safe][10]
+
+
 ## Upgrading Observium 
 Please see [Upgrading][2] on steps from Observium to upgrade. If you are managaing Observium with Puppet, 
 please disable Puppet agent on your server before performing the upgrade steps. This module looks for the 
@@ -122,4 +145,11 @@ If you find any issues with this module, please log them in the issues register 
 [1]: https://www.observium.org/
 [2]: https://docs.observium.org/updating/#community-edition
 [3]: https://github.com/benjamin-robertson/observium/issues
+[4]: https://fedoraproject.org/wiki/EPEL
+[5]: https://yum.opennms.org/stable/common/
+[6]: https://yum.opennms.org/stable/rhel7/
+[7]: http://cdn.remirepo.net/enterprise/7/php72/mirror
+[8]: http://cdn.remirepo.net/enterprise/7/safe/mirro
+[9]: https://yum.opennms.org/stable/rhel8/
+[10]: https://rpms.remirepo.net/enterprise/8/
 
