@@ -14,7 +14,7 @@ class observium::database_init {
     unless => "${mysql_location} -u observium --password=${observium::db_password} observium -e 'select * from users'"
   }
 
-  exec { "/opt/observium/adduser.php admin ${observium::admin_password} 10": 
+  exec { "/opt/observium/adduser.php admin ${observium::admin_password} 10":
     unless => "${mysql_location} -u observium --password=${observium::db_password} observium -e 'select * from users WHERE username LIKE \"admin\"' | grep admin",
   }
 

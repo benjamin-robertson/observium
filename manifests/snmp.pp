@@ -13,7 +13,7 @@ class observium::snmp {
 
     # Setup SNMP class with snmpv3 user
     class { 'snmp':
-      snmpd_config => ["rouser ${observium::snmpv3_authname} ${observium::snmpv3_authlevel}"],
+      snmpd_config             => ["rouser ${observium::snmpv3_authname} ${observium::snmpv3_authlevel}"],
       service_config_dir_group => $ubuntu2004user,
       service_config_dir_owner => $ubuntu2004user,
       varnetsnmp_owner         => $ubuntu2004user,
