@@ -84,12 +84,24 @@ class { 'observium':
     manage_apache => false,
 }
 ```
-3. Setup Observium on RHEL specify repo and install location of Observium
+3. Setup Observium on RHEL local specify repo and install location of Observium, can also be performed with Hiera.
+If you EPEL hosted at myrepo.local
 ```
-$my_repo = {}
+$my_repo = { 'epel' => {
+    'ensure'   => 'present',
+    'enabled'  => '1',
+    'descr'    => 'Extra packages for enterprise linux',
+    'baseurl'  => 'http://myrepo.local/epel7',
+    'gpgcheck' => '1',
+    'gpgkey'   => 'file:///etc/pki/rpm-gpg/RPM-GPG-KEY-EPEL-%{facts.os.release.major}',
+    'target'   => '/etc/yum.repos.d/epel.repo',
+    }  
+}
 
 class { 'observium':
-    repos => {}
+    repos          => $my_repo,
+    download_url   => '/tmp/',
+    installer_name => 'observium-community-latest.tar.gz',
 }
 ```
 
