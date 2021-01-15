@@ -111,7 +111,7 @@ Tested with the following setups.
 
 ### RHEL specific limitations
 
-RHEL 7 requires the following yum repos for installation
+RHEL 7 requires the following yum repos for installation - these will be automatically added if you host has internet connection
 
 - [EPEL][4]
 - [OpenNMS common][5]
@@ -119,7 +119,7 @@ RHEL 7 requires the following yum repos for installation
 - [remi-php72][7]
 - [remi-safe][8]
 
-RHEL 8 require the follwing yum repo for installation
+RHEL 8 require the follwing yum repo for installation - these will be automatically added if you host has internet connection
 
 - [EPEL][4]
 - [OpenNMS common][5]
