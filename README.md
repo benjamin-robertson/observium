@@ -85,7 +85,7 @@ class { 'observium':
 }
 ```
 3. Setup Observium on RHEL local specify repo and install location of Observium, can also be performed with Hiera.
-If you EPEL hosted at myrepo.local
+If your EPEL was hosted at myrepo.local
 ```
 $my_repo = { 'epel' => {
     'ensure'   => 'present',
