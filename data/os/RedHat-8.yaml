@@ -44,6 +44,7 @@ observium::repos:
 observium::required_packages:
   - 'wget'
   - 'php'
+  - 'php-ldap'
   - 'php-opcache'
   - 'php-mysqlnd'
   - 'php-gd'
