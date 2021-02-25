@@ -3,6 +3,7 @@ observium::required_packages:
   - 'wget'
   - 'libapache2-mod-php7.2'
   - 'php7.2-cli'
+  - 'php7.2-ldap'
   - 'php7.2-mysql'
   - 'php7.2-mysqli'
   - 'php7.2-gd'
