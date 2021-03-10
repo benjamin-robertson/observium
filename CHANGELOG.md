@@ -8,7 +8,7 @@ All notable changes to this project will be documented in this file.
 
 **Bugfixes**
 
-- Included php-ldap package by default. Missing this package cause issues if Observium LDAP package was missing. See https://github.com/benjamin-robertson/observium/pull/1 for more details. Thanks to https://github.com/egypcio
+- Included php-ldap package by default. Not including this package causes issues if LDAP auth is configured for observium using observium_additional_conf. See https://github.com/benjamin-robertson/observium/pull/1 for more details. Thanks to https://github.com/egypcio
 
 **Known Issues**
 
