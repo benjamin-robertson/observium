@@ -3,4 +3,36 @@
 ---
 fixtures:
   forge_modules:
-#     stdlib: "puppetlabs/stdlib"
+    stdlib: 
+      repo: "puppetlabs/stdlib"
+      ref: "7.1.0"
+    puppetlabs-yumrepo_core:
+      repo: "puppetlabs/yumrepo_core"
+      ref: "1.0.7"
+    puppet-archive:
+      repo: "puppet/archive"
+      ref: "5.0.0"
+    puppetlabs-mysql:
+      repo: "puppetlabs/mysql"
+      ref: "11.0.2"
+    puppetlabs-cron_core:
+      repo: "puppetlabs/cron_core"
+      ref: "1.0.5"
+    puppet-selinux:
+      repo: "puppet/selinux"
+      ref: "3.4.0"
+    puppetlabs-apache:
+      repo: "puppetlabs/apache"
+      ref: "6.2.0"
+    puppet-snmp:
+      repo: "puppet/snmp"
+      ref: "5.1.1"
+    puppet-firewalld:
+      repo: "puppet/firewalld"
+      ref: "4.4.0"
+    domkrm-ufw:
+      repo: "domkrm/ufw"
+      ref: "1.1.4"
+    camptocamp-systemd:
+      repo: "camptocamp/systemd"
+      ref: "3.0.0"

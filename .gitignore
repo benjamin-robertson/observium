@@ -12,6 +12,7 @@
 /doc/
 /Gemfile.local
 /Gemfile.lock
+Gemfile.lock
 /junit/
 /log/
 /pkg/
