@@ -117,6 +117,7 @@ class observium (
   String $installer_name,
   String $db_host,
   String $db_user,
+  String $db_charset,
   String $community,
   Enum['noAuthNoPriv','authNoPriv','authPriv'] $snmpv3_authlevel,
   String $snmpv3_authname,
