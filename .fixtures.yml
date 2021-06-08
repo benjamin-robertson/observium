@@ -36,3 +36,9 @@ fixtures:
     camptocamp-systemd:
       repo: "camptocamp/systemd"
       ref: "3.0.0"
+    puppetlabs-concat:
+      repo: "puppetlabs/concat"
+      ref: "7.0.1"
+    puppetlabs-augeas_core:
+      repo: "puppetlabs/augeas_core"
+      ref: "1.1.2"
