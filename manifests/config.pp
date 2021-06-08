@@ -31,10 +31,11 @@ class observium::config {
     owner   => 'root',
     group   => 'root',
     mode    => '0644',
-    notify  => Exec["${openssl_location} req -x509 -newkey rsa:4096 -keyout /etc/ssl/observium_key.pem -out /etc/ssl/observium_cert.pem -days 2000 -nodes -config /opt/observium/openssl.conf"],
+    notify  => Exec['Create TLS cert'],
   }
 
-  exec { "${openssl_location} req -x509 -newkey rsa:4096 -keyout /etc/ssl/observium_key.pem -out /etc/ssl/observium_cert.pem -days 2000 -nodes -config /opt/observium/openssl.conf":
+  exec { 'Create TLS cert':
+    command     => "${openssl_location} req -x509 -newkey rsa:4096 -keyout /etc/ssl/observium_key.pem -out /etc/ssl/observium_cert.pem -days 2000 -nodes -config /opt/observium/openssl.conf",
     refreshonly => true,
     notify      => Service[$apache_service]
   }
@@ -46,12 +47,12 @@ class observium::config {
     mode    => '0400',
     owner   => $apache_user,
     group   => $apache_user,
-    require => Exec["${openssl_location} req -x509 -newkey rsa:4096 -keyout /etc/ssl/observium_key.pem -out /etc/ssl/observium_cert.pem -days 2000 -nodes -config /opt/observium/openssl.conf"],
+    require => Exec['Create TLS cert'],
   }
   file { '/etc/ssl/observium_cert.pem':
     mode    => '0644',
     owner   => $apache_user,
     group   => $apache_user,
-    require => Exec["${openssl_location} req -x509 -newkey rsa:4096 -keyout /etc/ssl/observium_key.pem -out /etc/ssl/observium_cert.pem -days 2000 -nodes -config /opt/observium/openssl.conf"],
+    require => Exec['Create TLS cert'],
   }
 }

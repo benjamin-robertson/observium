@@ -149,7 +149,7 @@ class observium (
 ) {
 
   # notify test
-  notify{'Code has updated':}
+  notify{'Code has updated again':}
 
   # Check what OS we are on and install packages
   case $facts['os']['family'] {
