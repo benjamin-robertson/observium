@@ -148,6 +148,9 @@ class observium (
 
 ) {
 
+  # notify test
+  notify{'Code has updated':}
+
   # Check what OS we are on and install packages
   case $facts['os']['family'] {
     'RedHat': { include observium::yum }
