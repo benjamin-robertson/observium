@@ -4,6 +4,7 @@
 #
 # @api private
 #
+# lint:ignore:140chars lint:ignore:arrow_alignment
 class observium::config {
   # Setup config.php
   assert_private()
@@ -56,3 +57,4 @@ class observium::config {
     require => Exec['Create TLS cert'],
   }
 }
+# lint:endignore

@@ -4,6 +4,7 @@
 #
 # @api private
 #
+# lint:ignore:140chars
 class observium::database_init {
   assert_private()
   # Lookup location of mysql binary
@@ -45,3 +46,4 @@ class observium::database_init {
     refreshonly => true,
   }
 }
+# lint:endignore
