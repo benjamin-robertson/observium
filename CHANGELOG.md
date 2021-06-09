@@ -2,6 +2,22 @@
 
 All notable changes to this project will be documented in this file.
 
+## Release 1.0.0
+
+**Features**
+
+- First non-beta release.
+- Can upgrade to this new version from earlier versions without affecting existing installations.
+- Updated module dependencies, removing redundant and deprecated modules.
+- Added all dependencies based on dependency dependencies.
+- Refactored code to making it easier to debug.
+
+**Bugfixes**
+
+- Fixed issue causing continuous corrective changes on Ubuntu 20.04, 18.04 and RHEL7.
+  - Observium installation documentation instructs to install packages which don't exist. This was causing the corrective change on Ubuntu 18.04 and RHEL7.
+- Fixed lint issues in code
+
 ## Release 0.1.3
 
 **Features**

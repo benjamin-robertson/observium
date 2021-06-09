@@ -25,6 +25,9 @@
 # @param db_user
 #     Database user to use - default 'observium'
 #
+# @param db_charset
+#     Database charset to use - default 'utf8' Ubuntu 20.04 'utf8mb3'
+#
 # @param community
 #     Default SNMP community to configure - default 'puppet'
 # 

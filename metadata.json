@@ -1,6 +1,6 @@
 {
   "name": "benjaminrobertson-observium",
-  "version": "0.1.3",
+  "version": "1.0.0",
   "author": "benjaminrobertson",
   "summary": "Configures and installs Observium Redhat and Ubuntu",
   "license": "Apache-2.0",
@@ -43,16 +43,8 @@
       "version_requirement": ">=4.1.1 < 5.0.0"
     },
     {
-      "name": "puppetlabs/resource_api",
-      "version_requirement": ">=1.0.0 < 2.0.0"
-    },
-    {
       "name": "domkrm/ufw",
       "version_requirement": ">=1.1.1 < 2.0.0"
-    },
-    {
-      "name": "puppetlabs/translate",
-      "version_requirement": ">=1.0.0 < 3.0.0"
     },
     {
       "name": "camptocamp/systemd",
