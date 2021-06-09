@@ -13,6 +13,7 @@ All notable changes to this project will be documented in this file.
 - Refactored code to making it easier to debug.
 - Setup Rspec testing for module
 - Updated module to latest pdk 2.1.0
+- Added db_charset option - see reference. 
 
 **Bugfixes**
 
