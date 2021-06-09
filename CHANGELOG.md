@@ -11,6 +11,8 @@ All notable changes to this project will be documented in this file.
 - Updated module dependencies, removing redundant and deprecated modules.
 - Added all dependencies based on dependency dependencies.
 - Refactored code to making it easier to debug.
+- Setup Rspec testing for module
+- Updated module to latest pdk 2.1.0
 
 **Bugfixes**
 
