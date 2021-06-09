@@ -33,3 +33,4 @@ observium::manage_apachephp: true
 observium::manage_ssl: false
 observium::debiansnmp_user: null
 observium::apache_php_version: null
+observium::db_charset: "utf8"

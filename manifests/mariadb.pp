@@ -32,7 +32,7 @@ class observium::mariadb {
       user     => $observium::db_user,
       password => $observium::db_password,
       host     => 'localhost',
-      charset  => 'utf8',
+      charset  => $observium::db_charset,
       collate  => 'utf8_general_ci',
       grant    => 'ALL',
     }

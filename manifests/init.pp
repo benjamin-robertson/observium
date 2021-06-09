@@ -2,6 +2,8 @@
 #
 # Observium base class which accepts parameters to customise the observium install. 
 #
+# lint:ignore:140chars
+#
 # @example
 #   include observium
 #
@@ -22,6 +24,9 @@
 #
 # @param db_user
 #     Database user to use - default 'observium'
+#
+# @param db_charset
+#     Database charset to use - default 'utf8' Ubuntu 20.04 'utf8mb3'
 #
 # @param community
 #     Default SNMP community to configure - default 'puppet'
@@ -110,6 +115,7 @@
 # @param observium_additional_conf
 #     Array of additional configurations options to add to /opt/observium/config.php
 #
+# lint:ignore:parameter_order
 class observium (
   String $db_password,
   String $rootdb_password,
@@ -117,6 +123,7 @@ class observium (
   String $installer_name,
   String $db_host,
   String $db_user,
+  String $db_charset,
   String $community,
   Enum['noAuthNoPriv','authNoPriv','authPriv'] $snmpv3_authlevel,
   String $snmpv3_authname,
@@ -145,8 +152,8 @@ class observium (
   Optional[Hash] $repos = undef,
   Optional[Hash] $gpgkeys = undef,
   Optional[Array] $observium_additional_conf = undef,
-
 ) {
+  # lint:endignore
 
   # Check what OS we are on and install packages
   case $facts['os']['family'] {
@@ -202,3 +209,4 @@ class observium (
   }
 
 }
+# lint:endignore

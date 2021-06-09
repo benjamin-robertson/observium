@@ -52,7 +52,7 @@ observium::required_packages:
   - 'php'
   - 'php-ldap'
   - 'php-opcache'
-  - 'php-mysql'
+  - 'php-mysqlnd'
   - 'php-gd'
   - 'php-posix'
   - 'php-pear'

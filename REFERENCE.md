@@ -13,8 +13,8 @@
 #### Private Classes
 
 * `observium::apache`: Class: observium::apache inherits observium  Configure apache server with virtual host for observium
-* `observium::config`: Class: observium::config  Configure observium configuration files
-* `observium::database_init`: Class: obversium  Init the observium database after install.
+* `observium::config`: Class: observium::config  Configure observium configuration files  lint:ignore:140chars lint:ignore:arrow_alignment
+* `observium::database_init`: Class: obversium  Init the observium database after install.  lint:ignore:140chars
 * `observium::firewalld`: Class: observium::firewall  Manages firewall and opens ports for observium
 * `observium::firewallufw`: Class: observium::firewallufw  Manage UFW on ubuntu
 * `observium::install`: Class: observium::install  Creates folder structure for Observium, and install from tar
@@ -26,9 +26,13 @@
 
 ## Classes
 
-### `observium`
+### <a name="observium"></a>`observium`
 
 Observium base class which accepts parameters to customise the observium install.
+
+lint:ignore:140chars
+
+lint:ignore:parameter_order
 
 #### Examples
 
@@ -40,114 +44,156 @@ include observium
 
 #### Parameters
 
-The following parameters are available in the `observium` class.
+The following parameters are available in the `observium` class:
 
-##### `db_password`
+* [`db_password`](#db_password)
+* [`rootdb_password`](#rootdb_password)
+* [`download_url`](#download_url)
+* [`installer_name`](#installer_name)
+* [`db_host`](#db_host)
+* [`db_user`](#db_user)
+* [`db_charset`](#db_charset)
+* [`community`](#community)
+* [`snmpv3_authlevel`](#snmpv3_authlevel)
+* [`snmpv3_authname`](#snmpv3_authname)
+* [`snmpv3_authpass`](#snmpv3_authpass)
+* [`snmpv3_authalgo`](#snmpv3_authalgo)
+* [`snmpv3_cryptopass`](#snmpv3_cryptopass)
+* [`snmpv3_cryptoalgo`](#snmpv3_cryptoalgo)
+* [`fping_location`](#fping_location)
+* [`email_default`](#email_default)
+* [`email_from`](#email_from)
+* [`admin_password`](#admin_password)
+* [`apache_bind_ip`](#apache_bind_ip)
+* [`apache_hostname`](#apache_hostname)
+* [`apache_port`](#apache_port)
+* [`apache_sslport`](#apache_sslport)
+* [`custom_ssl_cert`](#custom_ssl_cert)
+* [`custom_ssl_key`](#custom_ssl_key)
+* [`manage_repo`](#manage_repo)
+* [`manage_selinux`](#manage_selinux)
+* [`manage_fw`](#manage_fw)
+* [`manage_snmp`](#manage_snmp)
+* [`manage_mysql`](#manage_mysql)
+* [`manage_apache`](#manage_apache)
+* [`manage_apachephp`](#manage_apachephp)
+* [`manage_ssl`](#manage_ssl)
+* [`repos`](#repos)
+* [`gpgkeys`](#gpgkeys)
+* [`observium_additional_conf`](#observium_additional_conf)
+
+##### <a name="db_password"></a>`db_password`
 
 Data type: `String`
 
 Mysql password for observium user - default 'changeme'
 
-##### `rootdb_password`
+##### <a name="rootdb_password"></a>`rootdb_password`
 
 Data type: `String`
 
 Mysql root password - default 'hello123'
 
-##### `download_url`
+##### <a name="download_url"></a>`download_url`
 
 Data type: `String`
 
 Url to the installer, IE http://observium.com/, can be a file path - default 'http://www.observium.org/'
 
-##### `installer_name`
+##### <a name="installer_name"></a>`installer_name`
 
 Data type: `String`
 
 Installer name, IE observium-installer.tar - default 'observium-community-latest.tar.gz'
 
-##### `db_host`
+##### <a name="db_host"></a>`db_host`
 
 Data type: `String`
 
 Database host to use - default 'localhost'
 
-##### `db_user`
+##### <a name="db_user"></a>`db_user`
 
 Data type: `String`
 
 Database user to use - default 'observium'
 
-##### `community`
+##### <a name="db_charset"></a>`db_charset`
+
+Data type: `String`
+
+Database charset to use - default 'utf8' Ubuntu 20.04 'utf8mb3'
+
+##### <a name="community"></a>`community`
 
 Data type: `String`
 
 Default SNMP community to configure - default 'puppet'
 
-##### `snmpv3_authlevel`
+##### <a name="snmpv3_authlevel"></a>`snmpv3_authlevel`
 
 Data type: `Enum['noAuthNoPriv','authNoPriv','authPriv']`
 
 Default SNMP authlevel to use - default 'authPriv'
 Valid options - ['noAuthNoPriv','authNoPriv','authPriv']
 
-##### `snmpv3_authname`
+##### <a name="snmpv3_authname"></a>`snmpv3_authname`
 
 Data type: `String`
 
 SNMP Authname SNMPv3 user - default 'observium'
 
-##### `snmpv3_authpass`
+##### <a name="snmpv3_authpass"></a>`snmpv3_authpass`
 
 Data type: `String[8]`
 
 Auth password - min 8 character
 
-##### `snmpv3_authalgo`
+##### <a name="snmpv3_authalgo"></a>`snmpv3_authalgo`
 
 Data type: `Enum['SHA','MD5']`
 
 Auth algorithm - defualt 'SHA'
 Valid options - ['SHA','MD5']
 
-##### `snmpv3_cryptopass`
+##### <a name="snmpv3_cryptopass"></a>`snmpv3_cryptopass`
 
 Data type: `String[8]`
 
 Crypto pass - min 8 character
 
-##### `snmpv3_cryptoalgo`
+##### <a name="snmpv3_cryptoalgo"></a>`snmpv3_cryptoalgo`
 
 Data type: `Enum['AES','DES']`
 
 Crypto algorithm - default 'AES'
 Valid options - ['AES','DES']
 
-##### `fping_location`
+##### <a name="fping_location"></a>`fping_location`
 
 Data type: `String`
 
 Change if fping is in a non default locaiton - default, RHEL '/sbin/fping' Ubuntu '/usr/bin/fping'
 
-##### `email_default`
+##### <a name="email_default"></a>`email_default`
 
 Data type: `String`
 
 Not setup yet, use additional config option to setup email default
 
-##### `email_from`
+##### <a name="email_from"></a>`email_from`
 
 Data type: `String`
 
 Not setup yet, use additional config option to setup email from
 
-##### `admin_password`
+##### <a name="admin_password"></a>`admin_password`
 
 Data type: `String`
 
 Admin password for the default admin observium user - default 'changeme'
 
-##### `apache_bind_ip`
+##### <a name="apache_bind_ip"></a>`apache_bind_ip`
 
 Data type: `String`
 
@@ -155,7 +201,7 @@ Bind IP address - default $facts['ipaddress']
 
 Default value: `$facts['ipaddress']`
 
-##### `apache_hostname`
+##### <a name="apache_hostname"></a>`apache_hostname`
 
 Data type: `String`
 
@@ -163,79 +209,79 @@ Apache hostname for observium site - default $facts['hostname']
 
 Default value: `$facts['hostname']`
 
-##### `apache_port`
+##### <a name="apache_port"></a>`apache_port`
 
 Data type: `String`
 
 Apache non SSL port - note if SSL is enabled this will have no effect - default '80'
 
-##### `apache_sslport`
+##### <a name="apache_sslport"></a>`apache_sslport`
 
 Data type: `String`
 
 Apache SSL port - note if SSL isn't enable this will have no effect - defautl '443'
 
-##### `custom_ssl_cert`
+##### <a name="custom_ssl_cert"></a>`custom_ssl_cert`
 
 Data type: `String`
 
 Path to SSL certificate, note this module will automatically create a cert in this location '/etc/ssl/observium_cert.pem' - default '/etc/ssl/observium_cert.pem'
 
-##### `custom_ssl_key`
+##### <a name="custom_ssl_key"></a>`custom_ssl_key`
 
 Data type: `String`
 
 Path to SSL certificate key, note this module will automatically create a key in this location '/etc/ssl/observium_key.pem' - default '/etc/ssl/observium_key.pem'
 
-##### `manage_repo`
+##### <a name="manage_repo"></a>`manage_repo`
 
 Data type: `Boolean`
 
 Manage repo, RHEL only, - default true
 
-##### `manage_selinux`
+##### <a name="manage_selinux"></a>`manage_selinux`
 
 Data type: `Boolean`
 
 Manage selinux, RHEL only. This will set selinux to permissive mode as observium havn't published a selinux profile - default true
 
-##### `manage_fw`
+##### <a name="manage_fw"></a>`manage_fw`
 
 Data type: `Boolean`
 
 Manage firewalld on RHEL. UFW on ubuntu. - default RHEL true, Ubuntu false
 
-##### `manage_snmp`
+##### <a name="manage_snmp"></a>`manage_snmp`
 
 Data type: `Boolean`
 
 Configure snmpd on the observium and add to observium - default true
 
-##### `manage_mysql`
+##### <a name="manage_mysql"></a>`manage_mysql`
 
 Data type: `Boolean`
 
 Install and configure mysql, - default true
 
-##### `manage_apache`
+##### <a name="manage_apache"></a>`manage_apache`
 
 Data type: `Boolean`
 
 Install and configure Apache, - defalt true
 
-##### `manage_apachephp`
+##### <a name="manage_apachephp"></a>`manage_apachephp`
 
 Data type: `Boolean`
 
 Configure Apachemod php, - default true
 
-##### `manage_ssl`
+##### <a name="manage_ssl"></a>`manage_ssl`
 
 Data type: `Boolean`
 
 Setup the web site as SSL. If no cert provided, a self signed one will be used. - default false
 
-##### `repos`
+##### <a name="repos"></a>`repos`
 
 Data type: `Optional[Hash]`
 
@@ -243,7 +289,7 @@ Customise repoistory locations for RedHat
 
 Default value: ``undef``
 
-##### `gpgkeys`
+##### <a name="gpgkeys"></a>`gpgkeys`
 
 Data type: `Optional[Hash]`
 
@@ -251,10 +297,11 @@ Customise GPG keys for RedHat
 
 Default value: ``undef``
 
-##### `observium_additional_conf`
+##### <a name="observium_additional_conf"></a>`observium_additional_conf`
 
 Data type: `Optional[Array]`
 
 Array of additional configurations options to add to /opt/observium/config.php
 
 Default value: ``undef``
+
