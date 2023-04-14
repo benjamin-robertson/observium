@@ -1,0 +1,31 @@
+---
+observium::required_packages:
+  - 'whois'
+  - 'ipmitool'
+  - 'wget'
+  - 'libapache2-mod-php8.1'
+  - 'php8.1-cli'
+  - 'php8.1-ldap'
+  - 'php8.1-mysql'
+  - 'php8.1-gd'
+  - 'php-pear'
+  - 'fping'
+  - 'python3-mysqldb'
+  - 'rrdtool'
+  - 'subversion'
+  - 'mtr-tiny'
+  - 'graphviz'
+  - 'imagemagick'
+  - 'libvirt-clients'
+  - 'snmp'
+  - 'python-is-python3'
+  - 'python3-pymysql'
+observium::fping_location: "/usr/bin/fping"
+observium::apache_user: "www-data"
+observium::apache_service: "apache2"
+observium::openssl_location: "/usr/bin/openssl"
+observium::mysql_location: "/usr/bin/mysql"
+observium::manage_selinux: false
+observium::debiansnmp_user: "Debian-snmp" # requried as snmp module does not nativley support Ubuntu 20.04
+observium::manage_fw: false
+observium::db_charset: "utf8mb3"
