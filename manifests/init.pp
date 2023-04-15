@@ -135,8 +135,8 @@ class observium (
   String $email_default,
   String $email_from,
   String $admin_password,
-  String $apache_bind_ip = $facts['ipaddress'],
-  String $apache_hostname = $facts['hostname'],
+  String $apache_bind_ip = $facts['networking']['ip'],
+  String $apache_hostname = $facts['networking']['hostname'],
   String $apache_port,
   String $apache_sslport,
   String $custom_ssl_cert,
@@ -193,7 +193,7 @@ class observium (
     case $facts['os']['family'] {
       'RedHat': { include observium::firewalld }
       'Debian': { include observium::firewallufw }
-      default: { }
+      default: {}
     }
   }
 
@@ -205,8 +205,9 @@ class observium (
     'Debian': {
       Class['observium::packages'] -> Class['observium::mariadb'] -> Class['observium::install'] -> Class['observium::config'] -> Class['observium::snmp'] -> Class['observium::database_init']
     }
-    default: { fail('Unsupported operating system, bailing out!!') }
+    default: {
+      fail('Unsupported operating system, bailing out!!')
+    }
   }
-
 }
 # lint:endignore

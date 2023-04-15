@@ -57,7 +57,6 @@ class observium::apache {
     }
   }
 
-
   # Include php module - old 
   $apache_php_version = lookup(observium::apache_php_version)
   if $observium::manage_apachephp {
