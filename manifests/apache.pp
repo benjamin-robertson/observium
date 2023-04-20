@@ -37,9 +37,9 @@ class observium::apache {
           'allow_override'        => 'All',
           'auth_type'             => 'shibboleth',
           'shib_request_settings' => {
-            requireSession => 1,
+            'requireSession' => 1,
           },
-          'auth_require'          => 'all granted',
+          'auth_require'          => 'user okons006',
         },
       ],
     }
