@@ -26,15 +26,3 @@ RewriteCond <%= condition['rewrite_cond'] %> <%= condition['rewrite_rule'] %>
 RewriteRule ^(.*)$ index.php/$1/
 
 AcceptPathInfo On
-~                                                                                                                                                                                                        
-~                                                                                                                                                                                                        
-~                                                                                                                                                                                                        
-~                                                                                                                                                                                                        
-~                                                                                                                                                                                                        
-~                                                                                                                                                                                                        
-~                                                                                                                                                                                                        
-~                                                                                                                                                                                                        
-~                                                                                                                                                                                                        
-~                                                                                                                                                                                                        
-~                                                                                                                                                                                                        
-~                                                                         
