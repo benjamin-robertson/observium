@@ -17,9 +17,22 @@ class observium::config {
 
   file { '/opt/observium/config.php':
     ensure  => file,
-    content => epp('observium/config.epp', { 'db_host' => $observium::db_host, 'db_user' => $observium::db_user, 'db_password' => $observium::db_password, 'community' => $observium::community, 'snmpv3_authlevel' => $observium::snmpv3_authlevel,
-    'snmpv3_authname' => $observium::snmpv3_authname, 'snmpv3_authpass' => $observium::snmpv3_authpass, 'snmpv3_authalgo' => $observium::snmpv3_authalgo, 'snmpv3_cryptopass' => $observium::snmpv3_cryptopass, 'snmpv3_cryptoalgo' => $observium::snmpv3_cryptoalgo,
-    'email_default' => $observium::email_default, 'email_from' => $observium::email_from, 'observium_additional_conf' => $observium::observium_additional_conf, 'fping_location' => $fping_location }),
+    content => epp('observium/config.epp', {
+        'db_host' => $observium::db_host,
+        'db_user' => $observium::db_user,
+        'db_password' => $observium::db_password,
+        'community' => $observium::community,
+        'snmpv3_authlevel' => $observium::snmpv3_authlevel,
+        'snmpv3_authname' => $observium::snmpv3_authname,
+        'snmpv3_authpass' => $observium::snmpv3_authpass,
+        'snmpv3_authalgo' => $observium::snmpv3_authalgo,
+        'snmpv3_cryptopass' => $observium::snmpv3_cryptopass,
+        'snmpv3_cryptoalgo' => $observium::snmpv3_cryptoalgo,
+        'email_default' => $observium::email_default,
+        'email_from' => $observium::email_from,
+        'observium_additional_conf' => $observium::observium_additional_conf,
+        'fping_location' => $fping_location
+    }),
     owner   => 'root',
     group   => 'root',
     mode    => '0644',
@@ -28,7 +41,7 @@ class observium::config {
   # Create ssl key
   file { '/opt/observium/openssl.conf':
     ensure  => file,
-    content => epp('observium/openssl.epp', { 'email_from' => $observium::email_from, 'apache_hostname' => $observium::apache_hostname}),
+    content => epp('observium/openssl.epp', { 'email_from' => $observium::email_from, 'apache_hostname' => $observium::apache_hostname }),
     owner   => 'root',
     group   => 'root',
     mode    => '0644',
@@ -38,7 +51,7 @@ class observium::config {
   exec { 'Create TLS cert':
     command     => "${openssl_location} req -x509 -newkey rsa:4096 -keyout /etc/ssl/observium_key.pem -out /etc/ssl/observium_cert.pem -days 2000 -nodes -config /opt/observium/openssl.conf",
     refreshonly => true,
-    notify      => Service[$apache_service]
+    notify      => Service[$apache_service],
   }
 
   # Lookup apache user for the OS we are running

@@ -64,7 +64,9 @@ The following parameters are available in the `observium` class:
 * [`email_default`](#email_default)
 * [`email_from`](#email_from)
 * [`admin_password`](#admin_password)
+* [`apache_access_log_file`](#apache_access_log_file)
 * [`apache_bind_ip`](#apache_bind_ip)
+* [`apache_error_log_file`](#apache_error_log_file)
 * [`apache_hostname`](#apache_hostname)
 * [`apache_port`](#apache_port)
 * [`apache_sslport`](#apache_sslport)
@@ -193,6 +195,14 @@ Data type: `String`
 
 Admin password for the default admin observium user - default 'changeme'
 
+##### <a name="apache_access_log_file"></a>`apache_access_log_file`
+
+Data type: `String`
+
+Apache access log file
+
+Default value: '/opt/observium/logs/access_log'
+
 ##### <a name="apache_bind_ip"></a>`apache_bind_ip`
 
 Data type: `String`
@@ -200,6 +210,14 @@ Data type: `String`
 Bind IP address - default $facts['ipaddress']
 
 Default value: `$facts['ipaddress']`
+
+##### <a name="apache_error_log_file"></a>`apache_error_log_file`
+
+Data type: `String`
+
+Apache error log file
+
+Default value: '/opt/observium/logs/error_log'
 
 ##### <a name="apache_hostname"></a>`apache_hostname`
 
