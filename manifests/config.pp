@@ -71,6 +71,7 @@ class observium::config {
   }
 
   file { '/opt/observium/html/.htaccess':
+    ensure  => 'present',
     mode    => '0664',
     owner   => $apache_user,
     group   => $apache_user,
