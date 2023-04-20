@@ -38,11 +38,6 @@ class observium::apache {
           'auth_require'   => 'all granted'
         },
       ],
-      rewrites        => [
-        { comment      => 'Allows Shibboleth metadata to be accessed',
-          rewrite_cond => ['%{REQUEST_URI} ^Shibboleth']
-        },
-      ],
     }
   }
   else {
