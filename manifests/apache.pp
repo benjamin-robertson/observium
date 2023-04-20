@@ -32,10 +32,14 @@ class observium::apache {
       ssl_key         => $observium::custom_ssl_key,
       directories     => [
         {
-          'path'           => '/opt/observium/html/',
-          'options'        => 'FollowSymLinks MultiViews',
-          'allow_override' => 'All',
-          'auth_require'   => 'all granted'
+          'path'                  => '/opt/observium/html/',
+          'options'               => 'FollowSymLinks MultiViews',
+          'allow_override'        => 'All',
+          'auth_type'             => 'shibboleth',
+          'shib_request_settings' => {
+            requireSession => 1,
+          },
+          'auth_require'          => 'all granted',
         },
       ],
     }
