@@ -31,15 +31,17 @@ class observium::apache {
       ssl_cert        => $observium::custom_ssl_cert,
       ssl_key         => $observium::custom_ssl_key,
       directories     => [
-        { 'path'           => '/opt/observium/html/',
+        {
+          'path'           => '/opt/observium/html/',
           'options'        => 'FollowSymLinks MultiViews',
           'allow_override' => 'All',
-          'auth_require'   => 'all granted',
-          'rewrites'       => [
-            { comment      => 'Allows Shibboleth metadata to be accessed',
-              rewrite_cond => ['%{REQUEST_URI} ^Shibboleth']
-            },
-          ],
+          'auth_require'   => 'all granted'
+        },
+      ],
+      rewrites        => [
+        { comment      => 'Allows Shibboleth metadata to be accessed',
+          rewrite_base => 'observium',
+          rewrite_cond => ['%{REQUEST_URI} ^Shibboleth']
         },
       ],
     }
