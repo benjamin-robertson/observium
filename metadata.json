@@ -4,7 +4,7 @@
   "author": "benjaminrobertson",
   "summary": "Configures and installs Observium Redhat and Ubuntu",
   "license": "Apache-2.0",
-  "source": "https://github.com/benjamin-robertson/observium",
+  "source": "https://github.com/i0dev/observium",
   "dependencies": [
     {
       "name": "puppetlabs/stdlib",
