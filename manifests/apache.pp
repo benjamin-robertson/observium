@@ -39,7 +39,7 @@ class observium::apache {
       ],
       rewrites        => [
         { comment      => 'Allows Shibboleth metadata to be accessed',
-          rewrite_base => '/opt/observium/html/',
+          rewrite_base => '/observium/',
           rewrite_cond => ['%{REQUEST_URI} ^Shibboleth']
         },
       ],
