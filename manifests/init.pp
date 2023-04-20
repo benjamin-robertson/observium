@@ -64,8 +64,14 @@
 # @param admin_password
 #     Admin password for the default admin observium user - default 'changeme'
 #
+# @param apache_access_log_file
+#     Apache access log file - default '/opt/observium/logs/access_log'
+#
 # @param apache_bind_ip
 #     Bind IP address - default $facts['ipaddress']
+#
+# @param apache_error_log_file
+#     Apache error log file - default '/opt/observium/logs/error_log'
 #
 # @param apache_hostname
 #     Apache hostname for observium site - default $facts['hostname']
@@ -135,7 +141,9 @@ class observium (
   String $email_default,
   String $email_from,
   String $admin_password,
+  String $apache_access_log_file = '/opt/observium/logs/access_log',
   String $apache_bind_ip = $facts['ipaddress'],
+  String $apache_error_log_file = '/opt/observium/logs/error_log',
   String $apache_hostname = $facts['hostname'],
   String $apache_port,
   String $apache_sslport,
@@ -193,7 +201,7 @@ class observium (
     case $facts['os']['family'] {
       'RedHat': { include observium::firewalld }
       'Debian': { include observium::firewallufw }
-      default: { }
+      default: {}
     }
   }
 
@@ -207,6 +215,5 @@ class observium (
     }
     default: { fail('Unsupported operating system, bailing out!!') }
   }
-
 }
 # lint:endignore

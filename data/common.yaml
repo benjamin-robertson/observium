@@ -19,6 +19,8 @@ observium::observium_additional_conf:
   - '//as many as you'
   - '//would like'
 observium::admin_password: "changeme"
+observium::apache_access_log: "/var/log/apache2/access"
+observium::apache_error_log: "/var/log/apache2/error"
 observium::apache_port: "80"
 observium::apache_sslport: "443"
 observium::custom_ssl_cert: "/etc/ssl/observium_cert.pem"
