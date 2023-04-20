@@ -69,5 +69,12 @@ class observium::config {
     group   => $apache_user,
     require => Exec['Create TLS cert'],
   }
+
+  file { '/opt/observium/html/.htaccess':
+    mode    => '0664',
+    owner   => $apache_user,
+    group   => $apache_user,
+    content => template('observium/htaccess.epp'),
+  }
 }
 # lint:endignore
