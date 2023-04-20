@@ -29,6 +29,7 @@ class observium::apache {
       }
       $require = $observium::apache_shibboleth_require
     } else {
+      $additional_options = {}
       $require ='all granted'
     }
 
