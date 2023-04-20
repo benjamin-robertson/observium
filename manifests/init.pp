@@ -143,12 +143,8 @@ class observium (
   String $email_from,
   String $admin_password,
   $apache_access_log_file = $apache::access_log_file,
-  #String $apache_access_log_file = '/var/log/apache2/cse-app-observium-01.cse.umn.edu_access_ssl.log',
-
   String $apache_bind_ip = $facts['ipaddress'],
   $apache_error_log_file = $apache::error_log_file,
-  #String $apache_error_log_file = '/var/log/apache2/cse-app-observium-01.cse.umn.edu_error_ssl.log',
-
   String $apache_hostname = $facts['hostname'],
   String $apache_port,
   String $apache_sslport,
@@ -162,6 +158,7 @@ class observium (
   Boolean $manage_apache,
   Boolean $manage_apachephp,
   Boolean $manage_ssl,
+  Optional[String] $apache_shibboleth_require = undef,
   Optional[Hash] $repos = undef,
   Optional[Hash] $gpgkeys = undef,
   Optional[Array] $observium_additional_conf = undef,
