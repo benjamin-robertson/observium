@@ -37,6 +37,11 @@ class observium::apache {
           'auth_require'   => 'all granted',
         },
       ],
+      rewrites        => [
+        { comment      => 'Allows Shibboleth metadata to be accessed',
+          rewrite_cond => ['%{REQUEST_URI} ^Shibboleth']
+        },
+      ],
     }
   }
   else {
@@ -56,7 +61,6 @@ class observium::apache {
       ],
     }
   }
-
 
   # Include php module - old 
   $apache_php_version = lookup(observium::apache_php_version)
