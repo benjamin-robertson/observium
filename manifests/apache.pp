@@ -22,6 +22,7 @@ class observium::apache {
   if $observium::manage_ssl {
     # We are doing SSL
     apache::vhost { $observium::apache_hostname:
+      allow_override  => ['All'],
       port            => $observium::apache_sslport,
       docroot         => '/opt/observium/html/',
       servername      => $observium::apache_hostname,
@@ -39,7 +40,6 @@ class observium::apache {
       ],
       rewrites        => [
         { comment      => 'Allows Shibboleth metadata to be accessed',
-          rewrite_base => '/observium/',
           rewrite_cond => ['%{REQUEST_URI} ^Shibboleth']
         },
       ],
