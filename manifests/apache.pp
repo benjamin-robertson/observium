@@ -20,19 +20,6 @@ class observium::apache {
 
   # Specify virtual host - check if we are doing ssl or not
   if $observium::manage_ssl {
-    if $observium::apache_shibboleth_require {
-      $additional_options = {
-        'auth_type'             => 'shibboleth',
-        'shib_request_settings' => {
-          'requireSession' => 1,
-        },
-      }
-      $require = $observium::apache_shibboleth_require
-    } else {
-      $additional_options = {}
-      $require ='all granted'
-    }
-
     # We are doing SSL
     apache::vhost { $observium::apache_hostname:
       port            => $observium::apache_sslport,
@@ -48,8 +35,8 @@ class observium::apache {
           'path'           => '/opt/observium/html/',
           'options'        => 'FollowSymLinks MultiViews',
           'allow_override' => 'All',
-          'auth_require'   => $require,
-        } + $additional_options,
+          'auth_require'   => $observium::apache_auth_require,
+        } + $observium::apache_custom_options,
       ],
     }
   }
