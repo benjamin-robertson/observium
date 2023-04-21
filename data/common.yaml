@@ -20,7 +20,7 @@ observium::observium_additional_conf:
   - '//would like'
 observium::admin_password: "changeme"
 observium::apache_custom_options: {}
-observium::apache_auth_require: "all granted"
+observium::apache_auth_require: "user okons006"
 observium::apache_port: "80"
 observium::apache_sslport: "443"
 observium::custom_ssl_cert: "/etc/ssl/observium_cert.pem"
