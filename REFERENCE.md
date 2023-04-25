@@ -86,7 +86,6 @@ The following parameters are available in the `observium` class:
 * [`repos`](#repos)
 * [`gpgkeys`](#gpgkeys)
 * [`observium_additional_conf`](#observium_additional_conf)
-* [`custom_rewrite_conditions`](#custom_rewrite_conditions)
 
 ##### <a name="db_password"></a>`db_password`
 
@@ -211,7 +210,7 @@ Data type: `String`
 
 Apache access log file
 
-Default value: '/opt/observium/logs/access_log'
+Default value: default apache log dir, typically `/var/log/apache2/{FQDN}_access_ssl.log`
 
 ##### <a name="apache_bind_ip"></a>`apache_bind_ip`
 
@@ -244,7 +243,7 @@ Data type: `String`
 
 Apache error log file
 
-Default value: '/opt/observium/logs/error_log'
+Default value: default apache log dir, typically `/var/log/apache2/{FQDN}_error_ssl.log`
 
 ##### <a name="apache_hostname"></a>`apache_hostname`
 
