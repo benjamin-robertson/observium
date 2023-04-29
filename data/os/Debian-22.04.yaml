@@ -1,7 +1,5 @@
 ---
 observium::required_packages:
-  - 'whois'
-  - 'ipmitool'
   - 'wget'
   - 'libapache2-mod-php8.1'
   - 'php8.1-cli'
