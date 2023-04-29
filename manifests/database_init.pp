@@ -13,7 +13,7 @@ class observium::database_init {
   # init the database if the user table is not present
   exec { 'init observium databse':
     command => '/opt/observium/discovery.php -u',
-    unless  => "${mysql_location} -u observium --password=${observium::db_password} observium -e 'select * from users'"
+    unless  => "${mysql_location} -u observium --password=${observium::db_password} observium -e 'select * from users'",
   }
 
   exec { 'Create admin user':
