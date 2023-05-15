@@ -70,12 +70,14 @@ class observium::config {
     require => Exec['Create TLS cert'],
   }
 
-  file { '/opt/observium/html/.htaccess':
-    ensure  => file,
-    mode    => '0664',
-    owner   => $apache_user,
-    group   => $apache_user,
-    content => template('observium/htaccess.erb'),
+  if $observium::manage_htaccess {
+    file { '/opt/observium/html/.htaccess':
+      ensure  => file,
+      mode    => '0664',
+      owner   => $apache_user,
+      group   => $apache_user,
+      content => template('observium/htaccess.erb'),
+    }
   }
 }
 # lint:endignore

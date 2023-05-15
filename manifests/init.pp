@@ -128,6 +128,9 @@
 # @param manage_ssl
 #     Setup the web site as SSL. If no cert provided, a self signed one will be used. - default false
 #
+# @param manage_htaccess
+#     Managed the htaccess file for apaache. Required for Shibboleth. - default false
+#
 # @param repos
 #     Customise repoistory locations for RedHat
 #
@@ -176,6 +179,7 @@ class observium (
   Boolean                                      $manage_apache,
   Boolean                                      $manage_apachephp,
   Boolean                                      $manage_ssl,
+  Boolean                                      $manage_htaccess           = false,
   Optional[Hash]                               $repos                     = undef,
   Optional[Hash]                               $gpgkeys                   = undef,
   Optional[Array]                              $observium_additional_conf = undef,
