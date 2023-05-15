@@ -64,15 +64,31 @@
 # @param admin_password
 #     Admin password for the default admin observium user - default 'changeme'
 #
-# @param apache_access_log_file
-#     Apache access log file - default '/opt/observium/logs/access_log'
-#
 # @param apache_bind_ip
 #     Bind IP address - default $facts['ipaddress']
 #
-# @param apache_error_log_file
+# @param apache_access_log
+#     Apache access log file - default '/opt/observium/logs/access_log'
+#
+# @param apache_error_log
 #     Apache error log file - default '/opt/observium/logs/error_log'
 #
+# @param apache_custom_options
+#     Apache custom options, example could be changing auth type or adding Shibboleth support,
+#
+#     To add Shibboleth support you would add the following to your hiera data
+#     ```
+#     observium::apache_custom_options:
+#       auth_type: "shibboleth"
+#       shib_request_settings:
+#         requireSession: 1
+#     ```
+#     Default value: {}
+# 
+# @param apache_auth_require
+#     Apache auth require parameter - default 'all granted'
+# @param custom_rewrite_conditions
+#     Custom rewrite conditions, note this will be added to the default rewrite conditions in .htaccess for the observium site
 # @param apache_hostname
 #     Apache hostname for observium site - default $facts['hostname']
 #
@@ -131,7 +147,6 @@ class observium (
   String                                       $db_user,
   String                                       $db_charset,
   String                                       $community,
-  Array[Hash]                                  $custom_rewrite_conditions = [],
   Enum['noAuthNoPriv','authNoPriv','authPriv'] $snmpv3_authlevel,
   String                                       $snmpv3_authname,
   String                                       $snmpv3_authpass,
@@ -144,10 +159,11 @@ class observium (
   String                                       $admin_password,
   String                                       $apache_bind_ip            = $facts['networking']['ip'],
   String                                       $apache_hostname           = $facts['networking']['hostname'],
-  String                                       $apache_access_log_file    = $apache::access_log_file,
+  Stdlib::Unixpath                             $apache_access_log,
+  Stdlib::Unixpath                             $apache_error_log,
   Hash                                         $apache_custom_options,
   String                                       $apache_auth_require,
-  String                                       $apache_error_log_file     = $apache::error_log_file,
+  Array[Hash]                                  $custom_rewrite_conditions = [],
   Stdlib::Port                                 $apache_port,
   Stdlib::Port                                 $apache_sslport,
   String                                       $custom_ssl_cert,

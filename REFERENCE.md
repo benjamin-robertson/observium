@@ -64,15 +64,15 @@ The following parameters are available in the `observium` class:
 * [`email_default`](#email_default)
 * [`email_from`](#email_from)
 * [`admin_password`](#admin_password)
-* [`apache_auth_require`](#apache_auth_require)
 * [`apache_access_log_file`](#apache_access_log_file)
 * [`apache_bind_ip`](#apache_bind_ip)
-* [`apache_custom_options`](#apache_custom_options)
 * [`apache_error_log_file`](#apache_error_log_file)
+* [`apache_custom_options`](#apache_custom_options)
+* [`apache_auth_require`](#apache_auth_require)
+* [`custom_rewrite_conditions`](#custom_rewrite_conditions)
 * [`apache_hostname`](#apache_hostname)
 * [`apache_port`](#apache_port)
 * [`apache_sslport`](#apache_sslport)
-* [`custom_rewrite_conditions`](#custom_rewrite_conditions)
 * [`custom_ssl_cert`](#custom_ssl_cert)
 * [`custom_ssl_key`](#custom_ssl_key)
 * [`manage_repo`](#manage_repo)
@@ -150,7 +150,7 @@ SNMP Authname SNMPv3 user - default 'observium'
 
 ##### <a name="snmpv3_authpass"></a>`snmpv3_authpass`
 
-Data type: `String[8]`
+Data type: `String`
 
 Auth password - min 8 character
 
@@ -163,7 +163,7 @@ Valid options - ['SHA','MD5']
 
 ##### <a name="snmpv3_cryptopass"></a>`snmpv3_cryptopass`
 
-Data type: `String[8]`
+Data type: `String`
 
 Crypto pass - min 8 character
 
@@ -198,19 +198,11 @@ Data type: `String`
 
 Admin password for the default admin observium user - default 'changeme'
 
-##### <a name="apache_auth_require"></a>`apache_auth_require`
-
-Data type: `String`
-
-Apache auth require paramter - default 'all granted'
-
 ##### <a name="apache_access_log_file"></a>`apache_access_log_file`
 
-Data type: `String`
+Data type: `Stdlib::Unixpath`
 
-Apache access log file
-
-Default value: default apache log dir, typically `/var/log/apache2/{FQDN}_access_ssl.log`
+Apache access log file - default '/opt/observium/logs/access_log'
 
 ##### <a name="apache_bind_ip"></a>`apache_bind_ip`
 
@@ -218,52 +210,34 @@ Data type: `String`
 
 Bind IP address - default $facts['ipaddress']
 
-Default value: `$facts['ipaddress']`
+Default value: `$facts['networking']['ip']`
+
+##### <a name="apache_error_log_file"></a>`apache_error_log_file`
+
+Data type: `Stdlib::Unixpath`
+
+Apache error log file - default '/opt/observium/logs/error_log'
 
 ##### <a name="apache_custom_options"></a>`apache_custom_options`
 
-Data type: `String`
+Data type: `Hash`
 
 Apache custom options, example could be changing auth type or adding Shibboleth support,
 
 To add Shibboleth support you would add the following to your hiera data
-
 ```
 observium::apache_custom_options:
   auth_type: "shibboleth"
   shib_request_settings:
     requireSession: 1
 ```
-
 Default value: {}
 
-##### <a name="apache_error_log_file"></a>`apache_error_log_file`
+##### <a name="apache_auth_require"></a>`apache_auth_require`
 
 Data type: `String`
 
-Apache error log file
-
-Default value: default apache log dir, typically `/var/log/apache2/{FQDN}_error_ssl.log`
-
-##### <a name="apache_hostname"></a>`apache_hostname`
-
-Data type: `String`
-
-Apache hostname for observium site - default $facts['hostname']
-
-Default value: `$facts['hostname']`
-
-##### <a name="apache_port"></a>`apache_port`
-
-Data type: `String`
-
-Apache non SSL port - note if SSL is enabled this will have no effect - default '80'
-
-##### <a name="apache_sslport"></a>`apache_sslport`
-
-Data type: `String`
-
-Apache SSL port - note if SSL isn't enable this will have no effect - defautl '443'
+Apache auth require parameter - default 'all granted'
 
 ##### <a name="custom_rewrite_conditions"></a>`custom_rewrite_conditions`
 
@@ -271,7 +245,27 @@ Data type: `Array[Hash]`
 
 Custom rewrite conditions, note this will be added to the default rewrite conditions in .htaccess for the observium site
 
-Default value: []
+Default value: `[]`
+
+##### <a name="apache_hostname"></a>`apache_hostname`
+
+Data type: `String`
+
+Apache hostname for observium site - default $facts['hostname']
+
+Default value: `$facts['networking']['hostname']`
+
+##### <a name="apache_port"></a>`apache_port`
+
+Data type: `Stdlib::Port`
+
+Apache non SSL port - note if SSL is enabled this will have no effect - default '80'
+
+##### <a name="apache_sslport"></a>`apache_sslport`
+
+Data type: `Stdlib::Port`
+
+Apache SSL port - note if SSL isn't enable this will have no effect - defautl '443'
 
 ##### <a name="custom_ssl_cert"></a>`custom_ssl_cert`
 
@@ -356,3 +350,4 @@ Data type: `Optional[Array]`
 Array of additional configurations options to add to /opt/observium/config.php
 
 Default value: ``undef``
+
