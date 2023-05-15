@@ -5,7 +5,7 @@ fixtures:
   forge_modules:
     stdlib: 
       repo: "puppetlabs/stdlib"
-      ref: "7.1.0"
+      ref: "8.6.0"
     puppetlabs-yumrepo_core:
       repo: "puppetlabs/yumrepo_core"
       ref: "1.0.7"
@@ -14,7 +14,7 @@ fixtures:
       ref: "5.0.0"
     puppetlabs-mysql:
       repo: "puppetlabs/mysql"
-      ref: "11.0.2"
+      ref: "13.3.0"
     puppetlabs-cron_core:
       repo: "puppetlabs/cron_core"
       ref: "1.0.5"
@@ -23,7 +23,7 @@ fixtures:
       ref: "3.4.0"
     puppetlabs-apache:
       repo: "puppetlabs/apache"
-      ref: "6.2.0"
+      ref: "10.0.0"
     puppet-snmp:
       repo: "puppet/snmp"
       ref: "5.1.1"
