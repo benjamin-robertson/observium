@@ -24,6 +24,6 @@ observium::apache_service: "apache2"
 observium::openssl_location: "/usr/bin/openssl"
 observium::mysql_location: "/usr/bin/mysql"
 observium::manage_selinux: false
-observium::debiansnmp_user: "Debian-snmp" # requried as snmp module does not nativley support Ubuntu 20.04
+observium::debiansnmp_user: "Debian-snmp"
 observium::manage_fw: false
 observium::db_charset: "utf8mb3"

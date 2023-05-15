@@ -17,9 +17,22 @@ class observium::config {
 
   file { '/opt/observium/config.php':
     ensure  => file,
-    content => epp('observium/config.epp', { 'db_host' => $observium::db_host, 'db_user' => $observium::db_user, 'db_password' => $observium::db_password, 'community' => $observium::community, 'snmpv3_authlevel' => $observium::snmpv3_authlevel,
-        'snmpv3_authname' => $observium::snmpv3_authname, 'snmpv3_authpass' => $observium::snmpv3_authpass, 'snmpv3_authalgo' => $observium::snmpv3_authalgo, 'snmpv3_cryptopass' => $observium::snmpv3_cryptopass, 'snmpv3_cryptoalgo' => $observium::snmpv3_cryptoalgo,
-    'email_default' => $observium::email_default, 'email_from' => $observium::email_from, 'observium_additional_conf' => $observium::observium_additional_conf, 'fping_location' => $fping_location }),
+    content => epp('observium/config.epp', {
+        'db_host' => $observium::db_host,
+        'db_user' => $observium::db_user,
+        'db_password' => $observium::db_password,
+        'community' => $observium::community,
+        'snmpv3_authlevel' => $observium::snmpv3_authlevel,
+        'snmpv3_authname' => $observium::snmpv3_authname,
+        'snmpv3_authpass' => $observium::snmpv3_authpass,
+        'snmpv3_authalgo' => $observium::snmpv3_authalgo,
+        'snmpv3_cryptopass' => $observium::snmpv3_cryptopass,
+        'snmpv3_cryptoalgo' => $observium::snmpv3_cryptoalgo,
+        'email_default' => $observium::email_default,
+        'email_from' => $observium::email_from,
+        'observium_additional_conf' => $observium::observium_additional_conf,
+        'fping_location' => $fping_location
+    }),
     owner   => 'root',
     group   => 'root',
     mode    => '0644',
@@ -55,6 +68,14 @@ class observium::config {
     owner   => $apache_user,
     group   => $apache_user,
     require => Exec['Create TLS cert'],
+  }
+
+  file { '/opt/observium/html/.htaccess':
+    ensure  => 'present',
+    mode    => '0664',
+    owner   => $apache_user,
+    group   => $apache_user,
+    content => template('observium/htaccess.epp'),
   }
 }
 # lint:endignore

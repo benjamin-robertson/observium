@@ -64,8 +64,14 @@
 # @param admin_password
 #     Admin password for the default admin observium user - default 'changeme'
 #
+# @param apache_access_log_file
+#     Apache access log file - default '/opt/observium/logs/access_log'
+#
 # @param apache_bind_ip
 #     Bind IP address - default $facts['ipaddress']
+#
+# @param apache_error_log_file
+#     Apache error log file - default '/opt/observium/logs/error_log'
 #
 # @param apache_hostname
 #     Apache hostname for observium site - default $facts['hostname']
@@ -125,6 +131,7 @@ class observium (
   String                                       $db_user,
   String                                       $db_charset,
   String                                       $community,
+  Array[Hash]                                  $custom_rewrite_conditions = [],
   Enum['noAuthNoPriv','authNoPriv','authPriv'] $snmpv3_authlevel,
   String                                       $snmpv3_authname,
   String                                       $snmpv3_authpass,
@@ -137,6 +144,10 @@ class observium (
   String                                       $admin_password,
   String                                       $apache_bind_ip            = $facts['networking']['ip'],
   String                                       $apache_hostname           = $facts['networking']['hostname'],
+  String                                       $apache_access_log_file    = $apache::access_log_file,
+  Hash                                         $apache_custom_options,
+  String                                       $apache_auth_require,
+  String                                       $apache_error_log_file     = $apache::error_log_file,
   Stdlib::Port                                 $apache_port,
   Stdlib::Port                                 $apache_sslport,
   String                                       $custom_ssl_cert,
