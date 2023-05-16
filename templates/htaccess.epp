@@ -19,12 +19,12 @@ RewriteCond %{REQUEST_URI} !\.(js|ico|txt|gif|jpg|png|css|php)
 RewriteCond %{REQUEST_URI} !^api/
 RewriteCond %{REQUEST_URI} !^rrd/
 RewriteCond %{REQUEST_URI} !=/server-status
-RewriteCond %{REQUEST_URI} ^Shibboleth
-
-<% scope['observium::custom_rewrite_conditions'].each do | condition | -%>
-RewriteCond <%= condition['rewrite_cond'] %> <%= condition['rewrite_rule'] %>
-<% end -%>
 
 RewriteRule ^(.*)$ index.php/$1/
+
+<% scope['observium::custom_rewrite_lines'].each do | condition | -%>
+<%= condition %>
+<% end -%>
+
 
 AcceptPathInfo On

@@ -72,7 +72,7 @@ The following parameters are available in the `observium` class:
 * [`apache_hostname`](#apache_hostname)
 * [`apache_port`](#apache_port)
 * [`apache_sslport`](#apache_sslport)
-* [`custom_rewrite_conditions`](#custom_rewrite_conditions)
+* [`custom_rewrite_lines`](#custom_rewrite_lines)
 * [`custom_ssl_cert`](#custom_ssl_cert)
 * [`custom_ssl_key`](#custom_ssl_key)
 * [`manage_repo`](#manage_repo)
@@ -265,11 +265,11 @@ Data type: `String`
 
 Apache SSL port - note if SSL isn't enable this will have no effect - defautl '443'
 
-##### <a name="custom_rewrite_conditions"></a>`custom_rewrite_conditions`
+##### <a name="custom_rewrite_lines"></a>`custom_rewrite_lines`
 
 Data type: `Array[Hash]`
 
-Custom rewrite conditions, note this will be added to the default rewrite conditions in .htaccess for the observium site
+Custom rewrite lines, note this will be added to the default rewrite conditions in .htaccess for the observium site
 
 Default value: []
 

@@ -131,7 +131,7 @@ class observium (
   String $db_user,
   String $db_charset,
   String $community,
-  Array[Hash] $custom_rewrite_conditions = [],
+  Array[Hash] $custom_rewrite_lines = [],
   Enum['noAuthNoPriv','authNoPriv','authPriv'] $snmpv3_authlevel,
   String $snmpv3_authname,
   String[8] $snmpv3_authpass,
