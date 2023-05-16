@@ -267,7 +267,7 @@ Apache SSL port - note if SSL isn't enable this will have no effect - defautl '4
 
 ##### <a name="custom_rewrite_lines"></a>`custom_rewrite_lines`
 
-Data type: `Array[Hash]`
+Data type: `Array[String]`
 
 Custom rewrite lines, note this will be added to the default rewrite conditions in .htaccess for the observium site
 
