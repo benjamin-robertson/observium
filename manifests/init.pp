@@ -131,12 +131,12 @@
 #
 # lint:ignore:parameter_order
 class observium (
-  String                                       $auth_mechanism            = 'mysql',
+  String                                       $auth_mechanism,
   String                                       $db_password,
   String                                       $rootdb_password,
   String                                       $download_url,
   String                                       $installer_name,
-  String                                       $install_dir               = '/opt/observium',
+  String                                       $install_dir,
   String                                       $db_host,
   String                                       $db_user,
   String                                       $db_charset,

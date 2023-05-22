@@ -1,8 +1,10 @@
 ---
+observium::auth_mechanism: "mysql"
 observium::db_password: "changeme"
 observium::rootdb_password: "hello123"
 observium::download_url: "http://www.observium.org/"
 observium::installer_name: "observium-community-latest.tar.gz"
+observium::install_dir: "/opt/observium"
 observium::db_host: "localhost"
 observium::db_user: "observium"
 observium::community: "puppet"
