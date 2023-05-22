@@ -1,7 +1,10 @@
-<% |  String $db_host,
+<% |  
+      String $auth_mechanism
+      String $db_host,
       String $db_user,
       String $db_password,
       String $community,
+      String $install_dir,
       String $snmpv3_authlevel,
       String $snmpv3_authname,
       String $snmpv3_authpass,

@@ -6,10 +6,9 @@
 #
 # @example
 #   include observium
-#
+# 
 # @param auth_mechanism
-#     Auth mechanism to use, options are: ldap, http-auth, mysql
-#     please see documentation for config help
+#     Auth mechanism to use
 #     default: mysql
 #
 # @param db_password
