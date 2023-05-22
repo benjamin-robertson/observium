@@ -1,5 +1,5 @@
 <% |  
-      String $auth_mechanism
+      String $auth_mechanism,
       String $db_host,
       String $db_user,
       String $db_password,
