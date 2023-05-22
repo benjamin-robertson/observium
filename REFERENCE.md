@@ -51,6 +51,7 @@ The following parameters are available in the `observium` class:
 * [`rootdb_password`](#rootdb_password)
 * [`download_url`](#download_url)
 * [`installer_name`](#installer_name)
+* [`install_dir`](#install_dir)
 * [`db_host`](#db_host)
 * [`db_user`](#db_user)
 * [`db_charset`](#db_charset)
@@ -120,6 +121,12 @@ Url to the installer, IE http://observium.com/, can be a file path - default 'ht
 Data type: `String`
 
 Installer name, IE observium-installer.tar - default 'observium-community-latest.tar.gz'
+
+##### <a name="install_dir"></a>`install_dir`
+
+Data type: `String`
+
+Install directory for observium - default '/opt/observium'
 
 ##### <a name="db_host"></a>`db_host`
 

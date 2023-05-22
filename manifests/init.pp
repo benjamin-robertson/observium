@@ -24,6 +24,9 @@
 # @param installer_name
 #     Installer name, IE observium-installer.tar - default 'observium-community-latest.tar.gz'
 # 
+# @param install_dir
+#     Install directory - default '/opt/observium'
+#
 # @param db_host
 #     Database host to use - default 'localhost'
 #
@@ -133,6 +136,7 @@ class observium (
   String                                       $rootdb_password,
   String                                       $download_url,
   String                                       $installer_name,
+  String                                       $install_dir               = '/opt/observium',
   String                                       $db_host,
   String                                       $db_user,
   String                                       $db_charset,

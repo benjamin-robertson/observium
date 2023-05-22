@@ -23,6 +23,7 @@ class observium::config {
         'db_user' => $observium::db_user,
         'db_password' => $observium::db_password,
         'community' => $observium::community,
+        'install_dir' => $observium::install_dir,
         'snmpv3_authlevel' => $observium::snmpv3_authlevel,
         'snmpv3_authname' => $observium::snmpv3_authname,
         'snmpv3_authpass' => $observium::snmpv3_authpass,
