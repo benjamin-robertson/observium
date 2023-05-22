@@ -46,6 +46,7 @@ include observium
 
 The following parameters are available in the `observium` class:
 
+* [`auth_mechanism`](#auth_mechanism)
 * [`db_password`](#db_password)
 * [`rootdb_password`](#rootdb_password)
 * [`download_url`](#download_url)
@@ -86,6 +87,15 @@ The following parameters are available in the `observium` class:
 * [`repos`](#repos)
 * [`gpgkeys`](#gpgkeys)
 * [`observium_additional_conf`](#observium_additional_conf)
+
+##### <a name="auth_mechanism"></a>`auth_mechanism`
+
+Data type: `String`
+
+Auth mechanism to use, options are: ldap, http-auth, mysql
+please see documentation for config help
+
+default: mysql
 
 ##### <a name="db_password"></a>`db_password`
 

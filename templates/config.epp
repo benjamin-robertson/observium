@@ -44,7 +44,7 @@ $config['snmp']['v3'][0]['cryptopass'] = "<%= $snmpv3_cryptopass %>";  // Privac
 $config['snmp']['v3'][0]['cryptoalgo'] = "<%= $snmpv3_cryptoalgo %>";  // AES | DES
 
 // Authentication Model
-$config['auth_mechanism'] = "mysql";    // default, other options: ldap, http-auth, please see documentation for config help
+$config['auth_mechanism'] = "<%= $auth_mechanism %>";    // default mysql, other options: ldap, http-auth, please see documentation for config help
 
 // Enable alerter
 // $config['poller-wrapper']['alerter'] = TRUE;

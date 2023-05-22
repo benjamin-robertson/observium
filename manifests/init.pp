@@ -7,6 +7,11 @@
 # @example
 #   include observium
 #
+# @param auth_mechanism
+#     Auth mechanism to use, options are: ldap, http-auth, mysql
+#     please see documentation for config help
+#     default: mysql
+#
 # @param db_password
 #     Mysql password for observium user - default 'changeme'
 # 
@@ -123,6 +128,7 @@
 #
 # lint:ignore:parameter_order
 class observium (
+  String                                       $auth_mechanism            = 'mysql',
   String                                       $db_password,
   String                                       $rootdb_password,
   String                                       $download_url,
