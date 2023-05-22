@@ -25,7 +25,7 @@ class observium::mariadb {
           root_password    => $observium::rootdb_password,
           override_options => {
             'mysqld' => {
-              'skip-log-bin' => false,
+              'skip-log-bin' => '',
             },
           },
         }
