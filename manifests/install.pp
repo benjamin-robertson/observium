@@ -46,37 +46,39 @@ class observium::install {
     require => File['/opt/observium'],
   }
 
-  # Add cron entries to run observium
-  cron { 'discovery all devices':
-    command => '/opt/observium/discovery.php -h all >> /dev/null 2>&1',
-    user    => 'root',
-    hour    => '*/6',
-    minute  => '33',
-  }
-
-  cron { 'discovery newly added devices':
-    command => '/opt/observium/discovery.php -h new >> /dev/null 2>&1',
-    user    => 'root',
-    minute  => '*/5',
-  }
-
-  cron { 'multithreaded pooler wrapper':
-    command => '/opt/observium/poller-wrapper.py >> /dev/null 2>&1',
-    user    => 'root',
-    minute  => '*/5',
-  }
-
-  cron { 'daily housekeeping for syslog, eventlog and alert log':
-    command => '/opt/observium/housekeeping.php -ysel',
-    user    => 'root',
-    hour    => '5',
-    minute  => '13',
-  }
-
-  cron { 'housekeeping script daily for rrds, ports, orphaned entries in the database and performance data':
-    command => '/opt/observium/housekeeping.php -yrptb',
-    user    => 'root',
-    hour    => '4',
-    minute  => '47',
+  # Ensure observium cron jobs are populated
+  cron::job::multiple { 'observium':
+    jobs => [
+      {
+        minute      => 33,
+        hour        => '*/6',
+        command     => '/opt/observium/discovery.php -h all >> /dev/null 2>&1',
+        description => 'Run a complete discovery of all devices once every 6 hours',
+      },
+      {
+        minute      => '*/5',
+        hour        => '*',
+        command     => '/opt/observium/discovery.php -h new >> /dev/null 2>&1',
+        description => 'Run automated discovery of newly added devices every 5 minutes',
+      },
+      {
+        minute      => '*/5',
+        hour        => '*',
+        command     => '/opt/observium/poller-wrapper.py >> /dev/null 2>&1',
+        description => 'Run multithreaded poller wrapper every 5 minutes',
+      },
+      {
+        minute      => 13,
+        hour        => 5,
+        command     => '/opt/observium/housekeeping.php -ysel >> /dev/null 2>&1',
+        description => 'Run housekeeping script daily for syslog, eventlog and alert log',
+      },
+      {
+        minute      => 47,
+        hour        => 4,
+        command     => '/opt/observium/housekeeping.php -yrptb >> /dev/null 2>&1',
+        description => 'Run housekeeping script daily for rrds, ports, orphaned entries in the database and performance data',
+      },
+    ],
   }
 }
