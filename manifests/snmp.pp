@@ -11,6 +11,15 @@ class observium::snmp {
     # lookup values for ubuntu 20.04 user, no native support in snmp module, otherwise return undef
     $ubuntu2004user = lookup(observium::debiansnmp_user)
 
+    # Ensure snmp has proper config
+    file { '/etc/snmp/snmp.conf':
+      ensure  => file,
+      owner   => $ubuntu2004user,
+      group   => $ubuntu2004user,
+      mode    => '0644',
+      content => template('observium/snmp.conf.erb'),
+    }
+
     # Setup SNMP class with snmpv3 user
     class { 'snmp':
       snmpd_config             => ["rouser ${observium::snmpv3_authname} ${observium::snmpv3_authlevel}"],
