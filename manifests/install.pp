@@ -64,6 +64,7 @@ class observium::install {
       {
         minute      => '*/5',
         hour        => '*',
+        user        => 'www-data',
         command     => '/opt/observium/poller-wrapper.py >> /dev/null 2>&1',
         description => 'Run multithreaded poller wrapper every 5 minutes',
       },
