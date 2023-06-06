@@ -22,7 +22,7 @@ RewriteCond %{REQUEST_URI} !=/server-status
 
 RewriteRule ^(.*)$ index.php/$1/
 
-<% scope['observium::custom_rewrite_lines'].each do | condition | -%>
+<% scope['observium::custom_rewrite_lines'].each do | $condition | -%>
 <%= condition %>
 <% end -%>
 

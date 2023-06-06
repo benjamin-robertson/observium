@@ -38,6 +38,9 @@
 # @param community
 #     Default SNMP community to configure - default 'puppet'
 # 
+# @param custom_rewrite_lines
+#     Rewrite lines for htaccess.
+#
 # @param snmpv3_authlevel
 #     Default SNMP authlevel to use - default 'authPriv'
 #     Valid options - ['noAuthNoPriv','authNoPriv','authPriv']
@@ -70,9 +73,6 @@
 #
 # @param admin_password
 #     Admin password for the default admin observium user - default 'changeme'
-#
-# @param apache_access_log_file
-#     Apache access log file - default '/opt/observium/logs/access_log'
 #
 # @param apache_bind_ip
 #     Bind IP address - default $facts['ipaddress']

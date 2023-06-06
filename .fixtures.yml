@@ -42,3 +42,6 @@ fixtures:
     puppetlabs-augeas_core:
       repo: "puppetlabs/augeas_core"
       ref: "1.1.2"
+    puppet-cron:
+      repo: "puppet/cron"
+      ref: "3.0.0"
