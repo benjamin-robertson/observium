@@ -66,11 +66,12 @@ The following parameters are available in the `observium` class:
 * [`email_default`](#email_default)
 * [`email_from`](#email_from)
 * [`admin_password`](#admin_password)
-* [`apache_auth_require`](#apache_auth_require)
 * [`apache_access_log_file`](#apache_access_log_file)
 * [`apache_bind_ip`](#apache_bind_ip)
-* [`apache_custom_options`](#apache_custom_options)
 * [`apache_error_log_file`](#apache_error_log_file)
+* [`apache_custom_options`](#apache_custom_options)
+* [`apache_auth_require`](#apache_auth_require)
+* [`custom_rewrite_conditions`](#custom_rewrite_conditions)
 * [`apache_hostname`](#apache_hostname)
 * [`apache_port`](#apache_port)
 * [`apache_sslport`](#apache_sslport)
@@ -167,7 +168,7 @@ SNMP Authname SNMPv3 user - default 'observium'
 
 ##### <a name="snmpv3_authpass"></a>`snmpv3_authpass`
 
-Data type: `String[8]`
+Data type: `String`
 
 Auth password - min 8 character
 
@@ -180,7 +181,7 @@ Valid options - ['SHA','MD5']
 
 ##### <a name="snmpv3_cryptopass"></a>`snmpv3_cryptopass`
 
-Data type: `String[8]`
+Data type: `String`
 
 Crypto pass - min 8 character
 
@@ -235,7 +236,42 @@ Data type: `String`
 
 Bind IP address - default $facts['ipaddress']
 
-Default value: `$facts['ipaddress']`
+Default value: `$facts['networking']['ip']`
+
+##### <a name="apache_error_log_file"></a>`apache_error_log_file`
+
+Data type: `Stdlib::Unixpath`
+
+Apache error log file - default '/opt/observium/logs/error_log'
+
+##### <a name="apache_custom_options"></a>`apache_custom_options`
+
+Data type: `Hash`
+
+Apache custom options, example could be changing auth type or adding Shibboleth support,
+
+To add Shibboleth support you would add the following to your hiera data
+```
+observium::apache_custom_options:
+  auth_type: "shibboleth"
+  shib_request_settings:
+    requireSession: 1
+```
+Default value: {}
+
+##### <a name="apache_auth_require"></a>`apache_auth_require`
+
+Data type: `String`
+
+Apache auth require parameter - default 'all granted'
+
+##### <a name="custom_rewrite_conditions"></a>`custom_rewrite_conditions`
+
+Data type: `Array[Hash]`
+
+Custom rewrite conditions, note this will be added to the default rewrite conditions in .htaccess for the observium site
+
+Default value: `[]`
 
 ##### <a name="apache_custom_options"></a>`apache_custom_options`
 
@@ -268,17 +304,17 @@ Data type: `String`
 
 Apache hostname for observium site - default $facts['hostname']
 
-Default value: `$facts['hostname']`
+Default value: `$facts['networking']['hostname']`
 
 ##### <a name="apache_port"></a>`apache_port`
 
-Data type: `String`
+Data type: `Stdlib::Port`
 
 Apache non SSL port - note if SSL is enabled this will have no effect - default '80'
 
 ##### <a name="apache_sslport"></a>`apache_sslport`
 
-Data type: `String`
+Data type: `Stdlib::Port`
 
 Apache SSL port - note if SSL isn't enable this will have no effect - defautl '443'
 

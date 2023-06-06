@@ -77,9 +77,28 @@
 # @param apache_bind_ip
 #     Bind IP address - default $facts['ipaddress']
 #
-# @param apache_error_log_file
+# @param apache_access_log
+#     Apache access log file - default '/opt/observium/logs/access_log'
+#
+# @param apache_error_log
 #     Apache error log file - default '/opt/observium/logs/error_log'
 #
+# @param apache_custom_options
+#     Apache custom options, example could be changing auth type or adding Shibboleth support,
+#
+#     To add Shibboleth support you would add the following to your hiera data
+#     ```
+#     observium::apache_custom_options:
+#       auth_type: "shibboleth"
+#       shib_request_settings:
+#         requireSession: 1
+#     ```
+#     Default value: {}
+# 
+# @param apache_auth_require
+#     Apache auth require parameter - default 'all granted'
+# @param custom_rewrite_conditions
+#     Custom rewrite conditions, note this will be added to the default rewrite conditions in .htaccess for the observium site
 # @param apache_hostname
 #     Apache hostname for observium site - default $facts['hostname']
 #
@@ -119,6 +138,9 @@
 # @param manage_ssl
 #     Setup the web site as SSL. If no cert provided, a self signed one will be used. - default false
 #
+# @param manage_htaccess
+#     Managed the htaccess file for apaache. Required for Shibboleth. - default false
+#
 # @param repos
 #     Customise repoistory locations for RedHat
 #
@@ -153,8 +175,11 @@ class observium (
   String                                       $admin_password,
   String                                       $apache_bind_ip            = $facts['networking']['ip'],
   String                                       $apache_hostname           = $facts['networking']['hostname'],
+  Stdlib::Unixpath                             $apache_access_log,
+  Stdlib::Unixpath                             $apache_error_log,
   Hash                                         $apache_custom_options,
   String                                       $apache_auth_require,
+  Array[Hash]                                  $custom_rewrite_conditions = [],
   Stdlib::Port                                 $apache_port,
   Stdlib::Port                                 $apache_sslport,
   String                                       $custom_ssl_cert,
@@ -167,8 +192,7 @@ class observium (
   Boolean                                      $manage_apache,
   Boolean                                      $manage_apachephp,
   Boolean                                      $manage_ssl,
-  Optional[String]                             $apache_error_log_file     = undef,
-  Optional[String]                             $apache_access_log_file    = undef,
+  Boolean                                      $manage_htaccess           = false,
   Optional[Hash]                               $repos                     = undef,
   Optional[Hash]                               $gpgkeys                   = undef,
   Optional[Array]                              $observium_additional_conf = undef,
