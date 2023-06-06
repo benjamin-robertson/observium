@@ -18,10 +18,12 @@ class observium::config {
   file { '/opt/observium/config.php':
     ensure  => file,
     content => epp('observium/config.epp', {
+        'auth_mechanism' => $observium::auth_mechanism,
         'db_host' => $observium::db_host,
         'db_user' => $observium::db_user,
         'db_password' => $observium::db_password,
         'community' => $observium::community,
+        'install_dir' => $observium::install_dir,
         'snmpv3_authlevel' => $observium::snmpv3_authlevel,
         'snmpv3_authname' => $observium::snmpv3_authname,
         'snmpv3_authpass' => $observium::snmpv3_authpass,

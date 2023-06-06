@@ -6,6 +6,10 @@
 #
 # @example
 #   include observium
+# 
+# @param auth_mechanism
+#     Auth mechanism to use
+#     default: mysql
 #
 # @param db_password
 #     Mysql password for observium user - default 'changeme'
@@ -19,6 +23,9 @@
 # @param installer_name
 #     Installer name, IE observium-installer.tar - default 'observium-community-latest.tar.gz'
 # 
+# @param install_dir
+#     Install directory - default '/opt/observium'
+#
 # @param db_host
 #     Database host to use - default 'localhost'
 #
@@ -63,6 +70,9 @@
 #
 # @param admin_password
 #     Admin password for the default admin observium user - default 'changeme'
+#
+# @param apache_access_log_file
+#     Apache access log file - default '/opt/observium/logs/access_log'
 #
 # @param apache_bind_ip
 #     Bind IP address - default $facts['ipaddress']
@@ -142,14 +152,17 @@
 #
 # lint:ignore:parameter_order
 class observium (
+  String                                       $auth_mechanism,
   String                                       $db_password,
   String                                       $rootdb_password,
   String                                       $download_url,
   String                                       $installer_name,
+  String                                       $install_dir,
   String                                       $db_host,
   String                                       $db_user,
   String                                       $db_charset,
   String                                       $community,
+  Array[String]                                $custom_rewrite_lines      = [],
   Enum['noAuthNoPriv','authNoPriv','authPriv'] $snmpv3_authlevel,
   String                                       $snmpv3_authname,
   String                                       $snmpv3_authpass,
