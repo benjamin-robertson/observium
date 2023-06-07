@@ -192,7 +192,7 @@ class observium (
   Boolean                                      $manage_apache,
   Boolean                                      $manage_apachephp,
   Boolean                                      $manage_ssl,
-  Boolean                                      $manage_htaccess           = false,
+  Boolean                                      $manage_htaccess           = true,
   Optional[Hash]                               $repos                     = undef,
   Optional[Hash]                               $gpgkeys                   = undef,
   Optional[Array]                              $observium_additional_conf = undef,
