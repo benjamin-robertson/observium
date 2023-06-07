@@ -12,13 +12,13 @@ class observium::snmp {
     $ubuntu2004user = lookup(observium::debiansnmp_user)
 
     # Ensure snmp has proper config
-    # file { '/etc/snmp/snmp.conf':
-    #   ensure  => file,
-    #   owner   => $ubuntu2004user,
-    #   group   => $ubuntu2004user,
-    #   mode    => '0644',
-    #   content => template('observium/snmp.conf.erb'),
-    # }
+    file { '/etc/snmp/snmp.conf':
+      ensure  => file,
+      owner   => $ubuntu2004user,
+      group   => $ubuntu2004user,
+      mode    => '0644',
+      content => epp('observium/snmp.conf.epp' ),
+    }
 
     # Setup SNMP class with snmpv3 user
     class { 'snmp':
