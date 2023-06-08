@@ -25,17 +25,18 @@ class observium::apache {
       port            => $observium::apache_sslport,
       docroot         => '/opt/observium/html/',
       servername      => $observium::apache_hostname,
-      access_log_file => '/opt/observium/logs/access_log',
-      error_log_file  => '/opt/observium/logs/error_log',
+      access_log_file => $observium::apache_access_log,
+      error_log_file  => $observium::apache_error_log,
       ssl             => true,
       ssl_cert        => $observium::custom_ssl_cert,
       ssl_key         => $observium::custom_ssl_key,
       directories     => [
-        { 'path'           => '/opt/observium/html/',
+        {
+          'path'           => '/opt/observium/html/',
           'options'        => 'FollowSymLinks MultiViews',
           'allow_override' => 'All',
-          'auth_require'   => 'all granted',
-        },
+          'auth_require'   => $observium::apache_auth_require,
+        } + $observium::apache_custom_options,
       ],
     }
   }
@@ -45,18 +46,17 @@ class observium::apache {
       port            => $observium::apache_port,
       docroot         => '/opt/observium/html/',
       servername      => $observium::apache_hostname,
-      access_log_file => '/opt/observium/logs/access_log',
-      error_log_file  => '/opt/observium/logs/error_log',
+      access_log_file => $observium::apache_access_log,
+      error_log_file  => $observium::apache_error_log,
       directories     => [
         { 'path'           => '/opt/observium/html/',
           'options'        => 'FollowSymLinks MultiViews',
           'allow_override' => 'All',
-          'auth_require'   => 'all granted',
-        },
+          'auth_require'   => $observium::apache_auth_require,
+        } + $observium::apache_custom_options,
       ],
     }
   }
-
 
   # Include php module - old 
   $apache_php_version = lookup(observium::apache_php_version)

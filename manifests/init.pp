@@ -6,6 +6,10 @@
 #
 # @example
 #   include observium
+# 
+# @param auth_mechanism
+#     Auth mechanism to use
+#     default: mysql
 #
 # @param db_password
 #     Mysql password for observium user - default 'changeme'
@@ -19,6 +23,9 @@
 # @param installer_name
 #     Installer name, IE observium-installer.tar - default 'observium-community-latest.tar.gz'
 # 
+# @param install_dir
+#     Install directory - default '/opt/observium'
+#
 # @param db_host
 #     Database host to use - default 'localhost'
 #
@@ -26,11 +33,14 @@
 #     Database user to use - default 'observium'
 #
 # @param db_charset
-#     Database charset to use - default 'utf8' Ubuntu 20.04 'utf8mb3'
+#     Database charset to use - default 'utf8' Ubuntu 22.04 'utf8mb3'
+#
+# @param db_collate
+#     Database collate to use - default 'utf8_general_ci' Ubuntu 22.04 'utf8mb3_general_ci'
 #
 # @param community
 #     Default SNMP community to configure - default 'puppet'
-# 
+#
 # @param snmpv3_authlevel
 #     Default SNMP authlevel to use - default 'authPriv'
 #     Valid options - ['noAuthNoPriv','authNoPriv','authPriv']
@@ -52,6 +62,15 @@
 #     Crypto algorithm - default 'AES'
 #     Valid options - ['AES','DES']
 # 
+# @param mib_locations
+#     Miblocations for observium to add to snmp.conf, default ['/opt/observium/mibs/rfc','/opt/observium/mibs/net-snmp']
+#
+# @param additional_mib_location
+#     Additional mib locations to add to snmp.conf. Appended to built in mib_locations. default []
+#
+# @param additional_snmp_conf_options
+#     Additional options to add to snmp.conf. default []
+#
 # @param fping_location
 #     Change if fping is in a non default locaiton - default, RHEL '/sbin/fping' Ubuntu '/usr/bin/fping'
 #
@@ -66,6 +85,27 @@
 #
 # @param apache_bind_ip
 #     Bind IP address - default $facts['ipaddress']
+#
+# @param apache_access_log
+#     Apache access log file - default '/opt/observium/logs/access_log'
+#
+# @param apache_error_log
+#     Apache error log file - default '/opt/observium/logs/error_log'
+#
+# @param apache_custom_options
+#     Apache custom options, example could be changing auth type or adding Shibboleth support,
+#
+#     To add Shibboleth support you would add the following to your hiera data
+#     ```
+#     observium::apache_custom_options:
+#       auth_type: "shibboleth"
+#       shib_request_settings:
+#         requireSession: 1
+#     ```
+#     Default value: {}
+# 
+# @param apache_auth_require
+#     Apache auth require parameter - default 'all granted'
 #
 # @param apache_hostname
 #     Apache hostname for observium site - default $facts['hostname']
@@ -117,41 +157,51 @@
 #
 # lint:ignore:parameter_order
 class observium (
-  String $db_password,
-  String $rootdb_password,
-  String $download_url,
-  String $installer_name,
-  String $db_host,
-  String $db_user,
-  String $db_charset,
-  String $community,
+  String                                       $auth_mechanism,
+  String                                       $db_password,
+  String                                       $rootdb_password,
+  String                                       $download_url,
+  String                                       $installer_name,
+  String                                       $install_dir,
+  String                                       $db_host,
+  String                                       $db_user,
+  String                                       $db_charset,
+  String                                       $db_collate,
+  String                                       $community,
   Enum['noAuthNoPriv','authNoPriv','authPriv'] $snmpv3_authlevel,
-  String $snmpv3_authname,
-  String[8] $snmpv3_authpass,
-  Enum['SHA','MD5'] $snmpv3_authalgo,
-  String[8] $snmpv3_cryptopass,
-  Enum['AES','DES'] $snmpv3_cryptoalgo,
-  String $fping_location,
-  String $email_default,
-  String $email_from,
-  String $admin_password,
-  String $apache_bind_ip = $facts['ipaddress'],
-  String $apache_hostname = $facts['hostname'],
-  String $apache_port,
-  String $apache_sslport,
-  String $custom_ssl_cert,
-  String $custom_ssl_key,
-  Boolean $manage_repo,
-  Boolean $manage_selinux,
-  Boolean $manage_fw,
-  Boolean $manage_snmp,
-  Boolean $manage_mysql,
-  Boolean $manage_apache,
-  Boolean $manage_apachephp,
-  Boolean $manage_ssl,
-  Optional[Hash] $repos = undef,
-  Optional[Hash] $gpgkeys = undef,
-  Optional[Array] $observium_additional_conf = undef,
+  String                                       $snmpv3_authname,
+  String                                       $snmpv3_authpass,
+  Enum['SHA','MD5']                            $snmpv3_authalgo,
+  String                                       $snmpv3_cryptopass,
+  Enum['AES','DES']                            $snmpv3_cryptoalgo,
+  Array                                        $mib_locations,
+  Array                                        $additional_mib_location      = [],
+  Array                                        $additional_snmp_conf_options = [],
+  String                                       $fping_location,
+  String                                       $email_default,
+  String                                       $email_from,
+  String                                       $admin_password,
+  String                                       $apache_bind_ip               = $facts['networking']['ip'],
+  String                                       $apache_hostname              = $facts['networking']['hostname'],
+  Stdlib::Unixpath                             $apache_access_log,
+  Stdlib::Unixpath                             $apache_error_log,
+  Hash                                         $apache_custom_options,
+  String                                       $apache_auth_require,
+  Stdlib::Port                                 $apache_port,
+  Stdlib::Port                                 $apache_sslport,
+  String                                       $custom_ssl_cert,
+  String                                       $custom_ssl_key,
+  Boolean                                      $manage_repo,
+  Boolean                                      $manage_selinux,
+  Boolean                                      $manage_fw,
+  Boolean                                      $manage_snmp,
+  Boolean                                      $manage_mysql,
+  Boolean                                      $manage_apache,
+  Boolean                                      $manage_apachephp,
+  Boolean                                      $manage_ssl,
+  Optional[Hash]                               $repos                        = undef,
+  Optional[Hash]                               $gpgkeys                      = undef,
+  Optional[Array]                              $observium_additional_conf    = undef,
 ) {
   # lint:endignore
 
@@ -161,6 +211,9 @@ class observium (
     'Debian': {}
     default: { fail('Unsupported operating system, bailing out!!') }
   }
+
+  # Configure localsnmp
+  include observium::snmp
 
   # install required packages
   include observium::packages
@@ -185,28 +238,26 @@ class observium (
   # Configure apache
   include observium::apache
 
-  # Configure localsnmp
-  include observium::snmp
-
   # Configure firewall
   if $manage_fw {
     case $facts['os']['family'] {
       'RedHat': { include observium::firewalld }
       'Debian': { include observium::firewallufw }
-      default: { }
+      default: {}
     }
   }
 
   # order class dependencies for each OS
   case $facts['os']['family'] {
     'RedHat': {
-      Class['observium::selinux'] -> Class['observium::yum'] -> Class['observium::packages'] -> Class['observium::mariadb'] -> Class['observium::install'] -> Class['observium::config'] -> Class['observium::snmp'] -> Class['observium::database_init']
+      Class['observium::selinux'] -> Class['observium::yum'] -> Class['observium::packages'] -> Class['observium::snmp'] -> Class['observium::mariadb'] -> Class['observium::install'] -> Class['observium::config'] -> Class['observium::database_init']
     }
     'Debian': {
-      Class['observium::packages'] -> Class['observium::mariadb'] -> Class['observium::install'] -> Class['observium::config'] -> Class['observium::snmp'] -> Class['observium::database_init']
+      Class['observium::packages'] -> Class['observium::snmp'] -> Class['observium::mariadb'] -> Class['observium::install'] -> Class['observium::config'] -> Class['observium::database_init']
     }
-    default: { fail('Unsupported operating system, bailing out!!') }
+    default: {
+      fail('Unsupported operating system, bailing out!!')
+    }
   }
-
 }
 # lint:endignore

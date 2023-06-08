@@ -46,13 +46,16 @@ include observium
 
 The following parameters are available in the `observium` class:
 
+* [`auth_mechanism`](#auth_mechanism)
 * [`db_password`](#db_password)
 * [`rootdb_password`](#rootdb_password)
 * [`download_url`](#download_url)
 * [`installer_name`](#installer_name)
+* [`install_dir`](#install_dir)
 * [`db_host`](#db_host)
 * [`db_user`](#db_user)
 * [`db_charset`](#db_charset)
+* [`db_collate`](#db_collate)
 * [`community`](#community)
 * [`snmpv3_authlevel`](#snmpv3_authlevel)
 * [`snmpv3_authname`](#snmpv3_authname)
@@ -60,11 +63,18 @@ The following parameters are available in the `observium` class:
 * [`snmpv3_authalgo`](#snmpv3_authalgo)
 * [`snmpv3_cryptopass`](#snmpv3_cryptopass)
 * [`snmpv3_cryptoalgo`](#snmpv3_cryptoalgo)
+* [`mib_locations`](#mib_locations)
+* [`additional_mib_location`](#additional_mib_location)
+* [`additional_snmp_conf_options`](#additional_snmp_conf_options)
 * [`fping_location`](#fping_location)
 * [`email_default`](#email_default)
 * [`email_from`](#email_from)
 * [`admin_password`](#admin_password)
 * [`apache_bind_ip`](#apache_bind_ip)
+* [`apache_access_log`](#apache_access_log)
+* [`apache_error_log`](#apache_error_log)
+* [`apache_custom_options`](#apache_custom_options)
+* [`apache_auth_require`](#apache_auth_require)
 * [`apache_hostname`](#apache_hostname)
 * [`apache_port`](#apache_port)
 * [`apache_sslport`](#apache_sslport)
@@ -81,6 +91,13 @@ The following parameters are available in the `observium` class:
 * [`repos`](#repos)
 * [`gpgkeys`](#gpgkeys)
 * [`observium_additional_conf`](#observium_additional_conf)
+
+##### <a name="auth_mechanism"></a>`auth_mechanism`
+
+Data type: `String`
+
+Auth mechanism to use
+default: mysql
 
 ##### <a name="db_password"></a>`db_password`
 
@@ -106,6 +123,12 @@ Data type: `String`
 
 Installer name, IE observium-installer.tar - default 'observium-community-latest.tar.gz'
 
+##### <a name="install_dir"></a>`install_dir`
+
+Data type: `String`
+
+Install directory - default '/opt/observium'
+
 ##### <a name="db_host"></a>`db_host`
 
 Data type: `String`
@@ -122,7 +145,13 @@ Database user to use - default 'observium'
 
 Data type: `String`
 
-Database charset to use - default 'utf8' Ubuntu 20.04 'utf8mb3'
+Database charset to use - default 'utf8' Ubuntu 22.04 'utf8mb3'
+
+##### <a name="db_collate"></a>`db_collate`
+
+Data type: `String`
+
+Database collate to use - default 'utf8_general_ci' Ubuntu 22.04 'utf8mb3_general_ci'
 
 ##### <a name="community"></a>`community`
 
@@ -145,7 +174,7 @@ SNMP Authname SNMPv3 user - default 'observium'
 
 ##### <a name="snmpv3_authpass"></a>`snmpv3_authpass`
 
-Data type: `String[8]`
+Data type: `String`
 
 Auth password - min 8 character
 
@@ -158,7 +187,7 @@ Valid options - ['SHA','MD5']
 
 ##### <a name="snmpv3_cryptopass"></a>`snmpv3_cryptopass`
 
-Data type: `String[8]`
+Data type: `String`
 
 Crypto pass - min 8 character
 
@@ -168,6 +197,28 @@ Data type: `Enum['AES','DES']`
 
 Crypto algorithm - default 'AES'
 Valid options - ['AES','DES']
+
+##### <a name="mib_locations"></a>`mib_locations`
+
+Data type: `Array`
+
+Miblocations for observium to add to snmp.conf, default ['/opt/observium/mibs/rfc','/opt/observium/mibs/net-snmp']
+
+##### <a name="additional_mib_location"></a>`additional_mib_location`
+
+Data type: `Array`
+
+Additional mib locations to add to snmp.conf. Appended to built in mib_locations. default []
+
+Default value: `[]`
+
+##### <a name="additional_snmp_conf_options"></a>`additional_snmp_conf_options`
+
+Data type: `Array`
+
+Additional options to add to snmp.conf. default []
+
+Default value: `[]`
 
 ##### <a name="fping_location"></a>`fping_location`
 
@@ -199,7 +250,40 @@ Data type: `String`
 
 Bind IP address - default $facts['ipaddress']
 
-Default value: `$facts['ipaddress']`
+Default value: `$facts['networking']['ip']`
+
+##### <a name="apache_access_log"></a>`apache_access_log`
+
+Data type: `Stdlib::Unixpath`
+
+Apache access log file - default '/opt/observium/logs/access_log'
+
+##### <a name="apache_error_log"></a>`apache_error_log`
+
+Data type: `Stdlib::Unixpath`
+
+Apache error log file - default '/opt/observium/logs/error_log'
+
+##### <a name="apache_custom_options"></a>`apache_custom_options`
+
+Data type: `Hash`
+
+Apache custom options, example could be changing auth type or adding Shibboleth support,
+
+To add Shibboleth support you would add the following to your hiera data
+```
+observium::apache_custom_options:
+  auth_type: "shibboleth"
+  shib_request_settings:
+    requireSession: 1
+```
+Default value: {}
+
+##### <a name="apache_auth_require"></a>`apache_auth_require`
+
+Data type: `String`
+
+Apache auth require parameter - default 'all granted'
 
 ##### <a name="apache_hostname"></a>`apache_hostname`
 
@@ -207,17 +291,17 @@ Data type: `String`
 
 Apache hostname for observium site - default $facts['hostname']
 
-Default value: `$facts['hostname']`
+Default value: `$facts['networking']['hostname']`
 
 ##### <a name="apache_port"></a>`apache_port`
 
-Data type: `String`
+Data type: `Stdlib::Port`
 
 Apache non SSL port - note if SSL is enabled this will have no effect - default '80'
 
 ##### <a name="apache_sslport"></a>`apache_sslport`
 
-Data type: `String`
+Data type: `Stdlib::Port`
 
 Apache SSL port - note if SSL isn't enable this will have no effect - defautl '443'
 

@@ -46,7 +46,7 @@ class observium::install {
     require => File['/opt/observium'],
   }
 
-  # Add cron entries to run observium
+  # Ensure observium cron jobs are populated
   cron { 'discovery all devices':
     command => '/opt/observium/discovery.php -h all >> /dev/null 2>&1',
     user    => 'root',

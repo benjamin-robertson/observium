@@ -22,7 +22,12 @@ class observium::mariadb {
           #package_name   => 'mariadb-server',
           #package_ensure => 'present',
           #service_name   => 'mysqld',
-          root_password  => $observium::rootdb_password,
+          root_password    => $observium::rootdb_password,
+          override_options => {
+            'mysqld' => {
+              'skip-log-bin' => '',
+            },
+          },
         }
       }
       default: { fail('Unsupported operating system, bailing out!!') }
@@ -33,7 +38,7 @@ class observium::mariadb {
       password => $observium::db_password,
       host     => 'localhost',
       charset  => $observium::db_charset,
-      collate  => 'utf8_general_ci',
+      collate  => $observium::db_collate,
       grant    => 'ALL',
     }
   }

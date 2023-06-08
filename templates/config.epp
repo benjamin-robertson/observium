@@ -1,7 +1,10 @@
-<% |  String $db_host,
+<% |  
+      String $auth_mechanism,
+      String $db_host,
       String $db_user,
       String $db_password,
       String $community,
+      String $install_dir,
       String $snmpv3_authlevel,
       String $snmpv3_authname,
       String $snmpv3_authpass,
@@ -31,20 +34,20 @@ $config['db_pass']      = '<%= $db_password %>';
 $config['db_name']      = 'observium';
 
 // Base directory
-#$config['install_dir'] = "/opt/observium";
+$config['install_dir'] = "<%= $install_dir %>";
 $config['fping'] = "<%= $fping_location %>";
 
 // Default community list to use when adding/discovering
 $config['snmp']['community'] = array("<%= $community %>");
-$config['snmp']['v3'][0]['authlevel'] = "<%= $snmpv3_authlevel %>";  // noAuthNoPriv | authNoPriv | authPriv
+$config['snmp']['v3'][0]['authlevel'] = "<%= $snmpv3_authlevel %>";    // noAuthNoPriv | authNoPriv | authPriv
 $config['snmp']['v3'][0]['authname'] = "<%= $snmpv3_authname %>";      // User Name (required even for noAuthNoPriv)
-$config['snmp']['v3'][0]['authpass'] = "<%= $snmpv3_authpass %>";               // Auth Passphrase
-$config['snmp']['v3'][0]['authalgo'] = "<%= $snmpv3_authalgo %>";            // MD5 | SHA
-$config['snmp']['v3'][0]['cryptopass'] = "<%= $snmpv3_cryptopass %>";             // Privacy (Encryption) Passphrase
-$config['snmp']['v3'][0]['cryptoalgo'] = "<%= $snmpv3_cryptoalgo %>";          // AES | DES
+$config['snmp']['v3'][0]['authpass'] = "<%= $snmpv3_authpass %>";      // Auth Passphrase
+$config['snmp']['v3'][0]['authalgo'] = "<%= $snmpv3_authalgo %>";      // MD5 | SHA
+$config['snmp']['v3'][0]['cryptopass'] = "<%= $snmpv3_cryptopass %>";  // Privacy (Encryption) Passphrase
+$config['snmp']['v3'][0]['cryptoalgo'] = "<%= $snmpv3_cryptoalgo %>";  // AES | DES
 
 // Authentication Model
-$config['auth_mechanism'] = "mysql";    // default, other options: ldap, http-auth, please see documentation for config help
+$config['auth_mechanism'] = "<%= $auth_mechanism %>";    // default mysql, other options: ldap, http-auth, please see documentation for config help
 
 // Enable alerter
 // $config['poller-wrapper']['alerter'] = TRUE;

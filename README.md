@@ -113,14 +113,16 @@ I originally intended to provide an option of which version of Observium to inst
 
 Tested with the following setups.
 
-- PE 2019.8.4
-    - Puppet 6.19.1
+- PE 2021.7.2
+    - Puppet 7.21.0
 - RHEL
     - 7
     - 8
+- Rocky
+    - 8
 - Ubuntu
-    - 18.04 LTS
     - 20.04 LTS
+    - 22.04 LTS
 
 ### RHEL specific limitations
 
