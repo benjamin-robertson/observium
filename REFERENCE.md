@@ -55,6 +55,7 @@ The following parameters are available in the `observium` class:
 * [`db_host`](#db_host)
 * [`db_user`](#db_user)
 * [`db_charset`](#db_charset)
+* [`db_collate`](#db_collate)
 * [`community`](#community)
 * [`snmpv3_authlevel`](#snmpv3_authlevel)
 * [`snmpv3_authname`](#snmpv3_authname)
@@ -144,7 +145,13 @@ Database user to use - default 'observium'
 
 Data type: `String`
 
-Database charset to use - default 'utf8' Ubuntu 20.04 'utf8mb3'
+Database charset to use - default 'utf8' Ubuntu 22.04 'utf8mb3'
+
+##### <a name="db_collate"></a>`db_collate`
+
+Data type: `String`
+
+Database collate to use - default 'utf8_general_ci' Ubuntu 22.04 'utf8mb3_general_ci'
 
 ##### <a name="community"></a>`community`
 

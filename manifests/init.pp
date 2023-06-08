@@ -33,7 +33,10 @@
 #     Database user to use - default 'observium'
 #
 # @param db_charset
-#     Database charset to use - default 'utf8' Ubuntu 20.04 'utf8mb3'
+#     Database charset to use - default 'utf8' Ubuntu 22.04 'utf8mb3'
+#
+# @param db_collate
+#     Database collate to use - default 'utf8_general_ci' Ubuntu 22.04 'utf8mb3_general_ci'
 #
 # @param community
 #     Default SNMP community to configure - default 'puppet'
@@ -163,6 +166,7 @@ class observium (
   String                                       $db_host,
   String                                       $db_user,
   String                                       $db_charset,
+  String                                       $db_collate,
   String                                       $community,
   Enum['noAuthNoPriv','authNoPriv','authPriv'] $snmpv3_authlevel,
   String                                       $snmpv3_authname,

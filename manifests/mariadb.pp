@@ -38,7 +38,7 @@ class observium::mariadb {
       password => $observium::db_password,
       host     => 'localhost',
       charset  => $observium::db_charset,
-      collate  => 'utf8_general_ci',
+      collate  => $observium::db_collate,
       grant    => 'ALL',
     }
   }
