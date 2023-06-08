@@ -14,6 +14,9 @@ observium::snmpv3_authpass: "setme1234"
 observium::snmpv3_authalgo: "SHA"
 observium::snmpv3_cryptopass: "setme1234"
 observium::snmpv3_cryptoalgo: "AES"
+observium::mib_locations:
+  - /opt/observium/mibs/rfc
+  - /opt/observium/mibs/net-snmp
 observium::email_default: "user@your-domain"
 observium::email_from: "Observium <observium@your-domain>"
 observium::observium_additional_conf:

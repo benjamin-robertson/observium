@@ -62,6 +62,15 @@
 #     Crypto algorithm - default 'AES'
 #     Valid options - ['AES','DES']
 # 
+# @param mib_locations
+#     Miblocations for observium to add to snmp.conf, default ['/opt/observium/mibs/rfc','/opt/observium/mibs/net-snmp']
+#
+# @param additional_mib_location
+#     Additional mib locations to add to snmp.conf. Appended to built in mib_locations. default []
+#
+# @param additional_snmp_conf_options
+#     Additional options to add to snmp.conf. default []
+#
 # @param fping_location
 #     Change if fping is in a non default locaiton - default, RHEL '/sbin/fping' Ubuntu '/usr/bin/fping'
 #
@@ -162,24 +171,27 @@ class observium (
   String                                       $db_user,
   String                                       $db_charset,
   String                                       $community,
-  Array[String]                                $custom_rewrite_lines      = [],
+  Array[String]                                $custom_rewrite_lines         = [],
   Enum['noAuthNoPriv','authNoPriv','authPriv'] $snmpv3_authlevel,
   String                                       $snmpv3_authname,
   String                                       $snmpv3_authpass,
   Enum['SHA','MD5']                            $snmpv3_authalgo,
   String                                       $snmpv3_cryptopass,
   Enum['AES','DES']                            $snmpv3_cryptoalgo,
+  Array                                        $mib_locations,
+  Array                                        $additional_mib_location      = [],
+  Array                                        $additional_snmp_conf_options = [],
   String                                       $fping_location,
   String                                       $email_default,
   String                                       $email_from,
   String                                       $admin_password,
-  String                                       $apache_bind_ip            = $facts['networking']['ip'],
-  String                                       $apache_hostname           = $facts['networking']['hostname'],
+  String                                       $apache_bind_ip               = $facts['networking']['ip'],
+  String                                       $apache_hostname              = $facts['networking']['hostname'],
   Stdlib::Unixpath                             $apache_access_log,
   Stdlib::Unixpath                             $apache_error_log,
   Hash                                         $apache_custom_options,
   String                                       $apache_auth_require,
-  Array[Hash]                                  $custom_rewrite_conditions = [],
+  Array[Hash]                                  $custom_rewrite_conditions    = [],
   Stdlib::Port                                 $apache_port,
   Stdlib::Port                                 $apache_sslport,
   String                                       $custom_ssl_cert,
@@ -192,10 +204,10 @@ class observium (
   Boolean                                      $manage_apache,
   Boolean                                      $manage_apachephp,
   Boolean                                      $manage_ssl,
-  Boolean                                      $manage_htaccess           = true,
-  Optional[Hash]                               $repos                     = undef,
-  Optional[Hash]                               $gpgkeys                   = undef,
-  Optional[Array]                              $observium_additional_conf = undef,
+  Boolean                                      $manage_htaccess              = true,
+  Optional[Hash]                               $repos                        = undef,
+  Optional[Hash]                               $gpgkeys                      = undef,
+  Optional[Array]                              $observium_additional_conf    = undef,
 ) {
   # lint:endignore
 
