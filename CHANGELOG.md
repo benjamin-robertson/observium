@@ -2,6 +2,27 @@
 
 All notable changes to this project will be documented in this file.
 
+## Release 2.0.0
+
+**Features**
+
+- Added support for Ubuntu 22.04
+- Bump PDK to 2.6.1
+- Allow users to customise observium installation directory via 'install_dir' parameter
+- Allow users to specify mysql mechanism via 'auth_mechanism' parameter
+- Added observium snmp mib locations to snmp.conf. User can customise these via the 'mib_locations' and 'additional_mib_location' parameters.
+- Added 'apache_custom_options' parameter to specify custom options for apache::vhost directory.
+
+**Bugfixes**
+
+- Updated GPG for OpenNMS yum repos. This was causing installations to fail on RHEL7 and 8. https://www.opennms.com/en/blog/2023-02-13-security-update-mandatory-gpg-key-rotation-for-meridian-and-horizon/
+
+**Deprecations**
+ 
+- Deprecated support for Ubuntu 18.04
+- Dropped Puppet 6 support
+- *Warning*: If upgrading puppetlabs-mysql from version <13 to version >= 13 may cause issues with existing mysql installations. Proceed with caution. This results in any Ubuntu 20.04 or later systems being switched from using mysql to mariadb uncleanly.
+
 ## Release 1.0.0
 
 **Features**

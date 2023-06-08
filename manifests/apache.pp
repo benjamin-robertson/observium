@@ -53,7 +53,7 @@ class observium::apache {
           'options'        => 'FollowSymLinks MultiViews',
           'allow_override' => 'All',
           'auth_require'   => 'all granted',
-        },
+        } + $observium::apache_custom_options,
       ],
     }
   }

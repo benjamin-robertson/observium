@@ -5,10 +5,10 @@ fixtures:
   forge_modules:
     stdlib: 
       repo: "puppetlabs/stdlib"
-      ref: "8.6.0"
+      ref: "9.0.0"
     puppetlabs-yumrepo_core:
       repo: "puppetlabs/yumrepo_core"
-      ref: "1.0.7"
+      ref: "2.0.0"
     puppet-archive:
       repo: "puppet/archive"
       ref: "5.0.0"
