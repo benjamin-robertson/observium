@@ -218,6 +218,9 @@ class observium (
     default: { fail('Unsupported operating system, bailing out!!') }
   }
 
+  # Configure localsnmp
+  include observium::snmp
+
   # install required packages
   include observium::packages
 
@@ -241,9 +244,6 @@ class observium (
   # Configure apache
   include observium::apache
 
-  # Configure localsnmp
-  include observium::snmp
-
   # Configure firewall
   if $manage_fw {
     case $facts['os']['family'] {
@@ -256,10 +256,10 @@ class observium (
   # order class dependencies for each OS
   case $facts['os']['family'] {
     'RedHat': {
-      Class['observium::selinux'] -> Class['observium::yum'] -> Class['observium::packages'] -> Class['observium::mariadb'] -> Class['observium::install'] -> Class['observium::config'] -> Class['observium::snmp'] -> Class['observium::database_init']
+      Class['observium::selinux'] -> Class['observium::yum'] -> Class['observium::packages'] -> Class['observium::snmp'] -> Class['observium::mariadb'] -> Class['observium::install'] -> Class['observium::config'] -> Class['observium::database_init']
     }
     'Debian': {
-      Class['observium::packages'] -> Class['observium::mariadb'] -> Class['observium::install'] -> Class['observium::config'] -> Class['observium::snmp'] -> Class['observium::database_init']
+      Class['observium::packages'] -> Class['observium::snmp'] -> Class['observium::mariadb'] -> Class['observium::install'] -> Class['observium::config'] -> Class['observium::database_init']
     }
     default: {
       fail('Unsupported operating system, bailing out!!')
