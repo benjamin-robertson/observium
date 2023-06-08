@@ -20,8 +20,8 @@ mibs :
 # tools with the -M option or MIBDIRS environment variable.
 #
 # mibdirs /usr/share/snmp/mibs:/usr/share/snmp/mibs/iana:/usr/share/snmp/mibs/ietf
-<% if $additional_snmp_conf_options { %>
-<% $additional_snmp_conf_options.each | String $line | { %>
+<% if $additional_snmp_conf_options { -%>
+<% $additional_snmp_conf_options.each | String $line | { -%>
 <%=$line%>
-<% } %>
-<% } %>
+<% } -%>
+<% } -%>
