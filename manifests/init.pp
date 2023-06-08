@@ -37,9 +37,6 @@
 #
 # @param community
 #     Default SNMP community to configure - default 'puppet'
-# 
-# @param custom_rewrite_lines
-#     Rewrite lines for htaccess.
 #
 # @param snmpv3_authlevel
 #     Default SNMP authlevel to use - default 'authPriv'
@@ -106,8 +103,7 @@
 # 
 # @param apache_auth_require
 #     Apache auth require parameter - default 'all granted'
-# @param custom_rewrite_conditions
-#     Custom rewrite conditions, note this will be added to the default rewrite conditions in .htaccess for the observium site
+#
 # @param apache_hostname
 #     Apache hostname for observium site - default $facts['hostname']
 #
@@ -146,9 +142,6 @@
 #
 # @param manage_ssl
 #     Setup the web site as SSL. If no cert provided, a self signed one will be used. - default false
-#
-# @param manage_htaccess
-#     Managed the htaccess file for apaache. Required for Shibboleth. - default false
 #
 # @param repos
 #     Customise repoistory locations for RedHat
@@ -191,7 +184,6 @@ class observium (
   Stdlib::Unixpath                             $apache_error_log,
   Hash                                         $apache_custom_options,
   String                                       $apache_auth_require,
-  Array[Hash]                                  $custom_rewrite_conditions    = [],
   Stdlib::Port                                 $apache_port,
   Stdlib::Port                                 $apache_sslport,
   String                                       $custom_ssl_cert,
@@ -204,7 +196,6 @@ class observium (
   Boolean                                      $manage_apache,
   Boolean                                      $manage_apachephp,
   Boolean                                      $manage_ssl,
-  Boolean                                      $manage_htaccess              = true,
   Optional[Hash]                               $repos                        = undef,
   Optional[Hash]                               $gpgkeys                      = undef,
   Optional[Array]                              $observium_additional_conf    = undef,

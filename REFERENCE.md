@@ -62,20 +62,21 @@ The following parameters are available in the `observium` class:
 * [`snmpv3_authalgo`](#snmpv3_authalgo)
 * [`snmpv3_cryptopass`](#snmpv3_cryptopass)
 * [`snmpv3_cryptoalgo`](#snmpv3_cryptoalgo)
+* [`mib_locations`](#mib_locations)
+* [`additional_mib_location`](#additional_mib_location)
+* [`additional_snmp_conf_options`](#additional_snmp_conf_options)
 * [`fping_location`](#fping_location)
 * [`email_default`](#email_default)
 * [`email_from`](#email_from)
 * [`admin_password`](#admin_password)
-* [`apache_access_log_file`](#apache_access_log_file)
 * [`apache_bind_ip`](#apache_bind_ip)
-* [`apache_error_log_file`](#apache_error_log_file)
+* [`apache_access_log`](#apache_access_log)
+* [`apache_error_log`](#apache_error_log)
 * [`apache_custom_options`](#apache_custom_options)
 * [`apache_auth_require`](#apache_auth_require)
-* [`custom_rewrite_conditions`](#custom_rewrite_conditions)
 * [`apache_hostname`](#apache_hostname)
 * [`apache_port`](#apache_port)
 * [`apache_sslport`](#apache_sslport)
-* [`custom_rewrite_lines`](#custom_rewrite_lines)
 * [`custom_ssl_cert`](#custom_ssl_cert)
 * [`custom_ssl_key`](#custom_ssl_key)
 * [`manage_repo`](#manage_repo)
@@ -89,14 +90,13 @@ The following parameters are available in the `observium` class:
 * [`repos`](#repos)
 * [`gpgkeys`](#gpgkeys)
 * [`observium_additional_conf`](#observium_additional_conf)
+* [`custom_rewrite_lines`](#custom_rewrite_lines)
 
 ##### <a name="auth_mechanism"></a>`auth_mechanism`
 
 Data type: `String`
 
-Auth mechanism to use, options are: ldap, http-auth, mysql
-please see documentation for config help
-
+Auth mechanism to use
 default: mysql
 
 ##### <a name="db_password"></a>`db_password`
@@ -127,7 +127,7 @@ Installer name, IE observium-installer.tar - default 'observium-community-latest
 
 Data type: `String`
 
-Install directory for observium - default '/opt/observium'
+Install directory - default '/opt/observium'
 
 ##### <a name="db_host"></a>`db_host`
 
@@ -192,6 +192,28 @@ Data type: `Enum['AES','DES']`
 Crypto algorithm - default 'AES'
 Valid options - ['AES','DES']
 
+##### <a name="mib_locations"></a>`mib_locations`
+
+Data type: `Array`
+
+Miblocations for observium to add to snmp.conf, default ['/opt/observium/mibs/rfc','/opt/observium/mibs/net-snmp']
+
+##### <a name="additional_mib_location"></a>`additional_mib_location`
+
+Data type: `Array`
+
+Additional mib locations to add to snmp.conf. Appended to built in mib_locations. default []
+
+Default value: `[]`
+
+##### <a name="additional_snmp_conf_options"></a>`additional_snmp_conf_options`
+
+Data type: `Array`
+
+Additional options to add to snmp.conf. default []
+
+Default value: `[]`
+
 ##### <a name="fping_location"></a>`fping_location`
 
 Data type: `String`
@@ -216,20 +238,6 @@ Data type: `String`
 
 Admin password for the default admin observium user - default 'changeme'
 
-##### <a name="apache_auth_require"></a>`apache_auth_require`
-
-Data type: `String`
-
-Apache auth require paramter - default 'all granted'
-
-##### <a name="apache_access_log_file"></a>`apache_access_log_file`
-
-Data type: `String`
-
-Apache access log file
-
-Default value: default apache log dir, typically `/var/log/apache2/{FQDN}_access_ssl.log`
-
 ##### <a name="apache_bind_ip"></a>`apache_bind_ip`
 
 Data type: `String`
@@ -238,7 +246,13 @@ Bind IP address - default $facts['ipaddress']
 
 Default value: `$facts['networking']['ip']`
 
-##### <a name="apache_error_log_file"></a>`apache_error_log_file`
+##### <a name="apache_access_log"></a>`apache_access_log`
+
+Data type: `Stdlib::Unixpath`
+
+Apache access log file - default '/opt/observium/logs/access_log'
+
+##### <a name="apache_error_log"></a>`apache_error_log`
 
 Data type: `Stdlib::Unixpath`
 
@@ -265,39 +279,6 @@ Data type: `String`
 
 Apache auth require parameter - default 'all granted'
 
-##### <a name="custom_rewrite_conditions"></a>`custom_rewrite_conditions`
-
-Data type: `Array[Hash]`
-
-Custom rewrite conditions, note this will be added to the default rewrite conditions in .htaccess for the observium site
-
-Default value: `[]`
-
-##### <a name="apache_custom_options"></a>`apache_custom_options`
-
-Data type: `String`
-
-Apache custom options, example could be changing auth type or adding Shibboleth support,
-
-To add Shibboleth support you would add the following to your hiera data
-
-```
-observium::apache_custom_options:
-  auth_type: "shibboleth"
-  shib_request_settings:
-    requireSession: 1
-```
-
-Default value: {}
-
-##### <a name="apache_error_log_file"></a>`apache_error_log_file`
-
-Data type: `String`
-
-Apache error log file
-
-Default value: default apache log dir, typically `/var/log/apache2/{FQDN}_error_ssl.log`
-
 ##### <a name="apache_hostname"></a>`apache_hostname`
 
 Data type: `String`
@@ -317,14 +298,6 @@ Apache non SSL port - note if SSL is enabled this will have no effect - default 
 Data type: `Stdlib::Port`
 
 Apache SSL port - note if SSL isn't enable this will have no effect - defautl '443'
-
-##### <a name="custom_rewrite_lines"></a>`custom_rewrite_lines`
-
-Data type: `Array[String]`
-
-Custom rewrite lines, note this will be added to the default rewrite conditions in .htaccess for the observium site
-
-Default value: []
 
 ##### <a name="custom_ssl_cert"></a>`custom_ssl_cert`
 
@@ -409,3 +382,12 @@ Data type: `Optional[Array]`
 Array of additional configurations options to add to /opt/observium/config.php
 
 Default value: ``undef``
+
+##### <a name="custom_rewrite_lines"></a>`custom_rewrite_lines`
+
+Data type: `Array[String]`
+
+
+
+Default value: `[]`
+
