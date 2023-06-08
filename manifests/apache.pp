@@ -52,7 +52,7 @@ class observium::apache {
         { 'path'           => '/opt/observium/html/',
           'options'        => 'FollowSymLinks MultiViews',
           'allow_override' => 'All',
-          'auth_require'   => 'all granted',
+          'auth_require'   => $observium::apache_auth_require,
         } + $observium::apache_custom_options,
       ],
     }
