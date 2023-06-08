@@ -23,7 +23,7 @@ All notable changes to this project will be documented in this file.
  
 - Deprecated support for Ubuntu 18.04
 - Dropped Puppet 6 support
-- *Warning*: If upgrading puppetlabs-mysql from version <13 to version >= 13 may cause issues with existing mysql installations. Proceed with caution. This results in any Ubuntu 20.04 or later systems being switched from using mysql to mariadb uncleanly.
+- **Warning:** If upgrading puppetlabs-mysql from version <13 to version >= 13 may cause issues with existing mysql installations. Proceed with caution. This results in any Ubuntu 20.04 or later systems being switched from using mysql to mariadb uncleanly.
 
 Thanks to https://github.com/i0dev for their efforts on this release :)
 
