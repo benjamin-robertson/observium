@@ -9,8 +9,8 @@
 # As the snmp packages come without MIB files due to license reasons, loading
 # of MIBs is disabled by default. If you added the MIBs you can reenable
 # loading them by commenting out the following line.
-<% if $mib_locations { %>
-mibs : <%=$mib_locations.join(':')%>
+<% if $mib_locations { -%>
+mibs : <%=$mib_locations.join(':')-%>
 <% } else { %>
 mibs :
 <% } %>
