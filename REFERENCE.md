@@ -90,7 +90,6 @@ The following parameters are available in the `observium` class:
 * [`repos`](#repos)
 * [`gpgkeys`](#gpgkeys)
 * [`observium_additional_conf`](#observium_additional_conf)
-* [`custom_rewrite_lines`](#custom_rewrite_lines)
 
 ##### <a name="auth_mechanism"></a>`auth_mechanism`
 
@@ -382,12 +381,4 @@ Data type: `Optional[Array]`
 Array of additional configurations options to add to /opt/observium/config.php
 
 Default value: ``undef``
-
-##### <a name="custom_rewrite_lines"></a>`custom_rewrite_lines`
-
-Data type: `Array[String]`
-
-
-
-Default value: `[]`
 
