@@ -19,6 +19,7 @@ class observium::mariadb {
       }
       'Debian': {
         Class { '::mysql::server':
+          # TODO: This should not just be commented out.
           #package_name   => 'mariadb-server',
           #package_ensure => 'present',
           #service_name   => 'mysqld',
