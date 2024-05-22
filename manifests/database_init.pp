@@ -17,9 +17,12 @@ class observium::database_init {
     unless  => "${mysql_location} -u ${observium::db_user} --password='${observium::db_password}' observium -e \"select * from observium.users\"",
   }
 
-  exec { 'Create admin user':
-    command => "/opt/observium/adduser.php admin ${observium::admin_password} 10",
-    unless  => "${mysql_location} -u ${observium::db_user} --password='${observium::db_password}' observium -e \"select * from observium.users WHERE username LIKE 'admin'\" | grep admin",
+  # when auth_mechanism is 'remote', privilege level is given by observium's auth_remote_userlevel setting
+  unless $observium::auth_mechanism == 'remote' {
+    exec { 'Create admin user':
+      command => "/opt/observium/adduser.php admin ${observium::admin_password} 10",
+      unless  => "${mysql_location} -u ${observium::db_user} --password='${observium::db_password}' observium -e \"select * from observium.users WHERE username LIKE 'admin'\" | grep admin",
+    }
   }
 
   # add local host to database
