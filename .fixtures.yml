@@ -4,41 +4,47 @@
 fixtures:
   forge_modules:
     stdlib: 
-      repo: "puppetlabs/stdlib"
-      ref: "8.6.0"
+      repo: "puppetlabs/stdlib" # needs stdlib 9 >
+      ref: "9.6.0"
     puppetlabs-yumrepo_core:
       repo: "puppetlabs/yumrepo_core"
-      ref: "2.0.0"
+      ref: "2.1.0"
     puppet-archive:
       repo: "puppet/archive"
-      ref: "5.0.0"
+      ref: "7.1.0"
     puppetlabs-mysql:
-      repo: "puppetlabs/mysql"
-      ref: "13.3.0"
+      repo: "puppetlabs/mysql" # needs 15 or > 
+      ref: "15.0.0"
     puppetlabs-cron_core:
       repo: "puppetlabs/cron_core"
-      ref: "1.0.5"
+      ref: "1.3.0"
     puppet-selinux:
-      repo: "puppet/selinux"
-      ref: "3.4.0"
+      repo: "puppet/selinux" # needs stdlib 9 > 
+      ref: "4.1.0" # needs 4>
     puppetlabs-apache:
       repo: "puppetlabs/apache"
-      ref: "10.0.0"
+      ref: "12.1.0"
     puppet-snmp:
-      repo: "puppet/snmp"
-      ref: "5.1.1"
+      repo: "puppet/snmp" # needs systemd 2.5.1 >
+      ref: "7.1.0"
     puppet-firewalld:
       repo: "puppet/firewalld"
-      ref: "4.4.0"
-    domkrm-ufw:
+      ref: "5.0.0"
+    domkrm-ufw: # consider moving to another modules for ufw
       repo: "domkrm/ufw"
       ref: "1.1.4"
-    camptocamp-systemd:
-      repo: "camptocamp/systemd"
-      ref: "3.0.0"
-    puppetlabs-concat:
+    puppet-systemd: # inifile is dep
+      repo: "puppet/systemd"
+      ref: "7.0.0"
+    puppetlabs-concat: # needs stdlib 9 > 
       repo: "puppetlabs/concat"
-      ref: "7.0.1"
+      ref: "9.0.2"
     puppetlabs-augeas_core:
       repo: "puppetlabs/augeas_core"
-      ref: "1.1.2"
+      ref: "1.5.0"
+  repositories:
+    provision: https://github.com/puppetlabs/provision.git
+    puppet_agent:
+      repo: https://github.com/puppetlabs/puppetlabs-puppet_agent.git
+      ref: v4.19.0
+    facts: https://github.com/puppetlabs/puppetlabs-facts.git
