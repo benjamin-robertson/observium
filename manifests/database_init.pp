@@ -10,7 +10,6 @@ class observium::database_init {
   # Lookup location of mysql binary
   $mysql_location = lookup(observium::mysql_location, String)
 
-  # TODO: is this right?
   # init the database if the user table is not present
   exec { 'init observium databse':
     command => '/opt/observium/discovery.php -u',
