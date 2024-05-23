@@ -99,4 +99,6 @@ jobs:
       if: ${{ always() }}
       continue-on-error: true
       run: |
+        ls -lh ./spec/fixtures/
+        cat ./spec/fixtures/litmus_inventory.yaml
         bundle exec rake 'litmus:tear_down'
