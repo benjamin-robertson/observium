@@ -76,6 +76,11 @@ jobs:
       run: |
         bundle exec rake spec_prep
 
+    - name: check vars
+      run: |
+        echo export
+        echo env
+
     - name: Provision test environment
       run: |
         bundle exec bolt --modulepath spec/fixtures/modules plan run observium::acceptance::provision_integration image=${{ matrix.platform }}
