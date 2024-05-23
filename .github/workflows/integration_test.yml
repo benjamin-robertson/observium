@@ -78,8 +78,7 @@ jobs:
 
     - name: check vars
       run: |
-        echo export
-        echo env
+        export
 
     - name: Provision test environment
       run: |
