@@ -82,7 +82,8 @@ jobs:
 
     - name: Provision test environment
       run: |
-        bundle exec bolt --modulepath spec/fixtures/modules plan run observium::acceptance::provision_integration image=${{ matrix.platform }}
+        bundle exec bolt --modulepath spec/fixtures/modules task run provision::provision_service --target localhost action=provision platform=centos-stream8 vars=observium
+        # bundle exec bolt --modulepath spec/fixtures/modules plan run observium::acceptance::provision_integration image=${{ matrix.platform }}
         # Redact password
         FILE='spec/fixtures/litmus_inventory.yaml'
         sed -e 's/password: .*/password: "[redacted]"/' < $FILE || true
