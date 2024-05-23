@@ -3,6 +3,10 @@
 require 'spec_helper_acceptance'
 
 describe 'Installation', if: ['centos', 'redhat', 'ubuntu'].include?(os[:family]) do
+    # before(:all) do
+    #     system('yum -y install crontabs')
+    # end
+
     let(:pp) do
       <<-MANIFEST
         include observium
@@ -21,4 +25,4 @@ describe 'Installation', if: ['centos', 'redhat', 'ubuntu'].include?(os[:family]
     describe port(80) do
       it { is_expected.to be_listening }
     end
-  end
+end
