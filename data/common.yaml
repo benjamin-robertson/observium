@@ -14,6 +14,9 @@ observium::snmpv3_authpass: "setme1234"
 observium::snmpv3_authalgo: "SHA"
 observium::snmpv3_cryptopass: "setme1234"
 observium::snmpv3_cryptoalgo: "AES"
+observium::snmpd_agentaddress:
+  - udp:127.0.0.1:161
+  - udp6:[::1]:161
 observium::mib_locations:
   - /opt/observium/mibs/rfc
   - /opt/observium/mibs/net-snmp

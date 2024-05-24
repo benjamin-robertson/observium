@@ -174,6 +174,7 @@ class observium (
   Enum['SHA','MD5']                            $snmpv3_authalgo,
   String                                       $snmpv3_cryptopass,
   Enum['AES','DES']                            $snmpv3_cryptoalgo,
+  Array                                        $snmpd_agentaddress, # need to document if this stays in module 
   Array                                        $mib_locations,
   Array                                        $additional_mib_location      = [],
   Array                                        $additional_snmp_conf_options = [],
