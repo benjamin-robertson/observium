@@ -3,9 +3,9 @@
 require 'spec_helper_acceptance'
 
 describe 'Installation', if: ['centos', 'redhat', 'ubuntu'].include?(os[:family]) do
-    # before(:all) do
-    #     system('yum -y install crontabs')
-    # end
+    before(:all) do
+      install_packge('crontabs')
+    end
 
     let(:pp) do
       <<-MANIFEST
