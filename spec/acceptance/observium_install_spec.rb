@@ -7,6 +7,8 @@ describe 'Installation', if: ['centos', 'redhat', 'ubuntu'].include?(os[:family]
       install_packge('crontabs')
     end
 
+    let(:hiera_config) { 'hiera-rpsec.yaml' }
+
     let(:pp) do
       <<-MANIFEST
         include observium
