@@ -1,6 +1,7 @@
 # frozen_string_literal: true
 
 require 'spec_helper_acceptance'
+require 'rspec-puppet-facts'
 
 describe 'Installation', if: ['centos', 'redhat', 'ubuntu'].include?(os[:family]) do
     before(:all) do
