@@ -16,7 +16,7 @@ observium::snmpv3_cryptopass: "setme1234"
 observium::snmpv3_cryptoalgo: "AES"
 observium::snmpd_agentaddress:
   - udp:127.0.0.1:161
-  # - udp6:[::1]:161
+  # - udp6:[::1]:161 for litmus tests to pass
 observium::mib_locations:
   - /opt/observium/mibs/rfc
   - /opt/observium/mibs/net-snmp
