@@ -97,7 +97,7 @@ jobs:
 
     - name: Run integration tests
       run: |
-        bundle exec rake observium:integration
+        bundle exec rake litmus:acceptance:parallel
 
     - name: Remove test environment
       if: ${{ always() }}
