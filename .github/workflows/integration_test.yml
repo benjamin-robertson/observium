@@ -91,9 +91,10 @@ jobs:
         FILE='spec/fixtures/litmus_inventory.yaml'
         sed -e 's/password: .*/password: "[redacted]"/' < $FILE || true
 
-    - name: Install Agents
+    - name: Install Agents and module
       run: |
         bundle exec rake 'litmus:install_agent'
+        bundle exec rake litmus:install_module
 
     - name: Run integration tests
       run: |
