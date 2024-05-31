@@ -9,7 +9,11 @@ describe 'observium' do
 
       it { is_expected.to compile }
 
-      
+      if :operatingsystem == 'RedHat' 
+        it { is_expected.to contain_service('httpd') }
+      elsif :operatingsystem == 'Ubuntu'
+        it { is_expected.to contain_service('apache2') }
+      end
     end
   end
 end
