@@ -5,7 +5,11 @@ require 'rspec-puppet-facts'
 
 describe 'Installation', if: ['centos', 'redhat', 'ubuntu'].include?(os[:family]) do
     before(:all) do
-      install_packge('crontabs')
+      if os[:family] == 'redhat'
+        install_packge('crontabs')
+      elsif os[:family] == 'ubuntu'
+        install_packge('cron')
+      end
     end
 
     let(:hiera_config) { 'hiera-rpsec.yaml' }
