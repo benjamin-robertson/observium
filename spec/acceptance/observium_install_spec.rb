@@ -12,11 +12,13 @@ describe 'Installation', if: ['centos', 'redhat', 'ubuntu'].include?(os[:family]
       end
     end
 
-    let(:hiera_config) { 'hiera-rpsec.yaml' }
+    # let(:hiera_config) { 'hiera-rpsec.yaml' } # serverspec doesn't seem to respect this.
 
     let(:pp) do
       <<-MANIFEST
-        include observium
+        class { 'observium':
+          snmpd_agentaddress => ['udp:127.0.0.1:161']
+        }
       MANIFEST
     end
   
