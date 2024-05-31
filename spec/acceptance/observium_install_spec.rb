@@ -26,8 +26,8 @@ describe 'Installation', if: ['centos', 'redhat', 'ubuntu'].include?(os[:family]
   
     describe file("/opt/observium/config.php") do
       it { is_expected.to be_file }
-      its(:content) { should contain '$config[\'install_dir\'] = "/opt/observium"' }
-      its(:content) { should contain '$config[\'db_host\']      = \'localhost\';' }
+      its(:content) { should contain "$config['install_dir'] = \"/opt/observium\"" }
+      its(:content) { should contain "$config['db_host']      = 'localhost';" }
     end
   
     describe port(80) do
