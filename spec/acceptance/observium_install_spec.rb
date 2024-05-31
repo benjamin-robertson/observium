@@ -37,21 +37,21 @@ describe 'Installation', if: ['centos', 'redhat', 'ubuntu'].include?(os[:family]
     # Red hat specifc checks
     if os[:family] == 'redhat'
 
-      descrube service('httpd') do
+      describe service('httpd') do
         it { should be_running }
       end
 
-      descrube service('snmpd') do
+      describe service('snmpd') do
         it { should be_running }
       end
 
     elsif os[:family] == 'ubuntu'
 
-      descrube service('apache2') do
+      describe service('apache2') do
         it { should be_running }
       end
 
-      descrube service('snmpd') do
+      describe service('snmpd') do
         it { should be_running }
       end
 
