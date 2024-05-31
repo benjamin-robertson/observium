@@ -26,10 +26,35 @@ describe 'Installation', if: ['centos', 'redhat', 'ubuntu'].include?(os[:family]
   
     describe file("/opt/observium/config.php") do
       it { is_expected.to be_file }
-    #   its(:content) { is_expected.to match %r{key = default value} }
+      its(:content) { should contain '$config[\'install_dir\'] = "/opt/observium"' }
+      its(:content) { should contain '$config[\'db_host\']      = \'localhost\';' }
     end
   
     describe port(80) do
       it { is_expected.to be_listening }
     end
+
+    # Red hat specifc checks
+    if os[:family] == 'redhat'
+
+      descrube service('httpd') do
+        it { should be_running }
+      end
+
+      descrube service('snmpd') do
+        it { should be_running }
+      end
+
+    elsif os[:family] == 'ubuntu'
+
+      descrube service('apache2') do
+        it { should be_running }
+      end
+
+      descrube service('snmpd') do
+        it { should be_running }
+      end
+
+    end
+
 end
