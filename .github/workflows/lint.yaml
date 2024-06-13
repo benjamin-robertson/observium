@@ -1,5 +1,5 @@
 ---
-name: "Unit Testing"
+name: "Lint testing"
 
 on: 
   push:
