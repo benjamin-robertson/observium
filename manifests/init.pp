@@ -62,6 +62,9 @@
 #     Crypto algorithm - default 'AES'
 #     Valid options - ['AES','DES']
 # 
+# @param snmpd_agentaddress
+#     Array Snmp_agentaddress - default ['udp:127.0.0.1:161','udp6:[::1]:161']
+#
 # @param mib_locations
 #     Miblocations for observium to add to snmp.conf, default ['/opt/observium/mibs/rfc','/opt/observium/mibs/net-snmp']
 #
