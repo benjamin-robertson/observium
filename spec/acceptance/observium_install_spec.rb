@@ -37,7 +37,7 @@ describe 'Installation', if: ['centos', 'redhat', 'ubuntu'].include?(os[:family]
   end
 
   describe cron do
-    it { should have_entry('*/5 * * * *  /opt/observium/discovery.php -h all >> /dev/null 2>&1').with_user('root') }
+    it { should have_entry('33 */6 * * * /opt/observium/discovery.php -h all >> /dev/null 2>&1').with_user('root') }
   end
 
   # Red hat specifc checks
@@ -49,6 +49,22 @@ describe 'Installation', if: ['centos', 'redhat', 'ubuntu'].include?(os[:family]
 
     describe service('snmpd') do
       it { is_expected.to be_running }
+    end
+
+    describe package('python3-PyMySQL') do
+      it { should be_installed }
+    end
+
+    describe selinux do
+      it { should be_permissive }
+    end
+
+    describe yumrepo('opennms-common') do
+      it { should exist }
+    end
+
+    describe yumrepo('epel') do
+      it { should exist }
     end
 
   elsif os[:family] == 'ubuntu'
