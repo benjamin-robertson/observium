@@ -36,6 +36,10 @@ describe 'Installation', if: ['centos', 'redhat', 'ubuntu'].include?(os[:family]
     it { is_expected.to be_listening }
   end
 
+  describe cron do
+    it { should have_entry('*/5 * * * *  /opt/observium/discovery.php -h all >> /dev/null 2>&1').with_user('root') }
+  end
+
   # Red hat specifc checks
   if os[:family] == 'redhat'
 
