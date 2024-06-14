@@ -39,7 +39,8 @@ describe 'Installation', if: ['centos', 'redhat', 'ubuntu'].include?(os[:family]
   end
 
   describe command('/usr/bin/curl http://127.0.0.1 -I') do
-    its(:exit_status) { should eq 0 }
+    # its(:exit_status) { should eq 0 }
+    its(:stdout) { should contain 'HTTP/1.1 200 OK' }
   end
 
   describe cron do
