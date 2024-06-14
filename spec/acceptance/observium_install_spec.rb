@@ -43,7 +43,7 @@ describe 'Installation', if: ['centos', 'redhat', 'ubuntu'].include?(os[:family]
   #   its(:stdout) { should contain 'HTTP/1.1 200 OK' }
   # end
 
-  describe command('pwd') do
+  describe Command('pwd') do
     its(:exit_status) { is_expected.to match(0) }
   end
 
