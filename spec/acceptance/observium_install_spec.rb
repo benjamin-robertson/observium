@@ -39,7 +39,7 @@ describe 'Installation', if: ['centos', 'redhat', 'ubuntu'].include?(os[:family]
   end
 
   describe command('curl http://127.0.0.1 -I') do
-    its(:exit_status) { is_expected.to eq 0 }
+    its(:exit_status) { should eq 0 }
   end
 
   describe cron do
