@@ -7,8 +7,10 @@ describe 'Installation', if: ['centos', 'redhat', 'ubuntu'].include?(os[:family]
   before(:all) do
     if os[:family] == 'redhat'
       install_packge('crontabs')
+      install_packge('curl')
     elsif os[:family] == 'ubuntu'
       install_packge('cron')
+      install_packge('curl')
     end
   end
 
@@ -34,6 +36,10 @@ describe 'Installation', if: ['centos', 'redhat', 'ubuntu'].include?(os[:family]
 
   describe port(80) do
     it { is_expected.to be_listening }
+  end
+
+  describe command('curl http://127.0.0.1 -I') do
+    its(:exit_status) { is_expected.to eq 0 }
   end
 
   describe cron do
