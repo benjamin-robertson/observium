@@ -44,7 +44,7 @@ describe 'Installation', if: ['centos', 'redhat', 'ubuntu'].include?(os[:family]
   # end
 
   describe command('pwd') do
-    its(:exit_status) { is_expected.to eq(0) }
+    its(:exit_status) { is_expected.to match(0) }
   end
 
   describe cron do
