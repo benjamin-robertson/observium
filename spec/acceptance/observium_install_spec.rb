@@ -49,7 +49,7 @@ describe 'Installation', if: ['centos', 'redhat', 'ubuntu'].include?(os[:family]
   end
 
   describe cron do
-    it { should have_entry('5 13 * * * /opt/observium/housekeeping.php -ysel').with_user('root') }
+    it { should have_entry('13 5 * * * /opt/observium/housekeeping.php -ysel').with_user('root') }
   end
 
   describe cron do
@@ -89,7 +89,7 @@ describe 'Installation', if: ['centos', 'redhat', 'ubuntu'].include?(os[:family]
       it { is_expected.to be_running }
     end
 
-    describe package(os:[release]) do
+    describe package(os[:release]) do
       it { should be_installed }
     end
 
