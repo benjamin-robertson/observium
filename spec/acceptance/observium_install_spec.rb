@@ -37,23 +37,23 @@ describe 'Installation', if: ['centos', 'redhat', 'ubuntu'].include?(os[:family]
   end
 
   describe cron do
-    it { should have_entry('33 */6 * * * /opt/observium/discovery.php -h all >> /dev/null 2>&1').with_user('root') }
+    it { is_expected.to have_entry('33 */6 * * * /opt/observium/discovery.php -h all >> /dev/null 2>&1').with_user('root') }
   end
 
   describe cron do
-    it { should have_entry('*/5 * * * * /opt/observium/discovery.php -h new >> /dev/null 2>&1').with_user('root') }
+    it { is_expected.to have_entry('*/5 * * * * /opt/observium/discovery.php -h new >> /dev/null 2>&1').with_user('root') }
   end
 
   describe cron do
-    it { should have_entry('*/5 * * * * /opt/observium/poller-wrapper.py >> /dev/null 2>&1').with_user('root') }
+    it { is_expected.to have_entry('*/5 * * * * /opt/observium/poller-wrapper.py >> /dev/null 2>&1').with_user('root') }
   end
 
   describe cron do
-    it { should have_entry('13 5 * * * /opt/observium/housekeeping.php -ysel').with_user('root') }
+    it { is_expected.to have_entry('13 5 * * * /opt/observium/housekeeping.php -ysel').with_user('root') }
   end
 
   describe cron do
-    it { should have_entry('47 4 * * * /opt/observium/housekeeping.php -yrptb').with_user('root') }
+    it { is_expected.to have_entry('47 4 * * * /opt/observium/housekeeping.php -yrptb').with_user('root') }
   end
 
   # Red hat specifc checks
@@ -68,15 +68,15 @@ describe 'Installation', if: ['centos', 'redhat', 'ubuntu'].include?(os[:family]
     end
 
     describe package('python3-PyMySQL') do
-      it { should be_installed }
+      it { is_expected.to be_installed }
     end
 
     describe yumrepo('opennms-common') do
-      it { should exist }
+      it { is_expected.to exist }
     end
 
     describe yumrepo('epel') do
-      it { should exist }
+      it { is_expected.to exist }
     end
 
   elsif os[:family] == 'ubuntu'
@@ -89,9 +89,24 @@ describe 'Installation', if: ['centos', 'redhat', 'ubuntu'].include?(os[:family]
       it { is_expected.to be_running }
     end
 
-    describe package(os[:release]) do
-      it { should be_installed }
+    if os[:release] == '22.04'
+      describe package('imagemagick') do
+        it { is_expected.to be_installed }
+      end
+
+      describe package('php8.1-ldap') do
+        it { is_expected.to be_installed }
+      end
     end
 
+    if os[:release] == '20.04'
+      describe package('php7.4-json') do
+        it { is_expected.to be_installed }
+      end
+
+      describe package('php7.4-ldap') do
+        it { is_expected.to be_installed }
+      end
+    end
   end
 end
