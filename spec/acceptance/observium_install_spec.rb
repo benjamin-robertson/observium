@@ -38,16 +38,10 @@ describe 'Installation', if: ['centos', 'redhat', 'ubuntu'].include?(os[:family]
     it { is_expected.to be_listening }
   end
 
-  # describe command('/usr/bin/curl http://127.0.0.1 -I') do
-  #   its(:exit_status) { should eq 0 }
-  #   its(:stdout) { should contain 'HTTP/1.1 200 OK' }
-  # end
-
   describe command('/usr/bin/curl http://127.0.0.1 -I') do
-    its('exit_status') { should eq 0 }
+    its(:exit_status) { should eq 0 }
+    its(:stdout) { should contain 'HTTP/1.1 200 OK' }
   end
-  
-  
 
   # describe command('pwd') do
   #   its(:exit_status) { is_expected.to match(0) }
