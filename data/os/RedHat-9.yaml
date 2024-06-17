@@ -1,3 +1,4 @@
+---
 observium::repos:
   epel:
     ensure: 'present'

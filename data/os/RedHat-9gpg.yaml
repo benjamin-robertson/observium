@@ -1,3 +1,4 @@
+---
 observium::gpgkeys:
   /etc/pki/rpm-gpg/RPM-GPG-KEY-EPEL-9: # https://dl.fedoraproject.org/pub/epel/RPM-GPG-KEY-EPEL-9
     content: |

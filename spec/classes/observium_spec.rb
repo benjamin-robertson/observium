@@ -7,6 +7,8 @@ describe 'observium' do
     context "on #{os}" do
       let(:facts) { os_facts }
 
+      # it { is_expected.to contain_package(os_facts)}
+
       it { is_expected.to compile }
 
       it { is_expected.to contain_cron('discovery all devices').with_command('/opt/observium/discovery.php -h all >> /dev/null 2>&1').with_user('root') }
@@ -58,6 +60,28 @@ describe 'observium' do
           'name'   => 'RedHat',
           'release' => {
             'major' => '8',
+          },
+          'selinux' => {
+            'enabled' => true,
+            'current_mode' => 'enforcing',
+          },
+        }
+      }
+    end
+
+    it { is_expected.to contain_service('httpd') }
+    it { is_expected.to contain_package('python3-PyMySQL') }
+    it { is_expected.to contain_package('php-json') }
+  end
+
+  context 'on rhel9' do
+    let(:facts) do
+      {
+        'os' => {
+          'family' => 'RedHat',
+          'name'   => 'RedHat',
+          'release' => {
+            'major' => '9',
           },
           'selinux' => {
             'enabled' => true,
