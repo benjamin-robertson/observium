@@ -22,7 +22,7 @@ observium::repos:
   remi-modular:
     ensure: 'present'
     enabled: 1
-    descr: "Remi\'s Modular repository for Enterprise Linux $releasever - $basearch"
+    descr: "Remi's Modular repository for Enterprise Linux $releasever - $basearch"
     mirrorlist: "http://cdn.remirepo.net/enterprise/$releasever/modular/$basearch/mirror"
     gpgcheck: 1
     failovermethod: 'priority'
@@ -31,7 +31,7 @@ observium::repos:
   remi-safe:
     ensure: 'present'
     enabled: 1
-    descr: "Safe Remi\'s RPM repository for Enterprise Linux $releasever - $basearch"
+    descr: "Safe Remi's RPM repository for Enterprise Linux $releasever - $basearch"
     mirrorlist: "http://cdn.remirepo.net/enterprise/$releasever/safe/$basearch/mirror"
     gpgcheck: 1
     gpgkey: "file:///etc/pki/rpm-gpg/RPM-GPG-KEY-remi.el%{facts.os.release.major}"
