@@ -1,0 +1,84 @@
+observium::repos:
+  epel:
+    ensure: 'present'
+    enabled: 1
+    descr: "Extra Packages for Enterprise Linux %{facts.os.release.major} - $basearch"
+    # mirrorlist: "https://mirrors.fedoraproject.org/metalink?repo=epel-%{facts.os.release.major}&arch=$basearch"
+    metalink: "https://mirrors.fedoraproject.org/metalink?repo=epel-%{facts.os.release.major}&arch=$basearch&infra=$infra&content=$contentdir"
+    gpgcheck: 1
+    failovermethod: 'priority'
+    gpgkey: "file:///etc/pki/rpm-gpg/RPM-GPG-KEY-EPEL-%{facts.os.release.major}"
+    target: '/etc/yum.repos.d/epel.repo'
+  epel-next:
+    ensure: 'present'
+    enabled: 1
+    descr: "Extra Packages for Enterprise Linux %{facts.os.release.major} - Next - $basearch"
+    # mirrorlist: "https://mirrors.fedoraproject.org/metalink?repo=epel-%{facts.os.release.major}&arch=$basearch"
+    metalink: "https://mirrors.fedoraproject.org/metalink?repo=epel-next-%{facts.os.release.major}&arch=$basearch&infra=$infra&content=$contentdir"
+    gpgcheck: 1
+    failovermethod: 'priority'
+    gpgkey: "file:///etc/pki/rpm-gpg/RPM-GPG-KEY-EPEL-%{facts.os.release.major}"
+    target: '/etc/yum.repos.d/epel-next.repo'
+  remi-modular:
+    ensure: 'present'
+    enabled: 1
+    descr: "Remi\'s Modular repository for Enterprise Linux $releasever - $basearch"
+    mirrorlist: "http://cdn.remirepo.net/enterprise/$releasever/modular/$basearch/mirror"
+    gpgcheck: 1
+    failovermethod: 'priority'
+    gpgkey: "file:///etc/pki/rpm-gpg/RPM-GPG-KEY-remi.el%{facts.os.release.major}"
+    target: '/etc/yum.repos.d/epel-next.repo'
+  remi-safe:
+    ensure: 'present'
+    enabled: 1
+    descr: "Safe Remi\'s RPM repository for Enterprise Linux $releasever - $basearch"
+    mirrorlist: "http://cdn.remirepo.net/enterprise/$releasever/safe/$basearch/mirror"
+    gpgcheck: 1
+    gpgkey: "file:///etc/pki/rpm-gpg/RPM-GPG-KEY-remi.el%{facts.os.release.major}"
+    target: '/etc/yum.repos.d/epel-next.repo'
+  opennms-common:
+    ensure: 'present'
+    enabled: 1
+    descr: 'RPMs Common to All OpenNMS Architectures (stable)'
+    baseurl: 'https://yum.opennms.org/stable/common'
+    gpgcheck: 1
+    gpgkey: 'file:///etc/yum.repos.d/opennms-repo-stable-rhel%{facts.os.release.major}.gpg'
+    target: '/etc/yum.repos.d/opennms-repo-stable-rhel%{facts.os.release.major}.repo'
+  opennms-rhel%{facts.os.release.major}:
+    ensure: 'present'
+    enabled: 1
+    descr: 'RedHat Enterprise Linux %{facts.os.release.major}.x and CentOS %{facts.os.release.major}.x (stable)'
+    baseurl: 'https://yum.opennms.org/stable/rhel%{facts.os.release.major}'
+    gpgcheck: 1
+    gpgkey: 'file:///etc/yum.repos.d/opennms-repo-stable-rhel%{facts.os.release.major}.gpg'
+    target: '/etc/yum.repos.d/opennms-repo-stable-rhel%{facts.os.release.major}.repo'
+
+observium::required_packages:
+  - 'wget'
+  - 'php'
+  - 'php-ldap'
+  - 'php-opcache'
+  - 'php-mysqlnd'
+  - 'php-gd'
+  - 'php-posix'
+  - 'php-pear'
+  - 'cronie'
+  - 'net-snmp-utils'
+  - 'fping'
+  - 'python3-PyMySQL'
+  - 'rrdtool'
+  - 'subversion'
+  - 'whois'
+  - 'ipmitool'
+  - 'graphviz'
+  - 'ImageMagick'
+  - 'php-sodium'
+  - 'libvirt'
+  - 'php-json'
+  # - 'python3' Not required for RHEL9
+observium::fping_location: "/sbin/fping"
+observium::apache_user: "apache"
+observium::apache_service: "httpd"
+observium::openssl_location: "/bin/openssl"
+observium::mysql_location: "/bin/mysql"
+observium::apache_php_version: "8"

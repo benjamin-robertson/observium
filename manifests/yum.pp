@@ -41,6 +41,20 @@ class observium::yum {
           unless  => '/bin/dnf module list php | grep "remi-7.2 \\[e\\]"',
         }
       }
+      '9': {
+        $observium::repos.each | String $reponame, Hash $repoinfo | {
+          yumrepo { $reponame:
+            *      => $repoinfo,
+            before => Exec['Set remi-8.2 as default php provider'],
+          }
+        }
+
+        # Set remi-8.2 module as default php provider RHEL 9 only
+        exec { 'Set remi-8.2 as default php provider':
+          command => '/bin/dnf module reset php -y | /bin/dnf module enable php:remi-8.2',
+          unless  => '/bin/dnf module list php | grep "remi-8.2 \\[e\\]"',
+        }
+      }
       default: { fail('Unsupported operating system, bailing out!!') }
     }
   }
