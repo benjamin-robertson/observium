@@ -33,6 +33,14 @@ class observium::packages {
             creates => '/bin/python',
           }
         }
+        '9': {
+          # Running on rhel 9
+          $required_packages = lookup('observium::required_packages', Array)
+          package { $required_packages:
+            ensure  => 'installed',
+            require => Class['observium::yum'],
+          }
+        }
         default: { fail('Unsupported operating system, bailing out!!') }
       }
     }
