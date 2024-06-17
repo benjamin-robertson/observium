@@ -7,8 +7,6 @@ describe 'observium' do
     context "on #{os}" do
       let(:facts) { os_facts }
 
-      # it { is_expected.to contain_package(os_facts)}
-
       it { is_expected.to compile }
 
       it { is_expected.to contain_cron('discovery all devices').with_command('/opt/observium/discovery.php -h all >> /dev/null 2>&1').with_user('root') }
