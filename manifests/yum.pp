@@ -51,7 +51,7 @@ class observium::yum {
 
         # Set remi-8.2 module as default php provider RHEL 9 only
         exec { 'Set remi-8.2 as default php provider':
-          command => '/bin/dnf module reset php -y | /bin/dnf module enable php:remi-8.2',
+          command => '/bin/dnf module reset php -y | /bin/dnf module -y install php:remi-8.2',
           unless  => '/bin/dnf module list php | grep "remi-8.2 \\[e\\]"',
         }
       }
