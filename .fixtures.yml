@@ -23,7 +23,7 @@ fixtures:
       ref: "4.1.0" # needs 4>
     puppetlabs-apache:
       repo: "puppetlabs/apache"
-      ref: "12.0.3"
+      ref: "12.1.0"
     puppet-snmp:
       repo: "puppet/snmp" # needs systemd 2.5.1 >
       ref: "7.1.0"
