@@ -9,7 +9,7 @@ on:
 jobs:
   setup_matrix:
     name: "Setup Test Matrix"
-    runs-on: ubuntu-20.04
+    runs-on: ubuntu-22.04
     outputs:
       matrix: ${{ steps.get-matrix.outputs.matrix }}
 
@@ -35,11 +35,7 @@ jobs:
     - name: Setup Integration Test Matrix
       id: get-matrix
       run: |
-        if [ '${{ github.repository_owner }}' == 'benjamin-robertson' ]; then
-          echo  "matrix={'platform':['centos-stream8'],'collection':['puppet7-nightly', 'puppet8-nightly']}" >> $GITHUB_OUTPUT
-        else
-          echo  "matrix={}"  >> $GITHUB_OUTPUT
-        fi
+        echo  "matrix={'platform':['centos-stream8'],'collection':['puppet7-nightly', 'puppet8-nightly']}" >> $GITHUB_OUTPUT
 
   Unit:
     needs:

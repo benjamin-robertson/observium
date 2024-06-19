@@ -1,16 +1,19 @@
 ---
-name: "Integration Testing"
+name: "Acceptance Testing"
 
 on: 
   push:
     branches:
       - "*"
+  pull_request:
+    branches:
+      - "main"
 
 jobs:
 
   setup_matrix:
     name: "Setup Test Matrix"
-    runs-on: ubuntu-20.04
+    runs-on: ubuntu-22.04
     outputs:
       matrix: ${{ steps.get-matrix.outputs.matrix }}
 
@@ -36,11 +39,7 @@ jobs:
     - name: Setup Integration Test Matrix
       id: get-matrix
       run: |
-        if [ '${{ github.repository_owner }}' == 'benjamin-robertson' ]; then
-          echo  "matrix={'platform':['centos-stream8'],'collection':['puppet7-nightly', 'puppet8-nightly']}" >> $GITHUB_OUTPUT
-        else
-          echo  "matrix={}"  >> $GITHUB_OUTPUT
-        fi
+        echo  "matrix={'platform':['centos-stream8'],'collection':['puppet7-nightly', 'puppet8-nightly']}" >> $GITHUB_OUTPUT
 
   Integration:
     needs:
@@ -53,7 +52,7 @@ jobs:
       matrix: ${{fromJson(needs.setup_matrix.outputs.matrix)}}
 
     env:
-      PUPPET_GEM_VERSION: '~> 7.24'
+      PUPPET_GEM_VERSION: '~> 8.7'
       FACTER_GEM_VERSION: 'https://github.com/puppetlabs/facter#main'  # why is this set?
 
     steps:
@@ -82,15 +81,8 @@ jobs:
 
     - name: Provision test environment
       run: |
-        # location=`pwd`
-        # echo $location
-        # bundle exec bolt --modulepath spec/fixtures/modules task run provision::provision_service --target localhost action=provision platform=centos-stream8 vars=observium inventory=$location THis one use last
-        # bundle exec bolt --modulepath spec/fixtures/modules plan run observium::acceptance::provision_integration image=${{ matrix.platform }}
-        # Redact password
-        # bundle exec rake 'litmus:provision[docker, litmusimage/centos:stream8]'
         bundle exec rake 'litmus:provision_list[docker]'
         FILE='spec/fixtures/litmus_inventory.yaml'
-        # sed -e 's/password: .*/password: "[redacted]"/' < $FILE || true
 
     - name: Install Agents and module
       run: |
