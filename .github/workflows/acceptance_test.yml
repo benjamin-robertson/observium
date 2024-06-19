@@ -41,7 +41,8 @@ jobs:
       run: |
         echo  "matrix={'platform':['centos-stream8'],'collection':['puppet7-nightly', 'puppet8-nightly']}" >> $GITHUB_OUTPUT
 
-  Integration:
+  acceptance:
+    name: "Acceptance tests (${{matrix.platforms.label}}, ${{matrix.collection}})"
     needs:
       - setup_matrix
     if: ${{ needs.setup_matrix.outputs.matrix != '{}' }}
@@ -86,7 +87,8 @@ jobs:
 
     - name: Install Agents and module
       run: |
-        bundle exec rake 'litmus:install_agent'
+        # bundle exec rake 'litmus:install_agent'
+        bundle exec rake 'litmus:install_agent[${{ matrix.collection }}]'
         bundle exec rake litmus:install_module
 
     - name: Run integration tests
