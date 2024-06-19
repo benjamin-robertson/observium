@@ -5,7 +5,7 @@ require 'rspec-puppet-facts'
 
 describe 'Installation', if: ['centos', 'redhat', 'ubuntu'].include?(os[:family]) do
   before(:all) do
-    if os[:family] == 'redhat' and os[:release] != 9
+    if os[:family] == 'redhat' and os[:release] == '8'
       install_packge('crontabs')
       install_packge('curl')
     elsif os[:family] == 'ubuntu'
