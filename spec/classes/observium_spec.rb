@@ -3,6 +3,7 @@
 require 'spec_helper'
 
 describe 'observium' do
+  let(:hiera_config) { 'hiera-rpsec.yaml' }
   on_supported_os.each do |os, os_facts|
     context "on #{os}" do
       let(:facts) { os_facts }

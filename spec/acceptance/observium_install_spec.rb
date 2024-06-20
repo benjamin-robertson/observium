@@ -14,7 +14,7 @@ describe 'Installation', if: ['centos', 'redhat', 'ubuntu'].include?(os[:family]
     end
   end
 
-  # let(:hiera_config) { 'hiera-rpsec.yaml' } # serverspec doesn't seem to respect this.
+  let(:hiera_config) { 'hiera-rpsec.yaml' } # serverspec doesn't seem to respect this.
 
   let(:pp) do
     <<-MANIFEST
