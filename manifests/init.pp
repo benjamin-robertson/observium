@@ -217,30 +217,30 @@ class observium (
   }
 
   # Configure localsnmp
-  include observium::snmp
+  contain observium::snmp
 
   # install required packages
-  include observium::packages
+  contain observium::packages
 
   # Setup mariadb\mysql
-  include observium::mariadb
+  contain observium::mariadb
 
   # Install observium binary 
-  include observium::install
+  contain observium::install
 
   # Configure observium
-  include observium::config
+  contain observium::config
 
   # Database config
-  include observium::database_init
+  contain observium::database_init
 
   # Disable selinux
   if $facts['os']['family'] == 'RedHat' {
-    include observium::selinux
+    contain observium::selinux
   }
 
   # Configure apache
-  include observium::apache
+  contain observium::apache
 
   # Configure firewall
   if $manage_fw {
