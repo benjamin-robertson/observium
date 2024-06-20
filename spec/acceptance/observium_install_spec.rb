@@ -14,12 +14,17 @@ describe 'Installation', if: ['centos', 'redhat', 'ubuntu'].include?(os[:family]
     end
   end
 
-  let(:hiera_config) { 'hiera-rpsec.yaml' } # serverspec doesn't seem to respect this.
+  # let(:hiera_config) { 'hiera-rpsec.yaml' } # serverspec doesn't seem to respect this.
 
   let(:pp) do
     <<-MANIFEST
       class { 'observium':
         snmpd_agentaddress => ['udp:127.0.0.1:161']
+        db_password        => changeme,
+        rootdb_password    => hello123,
+        snmpv3_authpass    => setme1234,
+        snmpv3_cryptopass  => setme1234,
+        admin_password     => changeme
       }
     MANIFEST
   end
@@ -29,7 +34,7 @@ describe 'Installation', if: ['centos', 'redhat', 'ubuntu'].include?(os[:family]
     it 'applies idempotently' do
       idempotent_apply(pp)
     end
-  else 
+  else
     it 'applies' do
       # run manifest twice for 2204
       apply_manifest(pp)
