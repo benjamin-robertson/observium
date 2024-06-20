@@ -1,13 +1,12 @@
 {
-  "platform": [
-    "centos-stream8"
-  ],
   "collection": [
-    "puppet7",
-    "puppet8"
-  ],
-  "gem_version": [
-    "~> 7.31",
-    "~> 8.7"
+    {
+      "agent_version": "puppet7",
+      "gem_version": "~> 7.31"
+    },
+    {
+      "agent_version": "puppet8",
+      "gem_version": "~> 8.7"
+    }
   ]
 }

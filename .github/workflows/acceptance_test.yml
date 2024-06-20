@@ -44,7 +44,7 @@ jobs:
         cat $GITHUB_OUTPUT
 
   acceptance:
-    name: "Acceptance tests (${{matrix.platform}}, ${{matrix.collection}}, ${{matrix.gem_version}})"
+    name: "Acceptance tests (${{matrix.collection.agent_version}})"
     needs:
       - setup_matrix
     if: ${{ needs.setup_matrix.outputs.matrix != '{}' }}
@@ -55,7 +55,7 @@ jobs:
       matrix: ${{fromJson(needs.setup_matrix.outputs.matrix)}}
 
     env:
-      PUPPET_GEM_VERSION: ${{matrix.gem_version}}
+      PUPPET_GEM_VERSION: ${{matrix.collection.gem_version}}
       FACTER_GEM_VERSION: 'https://github.com/puppetlabs/facter#main'  # why is this set?
 
     steps:
@@ -90,7 +90,7 @@ jobs:
     - name: Install Agents and module
       run: |
         # bundle exec rake 'litmus:install_agent'
-        bundle exec rake 'litmus:install_agent[${{ matrix.collection }}]'
+        bundle exec rake 'litmus:install_agent[${{ matrix.collection.agent_version }}]'
         bundle exec rake litmus:install_module
 
     - name: Run integration tests

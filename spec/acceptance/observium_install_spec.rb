@@ -30,7 +30,9 @@ describe 'Installation', if: ['centos', 'redhat', 'ubuntu'].include?(os[:family]
       idempotent_apply(pp)
     end
   else 
-    apply_manifest(pp)
+    it 'applies' do
+      apply_manifest(pp)
+    end
   end
 
   describe file('/opt/observium/config.php') do
