@@ -41,6 +41,7 @@ jobs:
       run: |
         # echo "matrix=$(cat test_matrix.json | tr -s '\n' ' ')" >> $GITHUB_OUTPUT
         echo "matrix={'platform':['centos-stream8'],'collection':['puppet7', 'puppet8'],'gem_version':['~> 7.31', '~> 8.7']}" >> $GITHUB_OUTPUT
+        cat $GITHUB_OUTPUT
 
   acceptance:
     name: "Acceptance tests (${{matrix.platform}}, ${{matrix.collection}}, ${{matrix.gem_version}})"
