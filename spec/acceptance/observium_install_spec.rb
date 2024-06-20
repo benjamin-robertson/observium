@@ -19,7 +19,7 @@ describe 'Installation', if: ['centos', 'redhat', 'ubuntu'].include?(os[:family]
   let(:pp) do
     <<-MANIFEST
       class { 'observium':
-        snmpd_agentaddress => ['udp:127.0.0.1:161']
+        snmpd_agentaddress => ['udp:127.0.0.1:161'],
         db_password        => changeme,
         rootdb_password    => hello123,
         snmpv3_authpass    => setme1234,
