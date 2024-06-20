@@ -6,8 +6,9 @@
 #
 class observium::mariadb {
   assert_private()
+
   # Check we are managing mysql
-  if observium::manage_mysql {
+  if $observium::manage_mysql {
     case $facts['os']['family'] {
       'RedHat': {
         Class { '::mysql::server':
@@ -19,9 +20,6 @@ class observium::mariadb {
       }
       'Debian': {
         Class { '::mysql::server':
-          #package_name   => 'mariadb-server',
-          #package_ensure => 'present',
-          #service_name   => 'mysqld',
           root_password    => $observium::rootdb_password,
           override_options => {
             'mysqld' => {
