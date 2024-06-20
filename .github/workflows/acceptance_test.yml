@@ -42,7 +42,7 @@ jobs:
         echo "matrix=$(cat test_matrix.json | tr -s '\n' ' ')" >> $GITHUB_OUTPUT
 
   acceptance:
-    name: "Acceptance tests (${{matrix.platform}}, ${{matrix.collection}}, GEM ${{matrix.gem_version}})"
+    name: "Acceptance tests (${{matrix.platform}}, ${{matrix.collection}}, ${{matrix.gem_version}})"
     needs:
       - setup_matrix
     if: ${{ needs.setup_matrix.outputs.matrix != '{}' }}
