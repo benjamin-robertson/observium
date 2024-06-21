@@ -52,16 +52,51 @@ Please ensure you meet the dependency requirements and have the following in you
 - puppet-snmp
 - puppet-firewalld - only required for RHEL and if managing firewall
 - puppetlabs-resource_api
-- domkrm-ufw - only required for Ubuntu and if managing firewall
+- puppetlabs-firewall - only required for Ubuntu and if managing firewall
 - puppetlabs-translate
 - camptocamp-systemd
 
+### Password requirements ###
+
+Beginning with the 3.0.0 release, default passwords are no longer provided by this module. This was a insecure default as every instances of observium setup with these defaults would use the same passwords. 
+
+With the removal of the default, users now need to specify these password when using this module. There are two methods to do this in Puppet.
+
+1. Via parameters through resource like declarations. (Least preferred as you cannot protect these values)
+```
+class { 'observium':
+  db_password       => 'your_password_here',
+  rootdb_password   => 'your_password_here',
+  snmpv3_authpass   => 'your_password_here',
+  snmpv3_cryptopass => 'your_password_here',
+  admin_password    => 'very_secure',
+}
+```
+
+2. Via environment hiera. (Preferred as we can encrypt these values)
+Within environment hiera place the values as shown.
+```
+---
+observium::db_password: "your_password_here"
+observium::rootdb_password: "your_password_here"
+observium::snmpv3_authpass: "your_password_here"
+observium::snmpv3_cryptopass: "your_password_here"
+observium::admin_password: "very_secure"
+```
+
+These values should be encrypted using the [hiera-eyaml][11] gem. See Puppet [documentation][12].
 
 ### Beginning with observium
 
 In its most basic form you can install observium by
 ```
-include observium
+class { 'observium':
+  db_password       => 'your_password_here',
+  rootdb_password   => 'your_password_here',
+  snmpv3_authpass   => 'your_password_here',
+  snmpv3_cryptopass => 'your_password_here',
+  admin_password    => 'very_secure',
+}
 ```
 
 ## Usage
@@ -118,6 +153,7 @@ Tested with the following setups.
 - RHEL
     - 7
     - 8
+    - 9 
 - Rocky
     - 8
 - Ubuntu
@@ -134,7 +170,7 @@ RHEL 7 requires the following yum repos for installation - these will be automat
 - [remi-php72][7]
 - [remi-safe][8]
 
-RHEL 8 require the follwing yum repos for installation - these will be automatically added if you host has internet connection.
+RHEL 8 require the following yum repos for installation - these will be automatically added if you host has internet connection.
 
 - [EPEL][4]
 - [OpenNMS common][5]
@@ -144,6 +180,14 @@ RHEL 8 require the follwing yum repos for installation - these will be automatic
 /bin/dnf module -y install php:remi-7.2
 ```
 - [remi-safe][10]
+
+RHEL 9 require the following yum repos for installation - these will be automatically added if you host has internet connection.
+
+- [EPEL][4]
+- [OpenNMS common][5]
+- [OpenNMS RHEL8][13]
+- [remi-modular][14]
+- [remi-safe][14]
 
 
 ## Upgrading Observium 
@@ -175,4 +219,7 @@ If you find any issues with this module, please log them in the issues register 
 [8]: http://cdn.remirepo.net/enterprise/7/safe/mirro
 [9]: https://yum.opennms.org/stable/rhel8/
 [10]: https://rpms.remirepo.net/enterprise/8/
-
+[11]: https://github.com/voxpupuli/hiera-eyaml
+[12]: https://www.puppet.com/docs/puppet/8/securing-sensitive-data.html
+[13]: https://yum.opennms.org/stable/rhel9/
+[14]: https://rpms.remirepo.net/enterprise/9/
