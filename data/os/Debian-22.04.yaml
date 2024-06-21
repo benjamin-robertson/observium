@@ -25,6 +25,6 @@ observium::openssl_location: "/usr/bin/openssl"
 observium::mysql_location: "/usr/bin/mysql"
 observium::manage_selinux: false
 observium::debiansnmp_user: "Debian-snmp"
-observium::manage_fw: false
+# observium::manage_fw: false
 observium::db_charset: "utf8mb3"
 observium::db_collate: "utf8mb3_general_ci"
