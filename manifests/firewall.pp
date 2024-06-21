@@ -15,7 +15,7 @@ class observium::firewall {
     proto => 'icmp',
     jump  => 'accept',
   }
-  firewall { '001 accept all to lo interface':
+  -> firewall { '001 accept all to lo interface':
     proto   => 'all',
     iniface => 'lo',
     jump    => 'accept',
