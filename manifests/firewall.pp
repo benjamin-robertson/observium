@@ -1,6 +1,6 @@
 # Class: observium::firewall
 #
-# Manage UFW on ubuntu
+# Manage iptables on ubuntu
 #
 # @api private
 #
