@@ -186,7 +186,10 @@ RHEL 9 require the following yum repos for installation - these will be automati
 - [EPEL][4]
 - [OpenNMS common][5]
 - [OpenNMS RHEL8][13]
-- [remi-modular][14]
+- [remi-modular][14] - note you will need to enable php8.2 after adding this repo 
+```
+/bin/dnf module -y install php:remi-8.2
+```
 - [remi-safe][14]
 
 
