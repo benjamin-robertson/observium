@@ -30,9 +30,9 @@ fixtures:
     puppet-firewalld:
       repo: "puppet/firewalld"
       ref: "5.0.0"
-    domkrm-ufw: # consider moving to another modules for ufw
-      repo: "domkrm/ufw"
-      ref: "1.1.4"
+    puppetlabs-firewall:
+      repo: "puppetlabs/firewall"
+      ref: "8.0.2"
     puppet-systemd: # inifile is dep
       repo: "puppet/systemd"
       ref: "7.0.0"

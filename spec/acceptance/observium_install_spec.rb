@@ -14,7 +14,7 @@ describe 'Installation', if: ['centos', 'redhat', 'ubuntu'].include?(os[:family]
     end
   end
 
-  # let(:hiera_config) { 'hiera-rpsec.yaml' } # serverspec doesn't seem to respect this.
+  # let(:hiera_config) { 'hiera-rpsec.yaml' } # litmus doesn't seem to respect this.
 
   let(:pp) do
     <<-MANIFEST
@@ -46,7 +46,6 @@ describe 'Installation', if: ['centos', 'redhat', 'ubuntu'].include?(os[:family]
     it { is_expected.to be_file }
     it { is_expected.to contain "$config['install_dir'] = \"/opt/observium\"" }
     it { is_expected.to contain "$config['db_host']      = 'localhost';" }
-    # it { is_expected.to contain os[:release] }
   end
 
   describe port(80) do

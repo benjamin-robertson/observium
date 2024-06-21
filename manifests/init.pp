@@ -246,7 +246,7 @@ class observium (
   if $manage_fw {
     case $facts['os']['family'] {
       'RedHat': { include observium::firewalld }
-      'Debian': { include observium::firewallufw }
+      'Debian': { include observium::firewall }
       default: {}
     }
   }
