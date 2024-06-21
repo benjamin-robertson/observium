@@ -15,8 +15,8 @@
 * `observium::apache`: Class: observium::apache inherits observium  Configure apache server with virtual host for observium
 * `observium::config`: Class: observium::config  Configure observium configuration files  lint:ignore:140chars lint:ignore:arrow_alignment
 * `observium::database_init`: Class: obversium  Init the observium database after install.  lint:ignore:140chars
+* `observium::firewall`: Class: observium::firewall  Manage UFW on ubuntu
 * `observium::firewalld`: Class: observium::firewall  Manages firewall and opens ports for observium
-* `observium::firewallufw`: Class: observium::firewallufw  Manage UFW on ubuntu
 * `observium::install`: Class: observium::install  Creates folder structure for Observium, and install from tar
 * `observium::mariadb`: Class: observium::mariadb  Install mysql or mariadb - OS dependant
 * `observium::packages`: Class: observium::packages  Installs required packges for observium

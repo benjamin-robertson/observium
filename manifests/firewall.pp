@@ -52,4 +52,11 @@ class observium::firewall {
     proto => 'tcp',
     jump  => 'accept',
   }
+
+  # ensure we drop all other traffic
+  firewall { '999 drop all':
+    proto  => 'all',
+    jump   => 'drop',
+    before => undef,
+  }
 }
