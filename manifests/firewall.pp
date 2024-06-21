@@ -40,11 +40,11 @@ class observium::firewall {
     }
   }
   else {
-    firewall { "50 Allow http access ${observium::apache_port}":
-      dport => $observium::apache_port,
-      proto => 'tcp',
-      jump  => 'accept',
-    }
+    # firewall { "50 Allow http access ${observium::apache_port}":
+    #   dport => $observium::apache_port,
+    #   proto => 'tcp',
+    #   jump  => 'accept',
+    # }
   }
   # Ensure ssh is open
   firewall { '004 Allow inbound SSH':
