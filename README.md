@@ -171,7 +171,7 @@ RHEL 7 requires the following yum repos for installation - these will be automat
 - [remi-php72][7]
 - [remi-safe][8]
 
-RHEL 8 require the following yum repos for installation - these will be automatically added if you host has internet connection.
+RHEL 8 requires the following yum repos for installation - these will be automatically added if you host has internet connection.
 
 - [EPEL][4]
 - [OpenNMS common][5]
@@ -182,7 +182,7 @@ RHEL 8 require the following yum repos for installation - these will be automati
 ```
 - [remi-safe][10]
 
-RHEL 9 require the following yum repos for installation - these will be automatically added if you host has internet connection.
+RHEL 9 requires the following yum repos for installation - these will be automatically added if you host has internet connection.
 
 - [EPEL][4]
 - [OpenNMS common][5]
