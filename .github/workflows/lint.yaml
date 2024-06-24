@@ -5,6 +5,9 @@ on:
   pull_request:
     branches:
       - "main"
+  push:
+    branches:
+      - "*"
 
 jobs:
   setup_matrix:
@@ -35,9 +38,11 @@ jobs:
     - name: Setup Integration Test Matrix
       id: get-matrix
       run: |
-        echo  "matrix={'platform':['centos-stream8'],'collection':['puppet7-nightly', 'puppet8-nightly']}" >> $GITHUB_OUTPUT
+        echo "matrix=$(cat test_matrix.json | tr -s '\n' ' ')" >> $GITHUB_OUTPUT
+        cat $GITHUB_OUTPUT
 
-  Unit:
+  lint:
+    name: "Lint tests (${{matrix.collection.agent_version}})"
     needs:
       - setup_matrix
     if: ${{ needs.setup_matrix.outputs.matrix != '{}' }}
@@ -48,7 +53,7 @@ jobs:
       matrix: ${{fromJson(needs.setup_matrix.outputs.matrix)}}
 
     env:
-      PUPPET_GEM_VERSION: '~> 8.7'
+      PUPPET_GEM_VERSION: ${{matrix.collection.gem_version}}
       FACTER_GEM_VERSION: 'https://github.com/puppetlabs/facter#main'  # why is this set?
 
     steps:
