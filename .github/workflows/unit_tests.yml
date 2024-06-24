@@ -19,17 +19,14 @@ jobs:
     steps:
     - name: Checkout Source
       uses: actions/checkout@v3
-      if: ${{ github.repository_owner == 'benjamin-robertson' }}
 
     - name: Activate Ruby 3.2
       uses: ruby/setup-ruby@v1
-      if: ${{ github.repository_owner == 'benjamin-robertson' }}
       with:
         ruby-version: "3.2.3"
         bundler-cache: true
 
     - name: Print bundle environment
-      if: ${{ github.repository_owner == 'benjamin-robertson' }}
       run: |
         echo ::group::bundler environment
         bundle env
