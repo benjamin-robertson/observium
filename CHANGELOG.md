@@ -6,7 +6,7 @@ All notable changes to this project will be documented in this file.
 
 **Upgrade warning**
 
-The following default parameters for passwords have been removed from the modules. 
+The following default parameters for passwords have been removed from the module.
 - observium::db_password
 - observium::rootdb_password
 - observium::snmpv3_authpass
@@ -23,7 +23,7 @@ If you were relying on these defaults you will need to set them in your control 
 - Bumped module dependencies to later versions.
 - Bumped PDK version to 3.2.0.
 - Lint and other minor fixes. 
-- Added lint, unit and litmus tests within Github actions. 
+- Added lint, unit and litmus tests within Github actions pipeline.
 
 Thanks to https://github.com/baile320 for their security recommendations for this release. :)
 

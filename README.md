@@ -74,7 +74,7 @@ class { 'observium':
 ```
 
 2. Via environment hiera. (Preferred as we can encrypt these values)
-Within environment hiera place the values as shown.
+Within environment hiera place the values like shown.
 ```
 ---
 observium::db_password: "your_password_here"
@@ -185,7 +185,7 @@ RHEL 9 require the following yum repos for installation - these will be automati
 
 - [EPEL][4]
 - [OpenNMS common][5]
-- [OpenNMS RHEL8][13]
+- [OpenNMS RHEL9][13]
 - [remi-modular][14] - note you will need to enable php8.2 after adding this repo 
 ```
 /bin/dnf module -y install php:remi-8.2

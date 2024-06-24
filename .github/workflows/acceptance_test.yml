@@ -2,9 +2,6 @@
 name: "Acceptance Testing"
 
 on: 
-  push:
-    branches:
-      - "*"
   pull_request:
     branches:
       - "main"

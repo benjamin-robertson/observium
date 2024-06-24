@@ -2,9 +2,9 @@
 name: "Lint testing"
 
 on: 
-  push:
+  pull_request:
     branches:
-      - "*"
+      - "main"
 
 jobs:
   setup_matrix:

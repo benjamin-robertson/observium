@@ -15,7 +15,7 @@
 * `observium::apache`: Class: observium::apache inherits observium  Configure apache server with virtual host for observium
 * `observium::config`: Class: observium::config  Configure observium configuration files  lint:ignore:140chars lint:ignore:arrow_alignment
 * `observium::database_init`: Class: obversium  Init the observium database after install.  lint:ignore:140chars
-* `observium::firewall`: Class: observium::firewall  Manage UFW on ubuntu
+* `observium::firewall`: Class: observium::firewall  Manage iptables on ubuntu
 * `observium::firewalld`: Class: observium::firewall  Manages firewall and opens ports for observium
 * `observium::install`: Class: observium::install  Creates folder structure for Observium, and install from tar
 * `observium::mariadb`: Class: observium::mariadb  Install mysql or mariadb - OS dependant
@@ -203,7 +203,7 @@ Valid options - ['AES','DES']
 
 Data type: `Array`
 
-Array Snmp_agentaddress - default ['udp:127.0.0.1:161','udp6:[::1]:161']
+An array of addresses, on which snmpd will listen for queries. - default ['udp:127.0.0.1:161','udp6:[::1]:161']
 
 ##### <a name="-observium--mib_locations"></a>`mib_locations`
 
