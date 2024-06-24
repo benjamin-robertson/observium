@@ -1,0 +1,71 @@
+---
+name: "Lint testing"
+
+on: 
+  pull_request:
+    branches:
+      - "main"
+
+jobs:
+  setup_matrix:
+    name: "Setup Test Matrix"
+    runs-on: ubuntu-22.04
+    outputs:
+      matrix: ${{ steps.get-matrix.outputs.matrix }}
+
+    steps:
+    - name: Checkout Source
+      uses: actions/checkout@v3
+
+    - name: Activate Ruby 3.2
+      uses: ruby/setup-ruby@v1
+      with:
+        ruby-version: "3.2.3"
+        bundler-cache: true
+
+    - name: Print bundle environment
+      run: |
+        echo ::group::bundler environment
+        bundle env
+        echo ::endgroup::
+
+    - name: Setup Integration Test Matrix
+      id: get-matrix
+      run: |
+        echo "matrix=$(cat test_matrix.json | tr -s '\n' ' ')" >> $GITHUB_OUTPUT
+        cat $GITHUB_OUTPUT
+
+  lint:
+    name: "Lint tests (${{matrix.collection.agent_version}})"
+    needs:
+      - setup_matrix
+    if: ${{ needs.setup_matrix.outputs.matrix != '{}' }}
+
+    runs-on: ubuntu-22.04
+    strategy:
+      fail-fast: false
+      matrix: ${{fromJson(needs.setup_matrix.outputs.matrix)}}
+
+    env:
+      PUPPET_GEM_VERSION: ${{matrix.collection.gem_version}}
+      FACTER_GEM_VERSION: 'https://github.com/puppetlabs/facter#main'  # why is this set?
+
+    steps:
+    - name: Checkout Source
+      uses: actions/checkout@v3
+
+    - name: Activate Ruby 3.2
+      uses: ruby/setup-ruby@v1
+      with:
+        ruby-version: "3.2.3"
+        bundler-cache: true
+
+    - name: Print bundle environment
+      run: |
+        echo ::group::bundler environment
+        bundle env
+        echo ::endgroup::
+
+    - name: "Run tests"
+      run: |
+        bundle exec rake validate

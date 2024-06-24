@@ -2,6 +2,31 @@
 
 All notable changes to this project will be documented in this file.
 
+## Release 3.0.0
+
+**Upgrade warning**
+
+The following default parameters for passwords have been removed from the module.
+- observium::db_password
+- observium::rootdb_password
+- observium::snmpv3_authpass
+- observium::snmpv3_cryptopass
+- observium::admin_password
+
+If you were relying on these defaults you will need to set them in your control repo hiera before upgrading to 3.0.0. Passwords and other sensitive data in your control repo should be encrypted and protected, see https://www.puppet.com/docs/puppet/8/securing-sensitive-data.html.
+
+**Features**
+
+- Added support for RHEL9
+- Added support for stdlib 9.0 or later. **Note:** the observium module itself supports stdlib 9, however its dependencies did not. When upgrading to stdlib 9 please ensure you upgrade other dependant modules.
+- Incorporated security recommendations from baile320, removal of default passwords. 
+- Bumped module dependencies to later versions.
+- Bumped PDK version to 3.2.0.
+- Lint and other minor fixes. 
+- Added lint, unit and litmus tests within Github actions pipeline.
+
+Thanks to https://github.com/baile320 for their security recommendations for this release. :)
+
 ## Release 2.0.0
 
 **Features**

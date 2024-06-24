@@ -1,7 +1,5 @@
 ---
 observium::auth_mechanism: "mysql"
-observium::db_password: "changeme"
-observium::rootdb_password: "hello123"
 observium::download_url: "http://www.observium.org/"
 observium::installer_name: "observium-community-latest.tar.gz"
 observium::install_dir: "/opt/observium"
@@ -10,10 +8,11 @@ observium::db_user: "observium"
 observium::community: "puppet"
 observium::snmpv3_authlevel: "authPriv"
 observium::snmpv3_authname: "observium"
-observium::snmpv3_authpass: "setme1234"
 observium::snmpv3_authalgo: "SHA"
-observium::snmpv3_cryptopass: "setme1234"
 observium::snmpv3_cryptoalgo: "AES"
+observium::snmpd_agentaddress:
+  - udp:127.0.0.1:161
+  - udp6:[::1]:161 # need to disable for litmus tests to pass
 observium::mib_locations:
   - /opt/observium/mibs/rfc
   - /opt/observium/mibs/net-snmp
@@ -23,7 +22,6 @@ observium::observium_additional_conf:
   - '//extra lines'
   - '//as many as you'
   - '//would like'
-observium::admin_password: "changeme"
 observium::apache_custom_options: {}
 observium::apache_auth_require: "all granted"
 observium::apache_port: 80

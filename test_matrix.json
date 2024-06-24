@@ -1,0 +1,12 @@
+{
+  "collection": [
+    {
+      "agent_version": "puppet7",
+      "gem_version": "~> 7.31"
+    },
+    {
+      "agent_version": "puppet8",
+      "gem_version": "~> 8.7"
+    }
+  ]
+}
