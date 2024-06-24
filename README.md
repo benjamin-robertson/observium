@@ -9,6 +9,7 @@ A Puppet module which installs and configures Observium monitoring software. For
 1. [Setup - The basics of getting started with observium](#setup)
     * [What observium affects](#what-observium-affects)
     * [Setup requirements](#setup-requirements)
+    * [Password requirements](#password-requirements)
     * [Beginning with observium](#beginning-with-observium)
 1. [Usage - Configuration options and additional functionality](#usage)
 1. [Limitations - OS compatibility, etc.](#limitations)
@@ -56,7 +57,7 @@ Please ensure you meet the dependency requirements and have the following in you
 - puppetlabs-translate
 - camptocamp-systemd
 
-### Password requirements ###
+### Password requirements
 
 Beginning with the 3.0.0 release, default passwords are no longer provided by this module. This was a insecure default as every instances of observium setup with these defaults would use the same passwords. 
 
