@@ -1,6 +1,6 @@
 {
   "name": "benjaminrobertson-observium",
-  "version": "2.0.0",
+  "version": "3.0.0",
   "author": "benjaminrobertson",
   "summary": "Configures and installs Observium for Redhat and Ubuntu",
   "license": "Apache-2.0",
