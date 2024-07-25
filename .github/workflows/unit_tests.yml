@@ -1,7 +1,10 @@
 ---
 name: "Unit Testing"
 
-on: 
+on:
+  push:
+    branches:
+      - "main"
   pull_request:
     branches:
       - "main"
