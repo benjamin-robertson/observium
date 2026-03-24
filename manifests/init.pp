@@ -240,7 +240,9 @@ class observium (
   }
 
   # Configure apache
-  include observium::apache
+  if $observium::manage_apache {
+    include observium::apache
+  }
 
   # Configure firewall
   if $manage_fw {
