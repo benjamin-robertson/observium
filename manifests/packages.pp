@@ -51,13 +51,8 @@ class observium::packages {
       }
     }
     'Debian': {
-      # Running on Ubuntu
-      if $facts['os']['name'] == 'Ubuntu' {
-        $required_packages = lookup('observium::required_packages', Array)
-        stdlib::ensure_packages($required_packages)
-      } else {
-        fail('Unsupported operating system name, bailing out!!')
-      }
+      $required_packages = lookup('observium::required_packages', Array)
+      stdlib::ensure_packages($required_packages)
     }
     default: { fail('Unsupported operating system, bailing out!!') }
   }
