@@ -39,6 +39,7 @@ describe 'Installation', if: ['centos', 'redhat', 'ubuntu'].include?(os[:family]
       # run manifest twice for 2204
       apply_manifest(pp)
       apply_manifest(pp)
+      idempotent_apply(pp)
     end
   end
 
