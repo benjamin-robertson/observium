@@ -22,9 +22,12 @@ class observium::packages {
         '8': {
           # Running on rhel 8
           $required_packages = lookup('observium::required_packages', Array)
+          dnf_module_stream { 'php':
+            stream => 'remi-8.3',
+          }
           package { $required_packages:
             ensure  => 'installed',
-            require => Class['observium::yum'],
+            require => [Class['observium::yum'],Dnf_module_stream['php']],
             before  => Exec['/sbin/alternatives --set python /usr/bin/python3'],
           }
 
