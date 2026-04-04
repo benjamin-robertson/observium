@@ -27,7 +27,7 @@ class observium::packages {
           }
           package { $required_packages:
             ensure  => 'installed',
-            require => [Class['observium::yum'],Dnf_module_stream['php']],
+            require => [Class['observium::yum'],dnf_module_stream['php']],
             before  => Exec['/sbin/alternatives --set python /usr/bin/python3'],
           }
 
