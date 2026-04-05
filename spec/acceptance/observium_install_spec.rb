@@ -39,6 +39,7 @@ describe 'Installation', if: ['centos', 'redhat', 'ubuntu'].include?(os[:family]
       # run manifest twice for 2204
       apply_manifest(pp)
       apply_manifest(pp)
+      idempotent_apply(pp)
     end
   end
 
@@ -52,9 +53,9 @@ describe 'Installation', if: ['centos', 'redhat', 'ubuntu'].include?(os[:family]
     it { is_expected.to be_listening }
   end
 
-  # describe command('/usr/bin/curl http://127.0.0.1 -I') do # for some reason this isn't working as expected. Disabling test.
+  # describe command("/usr/bin/curl http://127.0.0.1 -I") do # Issue with litumus to bolt and mismatch of command into bolt runner. 
   #   its(:exit_status) { is_expected.to eq 0 }
-  #   its(:stdout) { is_expected.to contain 'HTTP/1.1 200 OK' }
+  #   its(:stdout) { is_expected.to contain "HTTP/1.1 200 OK" }
   # end
 
   describe cron do
