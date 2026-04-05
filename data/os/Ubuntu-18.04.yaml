@@ -1,0 +1,10 @@
+---
+observium::required_packages:
+  - 'libapache2-mod-php7.2'
+  - 'libvirt-bin'
+  - 'php7.2-cli'
+  - 'php7.2-gd'
+  - 'php7.2-json'
+  - 'php7.2-ldap'
+  - 'php7.2-mysql'
+  - 'python-mysqldb'

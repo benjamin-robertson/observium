@@ -1,4 +1,7 @@
 ---
+lookup_options:
+  observium::required_packages:
+    merge: unique
 observium::auth_mechanism: "mysql"
 observium::download_url: "http://www.observium.org/"
 observium::installer_name: "observium-community-latest.tar.gz"
