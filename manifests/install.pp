@@ -9,41 +9,33 @@ class observium::install {
   # Lookup apache user for the OS we are running
   $apache_user = lookup(observium::apache_user, String)
 
-  # Create folder structure
-  file {
-    default:
-      owner => 'root',
-      group => 'root',
-      mode  => '0775',
-  }
-
-  file { '/opt/observium':
-    ensure => directory,
+  # Extract the tarball
+  archive { $observium::installer_name:
+    path          => "/opt/${observium::installer_name}",
+    source        => "${observium::download_url}${observium::installer_name}",
+    extract       => true,
+    extract_path  => '/opt',
+    extract_flags => {
+      'tar' => '--no-same-owner -xf',
+    },
+    creates       => '/opt/observium/VERSION',
+    cleanup       => false,
   }
 
   file { '/opt/observium/rrd':
     ensure  => directory,
     owner   => $apache_user,
     group   => $apache_user,
-    require => File['/opt/observium'],
-  }
-
-  # Extract the tarball
-  archive { $observium::installer_name:
-    path         => "/opt/${observium::installer_name}",
-    source       => "${observium::download_url}${observium::installer_name}",
-    extract      => true,
-    extract_path => '/opt',
-    creates      => '/opt/observium/VERSION',
-    cleanup      => false,
-    require      => File['/opt/observium'],
+    mode    => '0775',
+    require => Archive[$observium::installer_name],
   }
 
   file { '/opt/observium/logs':
     ensure  => directory,
     owner   => $apache_user,
     group   => $apache_user,
-    require => File['/opt/observium'],
+    mode    => '0775',
+    require => Archive[$observium::installer_name],
   }
 
   # Ensure observium cron jobs are populated
