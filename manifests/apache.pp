@@ -7,17 +7,13 @@
 class observium::apache {
   assert_private()
 
-  # Declare base apache class
-  if $observium::manage_apache {
-    class { 'apache':
-      default_vhost => false,
-      mpm_module    => 'prefork',
-    }
-    if $facts['os']['family'] == 'Debian' {
-      include apache::mod::rewrite
-    }
+  class { 'apache':
+    default_vhost => false,
+    mpm_module    => 'prefork',
   }
-
+  if $facts['os']['family'] == 'Debian' {
+    include apache::mod::rewrite
+  }
   # Specify virtual host - check if we are doing ssl or not
   if $observium::manage_ssl {
     # We are doing SSL
