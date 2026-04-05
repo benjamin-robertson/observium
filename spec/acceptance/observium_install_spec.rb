@@ -53,6 +53,10 @@ describe 'Installation', if: ['centos', 'redhat', 'ubuntu'].include?(os[:family]
     it { is_expected.to be_listening }
   end
 
+  describe command('curl -s -o /dev/null -w "%{http_code}" http://127.0.0.1') do
+    its(:stdout) { is_expected.to match(/^(200|301|302)$/) }
+  end
+
   # describe command('/usr/bin/curl http://127.0.0.1 -I') do # for some reason this isn't working as expected. Disabling test.
   #   its(:exit_status) { is_expected.to eq 0 }
   #   its(:stdout) { is_expected.to contain('HTTP/1.1 200 OK') }
