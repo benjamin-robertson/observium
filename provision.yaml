@@ -1,8 +1,9 @@
 ---
 docker:
   provisioner: docker
-  images: ['litmusimage/centos:stream8', 'litmusimage/ubuntu:22.04', 'litmusimage/centos:stream9', 'litmusimage/ubuntu:24.04']
+  images: ['litmusimage/centos:stream8', 'litmusimage/ubuntu:22.04', 'litmusimage/centos:stream9']
   # removed 'litmusimage/ubuntu:20.04' as it failed in github action pipeline
+  # removed: 'litmusimage/ubuntu:24.04' fails downloading puppet agent. 
 vagrant:
   provisioner: vagrant
   images: ['centos/stream8', 'generic/ubuntu2204', 'generic/ubuntu2004']
