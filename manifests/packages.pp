@@ -44,6 +44,12 @@ class observium::packages {
     'Debian': {
       $required_packages = lookup('observium::required_packages', Array)
       $requirements = {}
+      # Enable universe package on 24.04
+      if $facts['os']['release']['major'] == '24.04' {
+        exec { 'add-apt-repository -y universe':
+          unless => 'apt-cache policy | grep universe',
+        }
+      }
     }
     default: { fail('Unsupported operating system, bailing out!!') }
   }
