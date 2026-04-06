@@ -96,35 +96,12 @@ describe 'observium' do
     it { is_expected.to contain_package('php-json') }
   end
 
-  context 'on ubuntu 18.04' do
-    let(:facts) do
-      {
-        'os' => {
-          'family' => 'Debian',
-          'name'   => 'Debian',
-          'release' => {
-            'major' => '18.04',
-            'full'  => '18.04',
-          },
-          'selinux' => {
-            'enabled' => true,
-            'current_mode' => 'enforcing',
-          },
-        }
-      }
-    end
-
-    # it { is_expected.to contain_service('apache2') }
-    it { is_expected.to contain_package('php-pear') }
-    it { is_expected.to contain_package('php7.2-mysql') }
-  end
-
   context 'on ubuntu 20.04' do
     let(:facts) do
       {
         'os' => {
           'family' => 'Debian',
-          'name'   => 'Debian',
+          'name'   => 'Ubuntu',
           'release' => {
             'major' => '20.04',
             'full'  => '20.04',
@@ -147,7 +124,7 @@ describe 'observium' do
       {
         'os' => {
           'family' => 'Debian',
-          'name'   => 'Debian',
+          'name'   => 'Ubuntu',
           'release' => {
             'major' => '22.04',
             'full'  => '22.04',
