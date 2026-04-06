@@ -9,6 +9,9 @@ observium::required_packages:
   - 'python-is-python3'
   - 'python3-mysqldb'
   - 'python3-pymysql'
+  - 'php8.3-bcmath'
+  - 'php8.3-mbstring'
 observium::debiansnmp_user: "Debian-snmp"
 observium::db_charset: "utf8mb3"
 observium::db_collate: "utf8mb3_general_ci"
+observium::apache_php_version: "8"

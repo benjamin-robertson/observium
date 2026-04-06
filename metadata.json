@@ -1,6 +1,6 @@
 {
   "name": "benjaminrobertson-observium",
-  "version": "3.0.0",
+  "version": "4.0.0",
   "author": "benjaminrobertson",
   "summary": "Configures and installs Observium for Redhat and Ubuntu",
   "license": "Apache-2.0",
@@ -63,7 +63,6 @@
     {
       "operatingsystem": "CentOS",
       "operatingsystemrelease": [
-        "7",
         "8",
         "9"
       ]
@@ -71,7 +70,6 @@
     {
       "operatingsystem": "RedHat",
       "operatingsystemrelease": [
-        "7",
         "8",
         "9"
       ]
@@ -88,7 +86,7 @@
   "requirements": [
     {
       "name": "puppet",
-      "version_requirement": ">= 7.0.0 < 9.0.0"
+      "version_requirement": ">= 8.0.0 < 9.0.0"
     }
   ],
   "pdk-version": "3.6.1",
